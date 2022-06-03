@@ -25,12 +25,6 @@
     "predeploy": "npm run build",
     "deploy": "netlify deploy -p"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -44,7 +38,6 @@
     ]
   },
   "devDependencies": {
-    "eslint-config-react-app": "^7.0.1",
     "prettier": "2.6.2"
   }
 }
