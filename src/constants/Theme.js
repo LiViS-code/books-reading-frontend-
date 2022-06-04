@@ -27,6 +27,9 @@ export const theme = Object.freeze({
   },
   fontSizing: {
     mainFontSize: '14px',
+    preTitleFontSize: '16px',
+    titleFontSize: '19px',
+    headingFontSize: '34px',
   },
   media: {
     mobile: '480px',

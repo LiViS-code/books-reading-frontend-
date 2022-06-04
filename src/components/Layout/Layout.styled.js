@@ -24,6 +24,6 @@ export const Container = styled.div`
   }
   @media (min-width: ${desktop}) {
     width: ${desktop};
-    padding: 0 32px;
+    padding: 0 16px;
   }
 `;
