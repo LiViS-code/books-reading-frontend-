@@ -119,5 +119,5 @@ yarn-error.log*
 
 .eslintcache
 
-package.json
-package-lock.json
+.package.json
+.package-lock.json
