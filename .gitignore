@@ -118,3 +118,6 @@ yarn-debug.log*
 yarn-error.log*
 
 .eslintcache
+
+package.json
+package-lock.json
