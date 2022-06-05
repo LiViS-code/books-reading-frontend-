@@ -1,3 +1,4 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/8d8df1f9-3be1-4048-8530-9c96411c2f26/deploy-status)](https://app.netlify.com/sites/books-reading/deploys)
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
