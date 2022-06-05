@@ -1,7 +1,7 @@
-import { createGlobalStyle } from "styled-components";
-import { theme } from "./constants/Theme";
+import { createGlobalStyle } from 'styled-components';
+import { theme } from './constants/Theme';
 const {
-  spacing,
+  //spacing,
   colors: { primaryColor, backgroundColor },
   fonts: { mainFont },
   fontSizing: { mainFontSize },

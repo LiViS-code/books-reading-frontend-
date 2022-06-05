@@ -1,8 +1,13 @@
-import styled from "styled-components";
-import { theme } from "../../constants/Theme";
+import styled from 'styled-components';
+import { theme } from '../../constants/Theme';
 const {
-  spacing,
-  colors: { primaryColor, backgroundColorForm, backgroundColor, boxShadow },
+  //spacing,
+  colors: {
+    //primaryColor,
+    //backgroundColorForm,
+    backgroundColor,
+    //boxShadow
+  },
   media: { mobile, tablet, desktop },
 } = theme;
 
