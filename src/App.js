@@ -1,17 +1,20 @@
-import React from "react";
+import React from 'react';
 //import { lazy, Suspense } from "react";
-import { Routes, Route } from "react-router-dom";
-import { GlobalStyle } from "./App.styled";
-import { Layout } from "./components/Layout/Layout";
-import { AuthView } from "./views/AuthView/AuthView";
-import { LibraryView } from "./views/LibraryView/LibraryView";
-import { StatisticsView } from "./views/StatisticsView/StatisticsView";
-import { TrainingView } from "./views/TrainingView/TrainingView";
+import { Routes, Route } from 'react-router-dom';
+import { GlobalStyle } from './App.styled';
+import { Layout } from './components/Layout/Layout';
+import { AuthView } from './views/AuthView/AuthView';
+import { LibraryView } from './views/LibraryView/LibraryView';
+import { StatisticsView } from './views/StatisticsView/StatisticsView';
+import { TrainingView } from './views/TrainingView/TrainingView';
+
+import Header from './components/Header';
 
 function App() {
   return (
     <>
       <GlobalStyle />
+      <Header />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="auth" element={<AuthView />} />
