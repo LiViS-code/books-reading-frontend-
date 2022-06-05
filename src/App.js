@@ -8,7 +8,9 @@ import { LibraryView } from './views/LibraryView/LibraryView';
 import { StatisticsView } from './views/StatisticsView/StatisticsView';
 import { TrainingView } from './views/TrainingView/TrainingView';
 
+
 import Header from './components/Header';
+
 
 function App() {
   return (
@@ -17,7 +19,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route path="auth" element={<AuthView />} />
+          <Route path="/" element={<AuthView />} />
           <Route path="library" element={<LibraryView />} />
           <Route path="training" element={<TrainingView />} />
           <Route path="statistics" element={<StatisticsView />} />
