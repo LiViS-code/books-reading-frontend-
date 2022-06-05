@@ -8,10 +8,15 @@ import { LibraryView } from './views/LibraryView/LibraryView';
 import { StatisticsView } from './views/StatisticsView/StatisticsView';
 import { TrainingView } from './views/TrainingView/TrainingView';
 
+
+import Header from './components/Header';
+
+
 function App() {
   return (
     <>
       <GlobalStyle />
+      <Header />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<AuthView />} />
