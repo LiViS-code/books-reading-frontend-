@@ -1,7 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import { theme } from './constants/Theme';
 const {
-  //spacing,
   colors: { primaryColor, backgroundColor },
   fonts: { mainFont },
   fontSizing: { mainFontSize },
