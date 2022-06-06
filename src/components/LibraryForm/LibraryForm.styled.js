@@ -110,20 +110,20 @@ export const ButtonWrapper = styled.div`
   }
 `;
 export const AddButton = styled.button`
-  // min-width: 171px;
-  // height: 41px;
-  // border: 1px solid #242a37;
-  // color: #000000;
-  // font-size: 14px;
-  // line-height: 17px;
-  // font-style: normal;
-  // font-weight: 500;
-  // font: inherit;
-  // background-color: transparent;
-  // @media screen and (min-width: 1280px) {
-  //   min-width: 181px;
-  //   height: 42px;
-  // }
+  /* min-width: 171px;
+  height: 41px;
+  border: 1px solid #242a37;
+  color: #000000;
+  font-size: 14px;
+  line-height: 17px;
+  font-style: normal;
+  font-weight: 500;
+  font: inherit;
+  background-color: transparent;
+  @media screen and (min-width: 1280px) {
+    min-width: 181px;
+    height: 42px;
+  } */
   font: inherit;
   font-style: normal;
   font-weight: 500;
