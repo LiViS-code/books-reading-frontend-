@@ -1,0 +1,102 @@
+.body {
+  background-color: #e5e5e5;
+  padding: 0;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 40px;
+  margin: 0;
+}
+@media screen and (min-width: 768px) and (max-width: 1999px) {
+  .body {
+    display: none;
+  }
+}
+.mainTitle {
+  text-align: center;
+
+  font-size: 34px;
+
+  line-height: 1.1176;
+  font-family: 'Abril Fatface';
+  color: 242a37;
+  margin: 0;
+  padding-top: 32px;
+  margin-bottom: 32px;
+}
+.title {
+  margin: 0;
+  padding: 0;
+  margin-bottom: 14px;
+  font-family: 'Montserrat';
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.9;
+}
+.firstSection {
+  display: inline;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 12px;
+  color: #242a37;
+}
+.secondSection {
+  padding: 0;
+  margin: 0;
+  margin-bottom: 60px;
+  color: #242a37;
+}
+.icon {
+  margin-right: 12px;
+  fill: rgba(255, 107, 8, 1);
+  width: 4px;
+  height: 8px;
+  background-color: rgba(255, 107, 8, 1);
+}
+.text {
+  color: #898f9f;
+  font-family: inherit;
+  font-weight: 14px;
+  line-height: 1.2142;
+  margin-bottom: 12px;
+}
+
+.sign {
+  width: 130px;
+  height: 40px;
+  border-color: black;
+  background-color: inherit;
+
+  padding: 0;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 250ms var(--timing-function);
+}
+.button {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sign:hover {
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  background-color: #ff6b08;
+  border-color: #ff6b08;
+}
+.sign:focus {
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  background-color: #ff6b08;
+  border-color: #ff6b08;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+  font-family: inherit;
+}
+.link:hover {
+  color: white;
+}
+.link:focus {
+  color: white;
+}

@@ -1,3 +1,5 @@
+import LibraryForm from '../../components/LibraryForm/LibraryForm';
+
 export const LibraryView = () => {
-  return <div> Library Page goes here</div>;
+  return <LibraryForm />;
 };
