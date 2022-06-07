@@ -9,8 +9,8 @@ import {
   InputContainer,
   NumberDiv,
   ButtonWrapper,
-  AddButton,
 } from './LibraryForm.styled';
+import { PrimaryButton } from '../Buttons/PrimaryButton.styled';
 
 const initialValues = {
   title: '',
@@ -85,7 +85,7 @@ const LibraryForm = () => {
             </NumberDiv>
           </InputContainer>
           <ButtonWrapper>
-            <AddButton>Додати</AddButton>
+            <PrimaryButton>Додати</PrimaryButton>
           </ButtonWrapper>
         </InputWrapper>
       </Form>
