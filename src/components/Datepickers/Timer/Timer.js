@@ -2,11 +2,11 @@ import React, { useState, useMemo, useEffect } from 'react';
 // import { formatDuration, intervalToDuration } from 'date-fns';
 import differenceInSeconds from 'date-fns/differenceInSeconds';
 
-export const Timer = ({ deadline }) => {
+export const Timer = ({ deadline, startdate }) => {
   const ONE_DAY = 60 * 60 * 24;
   const ONE_HOUR = 60 * 60;
   const ONE_MINUTE = 60;
-  const [currentTime, setCurrentTime] = useState(new Date().getTime());
+  const [currentTime, setCurrentTime] = useState(new Date(startdate));
 
   const diffInSeconds = differenceInSeconds(deadline, currentTime);
 

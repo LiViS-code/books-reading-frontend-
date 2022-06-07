@@ -1,1 +1,1 @@
-export { default } from './EndOfYearCountdown';
+export { default } from './Countdown';
