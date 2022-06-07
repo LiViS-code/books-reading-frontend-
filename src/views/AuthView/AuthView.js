@@ -1,3 +1,8 @@
+import LoginForm from '../../components/Login/LoginForm'
+import LoginText from '../../components/Login/LoginText'
+
+
 export const AuthView = () => {
-  return <div> Login Page goes here</div>;
+  return <div> <LoginForm />
+    <LoginText /></div>;
 };
