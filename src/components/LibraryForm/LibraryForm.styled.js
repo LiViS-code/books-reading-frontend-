@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { theme } from '../../constants/Theme';
 
 export const FormContainer = styled.div`
   display: flex;
@@ -9,6 +10,7 @@ export const FormContainer = styled.div`
   padding-right: 20px;
   @media screen and (min-width: 1280px) {
     margin-top: 40px;
+    padding-bottom: 0px;
   }
 `;
 
@@ -24,7 +26,6 @@ export const InputWrapper = styled.div`
   flex-direction: column;
   width: 100%;
   @media screen and (min-width: 1280px) {
-    display: flex;
     flex-direction: row;
   }
 `;
@@ -38,8 +39,8 @@ export const Input = styled.input`
   padding: 12px 12px 13px 12px;
   margin-top: 8px;
   margin-bottom: 20px;
-  background-color: #f6f7fb;
-  @media screen and (max-width: 767px) {
+  background-color: ${theme.colors.backgroundColor};
+  @media screen and (max-width: 768px) {
     width: 100%;
   }
   @media screen and (min-width: 768px) {
@@ -62,6 +63,7 @@ export const Input = styled.input`
   }
   @media screen and (min-width: 1280px) {
     margin-right: 16px;
+    margin-bottom: 0px;
     width: ${props => {
       switch (props.name) {
         case 'title':
@@ -86,10 +88,14 @@ export const Input = styled.input`
 `;
 
 export const Label = styled.label`
-  color: #898f9f;
+  color: ${theme.colors.secondaryColor};
 `;
 
 export const InputContainer = styled.div`
+  @media screen and (max-width: 767px) {
+    margin-bottom: 20px;
+  }
+
   @media screen and (min-width: 768px) {
     display: flex;
     flex-direction: row;
@@ -106,42 +112,6 @@ export const ButtonWrapper = styled.div`
   justify-content: center;
   @media screen and (min-width: 1280px) {
     margin-left: 24px;
-    align-items: center;
-  }
-`;
-export const AddButton = styled.button`
-  // min-width: 171px;
-  // height: 41px;
-  // border: 1px solid #242a37;
-  // color: #000000;
-  // font-size: 14px;
-  // line-height: 17px;
-  // font-style: normal;
-  // font-weight: 500;
-  // font: inherit;
-  // background-color: transparent;
-  // @media screen and (min-width: 1280px) {
-  //   min-width: 181px;
-  //   height: 42px;
-  // }
-  font: inherit;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 17px;
-  box-sizing: border-box;
-  background-color: transparent;
-  border: 1px solid #242a37;
-  width: 171px;
-  height: 42px;
-  &:hover,
-  &:focus {
-    border: transparent;
-    background-color: #ff6b08;
-    color: #ffffff;
-  }
-  @media screen and (min-width: 1280px) {
-    width: 181px;
-    height: 42px;
+    align-items: flex-end;
   }
 `;
