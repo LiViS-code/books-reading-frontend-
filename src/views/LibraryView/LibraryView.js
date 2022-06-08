@@ -1,5 +1,11 @@
-import LibraryForm from '../../components/LibraryForm/LibraryForm';
+import LibraryForm from '../../components/LibraryForm';
+import LibraryModal from '../../components/LibraryModal';
 
 export const LibraryView = () => {
-  return <LibraryForm />;
+  return (
+    <div>
+      <LibraryForm />
+      <LibraryModal />
+    </div>
+  );
 };
