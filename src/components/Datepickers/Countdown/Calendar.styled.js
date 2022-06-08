@@ -44,16 +44,11 @@ export const Icon = styled.img`
   margin: 0;
   margin-right: ${spacing(3)};
   display: inline-block;
-  /* color: ${borderColor};
-  fill: ${borderColor}; */
 `;
 export const Arrow = styled.img`
   justify-self: flex-end;
   padding-right: ${spacing(4.5)};
-
   display: inline-block;
-  color: ${borderColor};
-  fill: ${borderColor};
 `;
 
 export const TimerWrapper = styled.div`
