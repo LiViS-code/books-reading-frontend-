@@ -12,6 +12,7 @@ import {
   Icon,
   TimerWrapper,
   TimeBlock,
+  Arrow,
 } from './Calendar.styled';
 import calendar from '../../../image/svg/calendar.svg';
 import Polygon from '../../../image/svg/Polygon.svg';
@@ -63,12 +64,12 @@ export const Countdown = () => {
         <DatePicker>
           <Icon src={calendar} alt="calendar" />
           Початок
-          <Icon src={Polygon} alt="polygon" />
+          <Arrow src={Polygon} alt="polygon" />
         </DatePicker>
         <DatePicker>
           <Icon src={calendar} alt="calendar" />
           Завершення
-          <Icon src={Polygon} alt="polygon" />
+          <Arrow src={Polygon} alt="polygon" />
         </DatePicker>
         <CalendarWrapper>
           <Calendar value={date} onChange={setDate} onClickDay={toast} />

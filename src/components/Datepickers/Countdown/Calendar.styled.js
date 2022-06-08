@@ -28,6 +28,7 @@ export const CalendarWrapper = styled.div`
 export const DatePicker = styled.button`
   padding: ${spacing(3)};
   width: 280px;
+
   margin: ${spacing(3)} 0 ${spacing(3)};
   text-align: start;
   border: ${borderColor} 1px solid;
@@ -43,11 +44,21 @@ export const Icon = styled.img`
   margin: 0;
   margin-right: ${spacing(3)};
   display: inline-block;
+  /* color: ${borderColor};
+  fill: ${borderColor}; */
+`;
+export const Arrow = styled.img`
+  justify-self: flex-end;
+  padding-right: ${spacing(4.5)};
+
+  display: inline-block;
   color: ${borderColor};
   fill: ${borderColor};
 `;
+
 export const TimerWrapper = styled.div`
   align-items: center;
+  margin: ${spacing(5)} 0;
   @media (min-width: ${tablet}) {
     display: flex;
   }
@@ -56,7 +67,7 @@ export const TimerWrapper = styled.div`
   }
 `;
 export const TimeBlock = styled.div`
-  align-items: center;
+  text-align: center;
   color: ${secondaryColor};
   margin-left: auto;
   margin-right: auto;

@@ -25,6 +25,8 @@ export const TimerWrapper = styled.div`
   background-color: ${activeColor};
   width: 280px;
   box-shadow: ${spacing(1)} ${spacing(1)} ${spacing(2)} rgba(36, 42, 55, 0.15);
+  padding: ${spacing(6)} ${spacing(8)};
+  margin: ${spacing(2)} 0 ${spacing(6)};
 `;
 export const Delimeter = styled.span`
   font-family: ${numbersFont};
