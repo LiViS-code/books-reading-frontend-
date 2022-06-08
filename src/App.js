@@ -9,7 +9,7 @@ import { StatisticsView } from './views/StatisticsView/StatisticsView';
 import { TrainingView } from './views/TrainingView/TrainingView';
 
 import Header from './components/Header';
-import BooksReading from './components/BooksReading/Information/BooksReading';
+import BooksReading from './components/BooksReading/Information';
 
 function App() {
   return (
