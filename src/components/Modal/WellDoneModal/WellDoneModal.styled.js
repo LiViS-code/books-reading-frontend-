@@ -1,4 +1,11 @@
 import styled from '@emotion/styled';
+import { theme } from '../../../constants/Theme';
+const {
+  colors: { accentColor, activeColor, primaryColor, borderColor },
+  fonts: { mainFont },
+  fontSizing: { preTitleFontSize, mainFontSize },
+  media: { tablet },
+} = theme;
 
 export const WellDoneContent = styled.div`
   width: 280px;
@@ -8,7 +15,7 @@ export const WellDoneContent = styled.div`
   align-content: center;
   align-items: center;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${tablet}) {
     width: 394px;
     height: 286px;
   }
@@ -18,15 +25,15 @@ export const Text = styled.p`
   margin-bottom: 20px;
   padding-left: 64px;
   padding-right: 64px;
-  font-family: 'Montserrat';
+  font-family: ${mainFont};
   font-style: normal;
   font-weight: 500;
-  font-size: 16px;
+  font-size: ${preTitleFontSize};
   line-height: 22px;
   text-align: center;
-  color: #242a37;
+  color: ${primaryColor};
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${tablet}) {
     padding-left: 52px;
     padding-right: 52px;
     margin-bottom: 24px;
@@ -39,7 +46,7 @@ export const Buttons = styled.div`
   justify-content: center;
   align-items: center;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${tablet}) {
     flex-direction: row;
   }
 `;
@@ -52,9 +59,9 @@ export const Svg = styled.div`
   justify-content: center;
   width: 54px;
   height: 54px;
-  fill: #a6abb9;
+  fill: ${borderColor};
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${tablet}) {
     padding-top: 40px;
   }
 `;
@@ -68,26 +75,26 @@ export const Back = styled.button`
   padding: 0;
   box-sizing: border-box;
 
-  font-family: 'Montserrat';
+  font-family: ${mainFont};
   font-style: normal;
   font-weight: 500;
-  font-size: 14px;
+  font-size: ${mainFontSize};
   line-height: 17px;
-  color: #242a37;
+  color: ${primaryColor};
   text-align: center;
   cursor: pointer;
 
   width: 152px;
   height: 40px;
-  border: 1px solid #242a37;
-  background: #ffffff;
+  border: 1px solid ${primaryColor};
+  background: ${activeColor};
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
 
   &:hover,
   &:focus {
-    color: #ffffff;
-    background: #ff6b08;
-    border: 1px solid #ff6b08;
+    color: ${activeColor};
+    background: ${accentColor};
+    border: 1px solid ${accentColor};
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
     transition: box-shadow 250ms ease;
   }
@@ -98,31 +105,31 @@ export const NewTraining = styled.button`
   margin-bottom: 20px;
   box-sizing: border-box;
 
-  font-family: 'Montserrat';
+  font-family: ${mainFont};
   font-style: normal;
   font-weight: 500;
-  font-size: 14px;
+  font-size: ${mainFontSize};
   line-height: 17px;
-  color: #ffffff;
+  color: ${activeColor};
   text-align: center;
   cursor: pointer;
 
   width: 152px;
   height: 40px;
-  background: #ff6b08;
-  border: 1px solid #ff6b08;
+  background: ${accentColor};
+  border: 1px solid ${accentColor};
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
 
   &:hover,
   &:focus {
-    color: #242a37;
-    border: 1px solid #242a37;
-    background: #ffffff;
+    color: ${primaryColor};
+    border: 1px solid ${primaryColor};
+    background: ${activeColor};
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
     transition: box-shadow 250ms ease;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${tablet}) {
     margin-bottom: 0px;
     margin-right: 32px;
   }

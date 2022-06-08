@@ -8,13 +8,13 @@ import {
   Icon,
   Buttons,
 } from './WellDoneModal.styled';
-import goodIcon from '../../../image/svg/symbol-defs.svg#icon-good';
+import images from '../../../image/svg/symbol-defs.svg';
 
 const WellDoneModal = ({ toggleWellDoneModal }) => {
   return (
     <WellDoneContent>
       <Svg>
-        <Icon src={goodIcon} alt="trumb up" width="44"></Icon>
+        <Icon src={`${images}#icon-good`} alt="trumb up" width="44"></Icon>
       </Svg>
       <Text>
         Well done! but you need to be a little bit faster. You can do it
