@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useEffect } from 'react';
-// import { formatDuration, intervalToDuration } from 'date-fns';
+
 import differenceInSeconds from 'date-fns/differenceInSeconds';
+import { Days, TimerWrapper, Numbers, Delimeter } from './Timer.styled';
 
 export const Timer = ({ deadline, startdate }) => {
   const ONE_DAY = 60 * 60 * 24;
@@ -42,14 +43,31 @@ export const Timer = ({ deadline, startdate }) => {
       const now = new Date().getTime();
       setCurrentTime(now);
     }, 1000);
+
+    return () => {
+      // cancel the subscription
+      setInterval = false;
+    };
   }, []);
 
   return (
-    <div>
-      <span>{countdown.days} days</span>
-      <span>{countdown.hours} hours</span>
-      <span>{countdown.minutes} minutes</span>
-      <span>{countdown.seconds} seconds</span>
-    </div>
+    <TimerWrapper>
+      <Days>
+        <Numbers>{countdown.days}</Numbers> ДН
+      </Days>
+      <Delimeter>:</Delimeter>
+      <Days>
+        <Numbers>{countdown.hours}</Numbers> ГОД
+      </Days>
+      <Delimeter>:</Delimeter>
+      <Days>
+        <Numbers>{countdown.minutes}</Numbers> ХВ
+      </Days>
+      <Delimeter>:</Delimeter>
+
+      <Days>
+        <Numbers>{countdown.seconds}</Numbers>СЕК
+      </Days>
+    </TimerWrapper>
   );
 };

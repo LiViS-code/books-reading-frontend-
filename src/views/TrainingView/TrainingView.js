@@ -1,9 +1,9 @@
-import { Countdown } from '../../components/Datepickers/Countdown';
+import { TrainingPage } from '../../components/TrainingPage';
 
 export const TrainingView = () => {
   return (
     <>
-      <Countdown />
+      <TrainingPage />
     </>
   );
 };
