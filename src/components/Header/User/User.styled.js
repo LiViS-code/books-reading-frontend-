@@ -1,5 +1,15 @@
-import styled from '@emotion/styled';
-//import { theme } from '../../constants/Theme';
+import styled from 'styled-components';
+import { theme } from '../../../constants/Theme';
+const {
+  media: { tablet },
+  colors: { primaryColor, backgroundColorForm },
+  fonts: { mainFont },
+} = theme;
+
+export const Name = styled.div`
+  display: flex;
+  align-items: center;
+`;
 
 export const Avatar = styled.span`
   display: flex;
@@ -8,16 +18,19 @@ export const Avatar = styled.span`
   width: 33px;
   height: 33px;
   border-radius: 50%;
-  background-color: #f5f7fa;
+  background-color: ${backgroundColorForm};
 
-  font-family: 'Montserrat';
+  font-family: ${mainFont};
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
   line-height: 17px;
-  color: #242a37;
+  color: ${primaryColor};
 `;
 
-export const Name = styled.div`
-  display: flex;
+export const UserName = styled.span`
+  visibility: hidden;
+  @media (min-width: ${tablet}) {
+    visibility: visible;
+  }
 `;
