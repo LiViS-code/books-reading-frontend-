@@ -22,19 +22,25 @@ export const Countdown = () => {
   const [date, setDate] = useState(new Date());
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
+  const [isHidden, setIsHidden] = useState(true);
 
   console.log(date);
   const currentDate = new Date().getTime();
+
+  const toggleCalendar = () => {
+    setIsHidden(isHidden => !isHidden);
+  };
 
   const setInterval = () => {
     setDate(date);
     if (!startDate) {
       setStartDate(date);
-      console.log(startDate);
       return;
     }
     if (startDate) {
       setEndDate(date);
+      toggleCalendar();
+
       return;
     }
   };
@@ -44,6 +50,7 @@ export const Countdown = () => {
       <button onClick={setInterval}>Dismiss</button>
     </span>
   ));
+
   return (
     <>
       {endDate && (
@@ -61,17 +68,17 @@ export const Countdown = () => {
         </>
       )}
       <DatePickerWrapper>
-        <DatePicker>
+        <DatePicker onClick={toggleCalendar}>
           <Icon src={calendar} alt="calendar" />
           Початок
           <Arrow src={Polygon} alt="polygon" />
         </DatePicker>
-        <DatePicker>
+        <DatePicker onClick={toggleCalendar}>
           <Icon src={calendar} alt="calendar" />
           Завершення
           <Arrow src={Polygon} alt="polygon" />
         </DatePicker>
-        <CalendarWrapper>
+        <CalendarWrapper isHidden>
           <Calendar value={date} onChange={setDate} onClickDay={toast} />
         </CalendarWrapper>
 

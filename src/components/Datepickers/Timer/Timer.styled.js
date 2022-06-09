@@ -23,7 +23,7 @@ export const TimerWrapper = styled.div`
   display: flex;
   justify-content: space-around;
   background-color: ${activeColor};
-  width: 280px;
+  width: ${spacing(70)};
   box-shadow: ${spacing(1)} ${spacing(1)} ${spacing(2)} rgba(36, 42, 55, 0.15);
   padding: ${spacing(6)} ${spacing(8)};
   margin: ${spacing(2)} 0 ${spacing(6)};
