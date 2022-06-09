@@ -6,6 +6,7 @@ export const theme = Object.freeze({
     activeColor: '#FFFFFF',
     headingBackground: '#B1B5C2',
     numbersColor: '#091E3F',
+
     // change according to layout
     disabledColor: '#6D7A8D',
     outlineColor: '#A6ABB9',
