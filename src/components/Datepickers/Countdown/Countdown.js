@@ -78,7 +78,8 @@ export const Countdown = () => {
           Завершення
           <Arrow src={Polygon} alt="polygon" />
         </DatePicker>
-        <CalendarWrapper isHidden>
+
+        <CalendarWrapper hidden>
           <Calendar value={date} onChange={setDate} onClickDay={toast} />
         </CalendarWrapper>
 
