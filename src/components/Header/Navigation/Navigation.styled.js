@@ -3,13 +3,18 @@ import { theme } from '../../../constants/Theme';
 const {
   colors: { primaryColor, backgroundColorForm },
   fonts: { mainFont },
+  media: { tablet },
 } = theme;
 
 export const Nav = styled.div`
   display: flex;
-  align-items: end;
-  justify-content: end;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+  @media (min-width: ${tablet}) {
+    justify-content: end;
+    align-items: end;
+  }
 `;
 
 export const Div = styled.div`

@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 import { Button, Text, Div, Gabionade } from './LogOut.styled';
 import iconlogout from '../../../image/svg/iconlogout.svg';
 import Modal from '../../Modal/Modal';
-import LogoutModal from '../../Modal/LogoutModal/LogoutModal';
+import LogoutModal from '../../Modal/LogoutModal/LogoutModal'
+import React from 'react';
+import { Button, Text } from './LogOut.styled';
 
 export default function LogOut() {
   const [logoutModal, setLogoutModal] = useState(false);
-
+  
   const toggleLogoutModal = () => {
     setLogoutModal(state => !state);
   };
-
+  
   return (
     <Div>
       <Gabionade src={iconlogout} alt="icon logout" />
@@ -23,5 +25,8 @@ export default function LogOut() {
         </Modal>
       )}
     </Div>
+    <Button>
+      <Text>Вихід</Text>
+    </Button>
   );
 }
