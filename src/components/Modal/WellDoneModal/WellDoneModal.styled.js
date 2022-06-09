@@ -1,95 +1,90 @@
 import styled from '@emotion/styled';
 import { theme } from '../../../constants/Theme';
 const {
-  colors: { accentColor, activeColor, outlineColor, primaryColor },
+  colors: { accentColor, activeColor, primaryColor, borderColor },
   fonts: { mainFont },
   fontSizing: { preTitleFontSize, mainFontSize },
   media: { tablet },
 } = theme;
 
-export const Content = styled.div`
-  padding-top: 20px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-bottom: 40px;
+export const WellDoneContent = styled.div`
+  width: 280px;
+  height: 358px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
 
-  background: ${activeColor};
-  box-shadow: 10px 10px 20px rgba(9, 30, 63, 0.2);
+  @media screen and (min-width: ${tablet}) {
+    width: 394px;
+    height: 286px;
+  }
 `;
-
-export const Title = styled.p`
-  padding: 0px;
+export const Text = styled.p`
   margin-top: 0;
   margin-bottom: 20px;
+  padding-left: 64px;
+  padding-right: 64px;
   font-family: ${mainFont};
   font-style: normal;
   font-weight: 500;
   font-size: ${preTitleFontSize};
-  line-height: ${theme.spacing(20)};
+  line-height: 22px;
+  text-align: center;
   color: ${primaryColor};
 
   @media screen and (min-width: ${tablet}) {
-    margin-bottom: 12px;
-  }
-`;
-export const Stars = styled.div`
-  margin-bottom: 20px;
-  position: relative;
-  font-size: 18px;
-  color: ${outlineColor};
-`;
-export const Resume = styled.p`
-  margin-top: 0;
-  margin-bottom: 8px;
-  font-family: ${mainFont};
-  font-style: normal;
-  font-weight: 500;
-  font-size: ${preTitleFontSize};
-  line-height: ${theme.spacing(20)};
-  color: ${primaryColor};
-
-  @media screen and (min-width: ${tablet}) {
-    margin-bottom: 12px;
+    padding-left: 52px;
+    padding-right: 52px;
+    margin-bottom: 24px;
   }
 `;
 
-export const Textarea = styled.textarea`
-  width: 240px;
-  height: 170px;
-  margin-bottom: 20px;
-  border: 1px solid ${outlineColor};
-  box-sizing: border-box;
-  resize: none;
-  padding: 8px;
-
-  @media screen and (min-width: ${tablet}) {
-    margin-bottom: 28px;
-    width: 568px;
-    height: 170px;
-  }
-`;
 export const Buttons = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media screen and (min-width: ${tablet}) {
+    flex-direction: row;
+  }
 `;
 
+export const Svg = styled.div`
+  padding-top: 44px;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  fill: ${borderColor};
+
+  @media screen and (min-width: ${tablet}) {
+    padding-top: 40px;
+  }
+`;
+
+export const Icon = styled.img`
+  width: 54px;
+  height: 54px;
+`;
 export const Back = styled.button`
   margin-top: 0;
   padding: 0;
-  margin-right: 16px;
   box-sizing: border-box;
 
   font-family: ${mainFont};
   font-style: normal;
   font-weight: 500;
   font-size: ${mainFontSize};
-  line-height: ${theme.spacing(17)};
+  line-height: 17px;
   color: ${primaryColor};
   text-align: center;
   cursor: pointer;
 
-  width: 98px;
+  width: 152px;
   height: 40px;
   border: 1px solid ${primaryColor};
   background: ${activeColor};
@@ -103,28 +98,23 @@ export const Back = styled.button`
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
     transition: box-shadow 250ms ease;
   }
-
-  @media screen and (min-width: ${tablet}) {
-    width: 130px;
-    height: 40px;
-    margin-right: 28px;
-  }
 `;
-export const Save = styled.button`
+export const NewTraining = styled.button`
   margin: 0;
   padding: 0;
+  margin-bottom: 20px;
   box-sizing: border-box;
 
   font-family: ${mainFont};
   font-style: normal;
   font-weight: 500;
   font-size: ${mainFontSize};
-  line-height: ${theme.spacing(17)};
+  line-height: 17px;
   color: ${activeColor};
   text-align: center;
   cursor: pointer;
 
-  width: 98px;
+  width: 152px;
   height: 40px;
   background: ${accentColor};
   border: 1px solid ${accentColor};
@@ -140,7 +130,7 @@ export const Save = styled.button`
   }
 
   @media screen and (min-width: ${tablet}) {
-    width: 130px;
-    height: 40px;
+    margin-bottom: 0px;
+    margin-right: 32px;
   }
 `;
