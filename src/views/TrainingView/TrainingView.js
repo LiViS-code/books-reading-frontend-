@@ -1,3 +1,5 @@
+import MyGoal from '../../components/MyGoal';
+
 export const TrainingView = () => {
-  return <div> Training Page goes here</div>;
+  return <MyGoal />;
 };
