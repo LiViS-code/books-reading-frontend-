@@ -37,6 +37,9 @@ export const Stars = styled.div`
   position: relative;
   font-size: 18px;
   color: ${outlineColor};
+  ::before {
+    content: '☆☆☆☆☆';
+  }
 `;
 export const Resume = styled.p`
   margin-top: 0;
