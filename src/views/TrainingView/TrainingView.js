@@ -1,9 +1,3 @@
-import { TrainingPage } from '../../components/TrainingPage';
-
 export const TrainingView = () => {
-  return (
-    <>
-      <TrainingPage />
-    </>
-  );
+  return <div> Training Page goes here</div>;
 };
