@@ -5,13 +5,14 @@ const {
   fonts: { mainFont },
   fontSizing: { preTitleFontSize, mainFontSize },
   media: { tablet },
+  spacing,
 } = theme;
 
-export const Content = styled.div`
-  padding-top: 20px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-bottom: 40px;
+export const Content = styled.form`
+  padding-top: ${spacing(5)};
+  padding-left: ${spacing(5)};
+  padding-right: ${spacing(5)};
+  padding-bottom: ${spacing(10)};
 
   background: ${activeColor};
   box-shadow: 10px 10px 20px rgba(9, 30, 63, 0.2);
@@ -20,22 +21,22 @@ export const Content = styled.div`
 export const Title = styled.p`
   padding: 0px;
   margin-top: 0;
-  margin-bottom: 20px;
+  margin-bottom: ${spacing(5)};
   font-family: ${mainFont};
   font-style: normal;
   font-weight: 500;
   font-size: ${preTitleFontSize};
-  line-height: ${theme.spacing(20)};
+  line-height: ${spacing(5)};
   color: ${primaryColor};
 
   @media screen and (min-width: ${tablet}) {
-    margin-bottom: 12px;
+    margin-bottom: ${spacing(3)};
   }
 `;
 export const Stars = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: ${spacing(5)};
   position: relative;
-  font-size: 18px;
+  font-size: ${spacing(4.5)};
   color: ${outlineColor};
   ::before {
     content: '☆☆☆☆☆';
@@ -43,32 +44,32 @@ export const Stars = styled.div`
 `;
 export const Resume = styled.p`
   margin-top: 0;
-  margin-bottom: 8px;
+  margin-bottom: ${spacing(2)};
   font-family: ${mainFont};
   font-style: normal;
   font-weight: 500;
   font-size: ${preTitleFontSize};
-  line-height: ${theme.spacing(20)};
+  line-height: ${spacing(5)};
   color: ${primaryColor};
 
   @media screen and (min-width: ${tablet}) {
-    margin-bottom: 12px;
+    margin-bottom: ${spacing(3)};
   }
 `;
 
 export const Textarea = styled.textarea`
-  width: 240px;
-  height: 170px;
-  margin-bottom: 20px;
+  width: ${spacing(60)};
+  height: ${spacing(42.5)};
+  margin-bottom: ${spacing(5)};
   border: 1px solid ${outlineColor};
   box-sizing: border-box;
   resize: none;
-  padding: 8px;
+  padding: ${spacing(2)};
 
   @media screen and (min-width: ${tablet}) {
-    margin-bottom: 28px;
-    width: 568px;
-    height: 170px;
+    margin-bottom: ${spacing(7)};
+    width: ${spacing(142)};
+    height: ${spacing(42.5)};
   }
 `;
 export const Buttons = styled.div`
@@ -80,20 +81,20 @@ export const Buttons = styled.div`
 export const Back = styled.button`
   margin-top: 0;
   padding: 0;
-  margin-right: 16px;
+  margin-right: ${spacing(4)};
   box-sizing: border-box;
 
   font-family: ${mainFont};
   font-style: normal;
   font-weight: 500;
   font-size: ${mainFontSize};
-  line-height: ${theme.spacing(17)};
+  line-height: ${spacing(4.25)};
   color: ${primaryColor};
   text-align: center;
   cursor: pointer;
 
-  width: 98px;
-  height: 40px;
+  width: ${spacing(24.5)};
+  height: ${spacing(10)};
   border: 1px solid ${primaryColor};
   background: ${activeColor};
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
@@ -108,9 +109,9 @@ export const Back = styled.button`
   }
 
   @media screen and (min-width: ${tablet}) {
-    width: 130px;
-    height: 40px;
-    margin-right: 28px;
+    width: ${spacing(32.5)};
+    height: ${spacing(10)};
+    margin-right: ${spacing(7)};
   }
 `;
 export const Save = styled.button`
@@ -127,8 +128,8 @@ export const Save = styled.button`
   text-align: center;
   cursor: pointer;
 
-  width: 98px;
-  height: 40px;
+  width: ${spacing(24.5)};
+  height: ${spacing(10)};
   background: ${accentColor};
   border: 1px solid ${accentColor};
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
@@ -143,7 +144,7 @@ export const Save = styled.button`
   }
 
   @media screen and (min-width: ${tablet}) {
-    width: 130px;
-    height: 40px;
+    width: ${spacing(32.5)};
+    height: ${spacing(10)};
   }
 `;

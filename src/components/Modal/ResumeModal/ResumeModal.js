@@ -1,4 +1,5 @@
 import React from 'react';
+import { useFormik } from 'formik';
 import RaitingStars from './raitingStars';
 import {
   Title,
@@ -12,19 +13,33 @@ import {
 } from './ResumeModal.styled';
 
 const ResumeModal = ({ toggleModal }) => {
+  const formik = useFormik({
+    initialValues: {
+      text: '',
+    },
+    onSubmit: values => {
+      console.log(values);
+      // dispatch();
+    },
+  });
   return (
-    <Content>
-      <Title>Choose rating of the book</Title>
+    <Content onSubmit={formik.handleSubmit}>
+      <Title>Обрати рейтинг книги</Title>
       <Stars>
-        <RaitingStars />
+        <RaitingStars onChange={formik.handleChange} />
       </Stars>
-      <Resume>Resume</Resume>
-      <Textarea placeholder="..."></Textarea>
+      <Resume>Резюме</Resume>
+      <Textarea
+        value={formik.values.text}
+        name="text"
+        onChange={formik.handleChange}
+        placeholder="..."
+      ></Textarea>
       <Buttons>
         <Back onClick={toggleModal} type="button">
-          Back
+          Назад
         </Back>
-        <Save type="submit">Save</Save>
+        <Save type="submit">Зберегти</Save>
       </Buttons>
     </Content>
   );
