@@ -4,6 +4,8 @@ export const theme = Object.freeze({
     secondaryColor: '#898F9F',
     accentColor: '#FF6B08',
     activeColor: '#FFFFFF',
+    headingBackground: '#B1B5C2',
+    numbersColor: '#091E3F',
 
     // change according to layout
     disabledColor: '#6D7A8D',
@@ -30,6 +32,7 @@ export const theme = Object.freeze({
     preTitleFontSize: '16px',
     titleFontSize: '19px',
     headingFontSize: '34px',
+    numbersFontSize: '25px',
   },
   media: {
     mobile: '320px',
