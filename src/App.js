@@ -10,6 +10,7 @@ import { TrainingView } from './views/TrainingView/TrainingView';
 
 import Header from './components/Header';
 import BooksReading from './components/BooksReading/Information';
+import Result from './components/Result';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <GlobalStyle />
       <Header />
       <BooksReading />
+      <Result />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<AuthView />} />
