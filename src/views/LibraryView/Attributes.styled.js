@@ -4,6 +4,7 @@ import { theme } from '../../constants/Theme';
 const {
   fonts: { mainFont },
   fontSizing: { mainFontSize },
+
   media: { tablet, desktop },
   spacing,
 } = theme;
