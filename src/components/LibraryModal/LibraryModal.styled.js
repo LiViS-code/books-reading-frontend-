@@ -1,11 +1,27 @@
 import styled from '@emotion/styled';
 import { theme } from '../../constants/Theme';
 
+export const Backdrop = styled.div`
+  @media (max-width: 768px) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+  }
+`;
+
 export const ModalContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: center;
+
+  @media (max-width: 768px) {
+    position: absolute;
+    top: 16%;
+    left: 10%;
+  }
   @media (min-width: 768px) {
     margin-top: ${theme.spacing(10)};
   }
@@ -20,6 +36,7 @@ export const ContentContainer = styled.div`
   margin-bottom: ${theme.spacing(5)};
   box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
   background-color: ${theme.colors.activeColor};
+
   @media (min-width: 768px) {
     padding: ${theme.spacing(10)};
   }
@@ -27,7 +44,7 @@ export const ContentContainer = styled.div`
 
 export const ContentList = styled.ul`
   list-style: none;
-  margin-bottom: ${theme.spacing(5)};
+  margin-bottom: 40px;
   @media (min-width: 768px) {
     margin-bottom: 0px;
   }
