@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { theme } from '../../constants/Theme';
 
 const {
+
   fonts: { mainFont },
   fontSizing: { mainFontSize },
   media: { tablet, desktop },

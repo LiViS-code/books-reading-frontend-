@@ -29,7 +29,7 @@ export default function BookData({ data }) {
           <Attribute>Стор.:</Attribute>
           {status === 'Already read' && <Attribute>Рейтинг:</Attribute>}
         </AttributeList>
-
+           
         <ValueList>
           {status === 'Already read' ? (
             <AuthorRed>{author}</AuthorRed>

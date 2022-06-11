@@ -224,8 +224,6 @@ export const Pages = styled.p`
   @media screen and (min-width: ${tablet}) {
     margin-bottom: 0;
     font-size: ${mainFontSize};
-  }
-
   @media screen and (min-width: ${desktop}) {
     width: 30px;
   } ;

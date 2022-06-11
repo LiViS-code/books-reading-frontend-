@@ -6,6 +6,7 @@ import { ButtonResume } from './index';
 
 export default function BookCard({ book }) {
   const { status } = book;
+
   return (
     <Container>
       {status === 'Reading now' ? (
