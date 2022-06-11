@@ -123,7 +123,7 @@ export const Save = styled.button`
   font-style: normal;
   font-weight: 500;
   font-size: ${mainFontSize};
-  line-height: ${spacing(4.25)};
+  line-height: 17px;
   color: ${activeColor};
   text-align: center;
   cursor: pointer;
