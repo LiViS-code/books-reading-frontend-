@@ -2,15 +2,9 @@ import styled from 'styled-components';
 import { theme } from '../../constants/Theme';
 
 const {
-  colors: {
-    primaryColor,
-    secondaryColor,
-    accentColor,
-    activeColor,
-    backgroundColor,
-  },
   fonts: { mainFont },
-  fontSizing: { mainFontSize, preTitleFontSize, titleFontSize },
+  fontSizing: { mainFontSize },
+
   media: { tablet, desktop },
   spacing,
 } = theme;
@@ -45,7 +39,7 @@ export const Author = styled.p`
 
 export const Year = styled.p`
   @media screen and (min-width: ${tablet}) {
-    width: ${spacing(72)};
+    width: ${spacing(15)};
   }
 
   @media screen and (min-width: ${desktop}) {
