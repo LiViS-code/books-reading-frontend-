@@ -8,80 +8,72 @@ const {
   spacing,
 } = theme;
 
-export const Content = styled.form`
-  padding-top: ${spacing(5)};
-  padding-left: ${spacing(5)};
-  padding-right: ${spacing(5)};
-  padding-bottom: ${spacing(10)};
+export const WellDoneContent = styled.div`
+  width: ${spacing(70)};
+  height: ${spacing(89.5)};
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
 
-  background: ${activeColor};
-  box-shadow: 10px 10px 20px rgba(9, 30, 63, 0.2);
+  @media screen and (min-width: ${tablet}) {
+    width: ${spacing(98.5)};
+    height: ${spacing(71.5)};
+  }
 `;
-
-export const Title = styled.p`
-  padding: 0px;
+export const Text = styled.p`
   margin-top: 0;
   margin-bottom: ${spacing(5)};
+  padding-left: ${spacing(16)};
+  padding-right: ${spacing(16)};
   font-family: ${mainFont};
   font-style: normal;
   font-weight: 500;
   font-size: ${preTitleFontSize};
-  line-height: ${spacing(5)};
+  line-height: ${spacing(5.5)};
+  text-align: center;
   color: ${primaryColor};
 
   @media screen and (min-width: ${tablet}) {
-    margin-bottom: ${spacing(3)};
-  }
-`;
-export const Stars = styled.div`
-  margin-bottom: ${spacing(5)};
-  position: relative;
-  font-size: ${spacing(4.5)};
-  color: ${outlineColor};
-  ::before {
-    content: '☆☆☆☆☆';
-  }
-`;
-export const Resume = styled.p`
-  margin-top: 0;
-  margin-bottom: ${spacing(2)};
-  font-family: ${mainFont};
-  font-style: normal;
-  font-weight: 500;
-  font-size: ${preTitleFontSize};
-  line-height: ${spacing(5)};
-  color: ${primaryColor};
-
-  @media screen and (min-width: ${tablet}) {
-    margin-bottom: ${spacing(3)};
+    padding-left: ${spacing(13)};
+    padding-right: ${spacing(13)};
+    margin-bottom: ${spacing(6)};
   }
 `;
 
-export const Textarea = styled.textarea`
-  width: ${spacing(60)};
-  height: ${spacing(42.5)};
-  margin-bottom: ${spacing(5)};
-  border: 1px solid ${outlineColor};
-  box-sizing: border-box;
-  resize: none;
-  padding: ${spacing(2)};
-
-  @media screen and (min-width: ${tablet}) {
-    margin-bottom: ${spacing(7)};
-    width: ${spacing(142)};
-    height: ${spacing(42.5)};
-  }
-`;
 export const Buttons = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media screen and (min-width: ${tablet}) {
+    flex-direction: row;
+  }
 `;
 
+export const Svg = styled.div`
+  padding-top: ${spacing(11)};
+  margin-bottom: ${spacing(3.5)};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: ${spacing(13.5)};
+  height: ${spacing(13.5)};
+  fill: ${outlineColor};
+
+  @media screen and (min-width: ${tablet}) {
+    padding-top: ${spacing(10)};
+  }
+`;
+
+export const Icon = styled.img`
+  width: ${spacing(13.5)};
+  height: ${spacing(13.5)};
+`;
 export const Back = styled.button`
   margin-top: 0;
   padding: 0;
-  margin-right: ${spacing(4)};
   box-sizing: border-box;
 
   font-family: ${mainFont};
@@ -93,7 +85,7 @@ export const Back = styled.button`
   text-align: center;
   cursor: pointer;
 
-  width: ${spacing(24.5)};
+  width: ${spacing(38)};
   height: ${spacing(10)};
   border: 1px solid ${primaryColor};
   background: ${activeColor};
@@ -107,28 +99,23 @@ export const Back = styled.button`
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
     transition: box-shadow 250ms ease;
   }
-
-  @media screen and (min-width: ${tablet}) {
-    width: ${spacing(32.5)};
-    height: ${spacing(10)};
-    margin-right: ${spacing(7)};
-  }
 `;
-export const Save = styled.button`
+export const NewTraining = styled.button`
   margin: 0;
   padding: 0;
+  margin-bottom: ${spacing(5)};
   box-sizing: border-box;
 
   font-family: ${mainFont};
   font-style: normal;
   font-weight: 500;
   font-size: ${mainFontSize};
-  line-height: 17px;
+  line-height: ${spacing(4.25)};
   color: ${activeColor};
   text-align: center;
   cursor: pointer;
 
-  width: ${spacing(24.5)};
+  width: ${spacing(38)};
   height: ${spacing(10)};
   background: ${accentColor};
   border: 1px solid ${accentColor};
@@ -144,7 +131,7 @@ export const Save = styled.button`
   }
 
   @media screen and (min-width: ${tablet}) {
-    width: ${spacing(32.5)};
-    height: ${spacing(10)};
+    margin-bottom: 0px;
+    margin-right: ${spacing(8)};
   }
 `;

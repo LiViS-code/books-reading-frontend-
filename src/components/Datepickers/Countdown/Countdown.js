@@ -1,12 +1,12 @@
 import endOfYear from 'date-fns/endOfYear';
 import { useState } from 'react';
-import 'react-calendar/dist/Calendar.css';
-import Calendar from 'react-calendar';
+
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import { Timer } from '../Timer/Timer';
 import {
-  CalendarWrapper,
   DatePickerWrapper,
-  DatePicker,
+  DateButton,
   Icon,
   TimerWrapper,
   TimeBlock,
@@ -17,32 +17,17 @@ import Polygon from '../../../image/svg/Polygon.svg';
 
 export const Countdown = () => {
   const yearEnd = endOfYear(new Date());
-  const [date, setDate] = useState(new Date());
-  const [startDate, setStartDate] = useState('');
+  const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState('');
-  const [isHidden, setIsHidden] = useState(true);
-
-  console.log(date);
   const currentDate = new Date().getTime();
 
-  const toggleCalendar = () => {
-    setIsHidden(isHidden => !isHidden);
-  };
-
-  const setInterval = () => {
-    if (!startDate) {
-      setStartDate(new Date(date));
-      toggleCalendar();
-      return;
-    }
-    if (startDate) {
-      setEndDate(new Date(date));
-      toggleCalendar();
-
-      return;
-    }
-  };
-
+  const CustomInput = ({ value, onClick }, ref) => (
+    <DateButton onClick={onClick}>
+      <Icon src={calendar} alt="calendar" />
+      {value}
+      <Arrow src={Polygon} alt="polygon" />
+    </DateButton>
+  );
   return (
     <>
       {endDate && (
@@ -60,20 +45,18 @@ export const Countdown = () => {
         </>
       )}
       <DatePickerWrapper>
-        <DatePicker onClick={toggleCalendar}>
-          <Icon src={calendar} alt="calendar" />
-          Початок
-          <Arrow src={Polygon} alt="polygon" />
-        </DatePicker>
-        <DatePicker onClick={toggleCalendar}>
-          <Icon src={calendar} alt="calendar" />
-          Завершення
-          <Arrow src={Polygon} alt="polygon" />
-        </DatePicker>
-
-        <CalendarWrapper hidden={isHidden}>
-          <Calendar value={date} onChange={setDate} onClickDay={setInterval} />
-        </CalendarWrapper>
+        <DatePicker
+          selected={startDate}
+          onChange={date => setStartDate(date)}
+          customInput={<CustomInput />}
+          value={'Початок'}
+        />
+        <DatePicker
+          selected={endDate}
+          onChange={date => setEndDate(date)}
+          customInput={<CustomInput />}
+          value={'Завершення'}
+        />
       </DatePickerWrapper>
     </>
   );
