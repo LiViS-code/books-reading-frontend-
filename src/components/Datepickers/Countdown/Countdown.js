@@ -44,6 +44,7 @@ export const Countdown = () => {
       return;
     }
   };
+
   toast(t => (
     <span>
       Custom and <b>bold</b>
@@ -79,11 +80,11 @@ export const Countdown = () => {
           <Arrow src={Polygon} alt="polygon" />
         </DatePicker>
 
-        <CalendarWrapper hidden>
+        <CalendarWrapper hidden={isHidden}>
           <Calendar value={date} onChange={setDate} onClickDay={toast} />
         </CalendarWrapper>
 
-        <ToastContainer />
+        <ToastContainer limit={1} />
       </DatePickerWrapper>
     </>
   );
