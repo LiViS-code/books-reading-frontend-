@@ -36,7 +36,7 @@ export const Timer = ({ deadline, startdate }) => {
     };
   };
 
-  const countdown = useMemo(getCoundown, [currentTime]);
+  const countdown = useMemo(getCoundown, [ONE_DAY, ONE_HOUR, diffInSeconds]);
 
   useEffect(() => {
     setInterval(() => {
@@ -44,10 +44,10 @@ export const Timer = ({ deadline, startdate }) => {
       setCurrentTime(now);
     }, 1000);
 
-    return () => {
-      // cancel the subscription
-      setInterval = false;
-    };
+    // return () => {
+    //   // cancel the subscription
+    //   setInterval = false;
+    // };
   }, []);
 
   return (

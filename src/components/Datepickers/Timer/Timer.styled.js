@@ -6,7 +6,7 @@ const {
   fonts: { numbersFont },
   fontSizing: { numbersFontSize },
 
-  //   media: { mobile, tablet, desktop },
+  media: { tablet },
   spacing,
 } = theme;
 export const Days = styled.div`
@@ -23,10 +23,13 @@ export const TimerWrapper = styled.div`
   display: flex;
   justify-content: space-around;
   background-color: ${activeColor};
-  width: ${spacing(70)};
+  /* width: ${spacing(70)}; */
   box-shadow: ${spacing(1)} ${spacing(1)} ${spacing(2)} rgba(36, 42, 55, 0.15);
   padding: ${spacing(6)} ${spacing(8)};
   margin: ${spacing(2)} 0 ${spacing(6)};
+  @media (min-width: ${tablet}) {
+    width: ${spacing(70)};
+  }
 `;
 export const Delimeter = styled.span`
   font-family: ${numbersFont};
