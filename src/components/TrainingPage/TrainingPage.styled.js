@@ -10,15 +10,13 @@ export const Heading = styled.h2`
   color: ${activeColor};
   background-color: ${headingBackground};
   padding: ${spacing(4.3)} 0;
-  width: 280px;
+  width: 100%;
   text-align: center;
-  font-size: 20px;
+  font-size: ${spacing(5)};
   font-weight: 600;
-  line-height: 24px;
-  @media (min-width: ${tablet}) {
-    width: 100%;
-  }
+  line-height: ${spacing(6)};
+
   @media (min-width: ${desktop}) {
-    width: 928px;
+    width: ${spacing(232)};
   }
 `;
