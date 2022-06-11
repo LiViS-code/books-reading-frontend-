@@ -1,8 +1,6 @@
 import endOfYear from 'date-fns/endOfYear';
 import { useState } from 'react';
 import 'react-calendar/dist/Calendar.css';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import Calendar from 'react-calendar';
 import { Timer } from '../Timer/Timer';
 import {
@@ -20,8 +18,8 @@ import Polygon from '../../../image/svg/Polygon.svg';
 export const Countdown = () => {
   const yearEnd = endOfYear(new Date());
   const [date, setDate] = useState(new Date());
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
   const [isHidden, setIsHidden] = useState(true);
 
   console.log(date);
@@ -32,25 +30,18 @@ export const Countdown = () => {
   };
 
   const setInterval = () => {
-    setDate(date);
     if (!startDate) {
-      setStartDate(date);
+      setStartDate(new Date(date));
+      toggleCalendar();
       return;
     }
     if (startDate) {
-      setEndDate(date);
+      setEndDate(new Date(date));
       toggleCalendar();
 
       return;
     }
   };
-
-  toast(t => (
-    <span>
-      Custom and <b>bold</b>
-      <button onClick={setInterval}>Dismiss</button>
-    </span>
-  ));
 
   return (
     <>
@@ -81,10 +72,8 @@ export const Countdown = () => {
         </DatePicker>
 
         <CalendarWrapper hidden={isHidden}>
-          <Calendar value={date} onChange={setDate} onClickDay={toast} />
+          <Calendar value={date} onChange={setDate} onClickDay={setInterval} />
         </CalendarWrapper>
-
-        <ToastContainer limit={1} />
       </DatePickerWrapper>
     </>
   );
