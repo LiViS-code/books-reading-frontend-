@@ -28,6 +28,7 @@ export const Container = styled.div`
   @media screen and (min-width: ${desktop}) {
     width: 1208px;
     padding: 23px 23px 22px 20px;
+    // align-items: baseline;
   } ;
 `;
 
@@ -93,6 +94,8 @@ export const BookName = styled.p`
 
   @media screen and (min-width: ${desktop}) {
     width: 580px;
+    margin-top: auto;
+    margin-bottom: auto;
   } ;
 `;
 
@@ -111,6 +114,9 @@ export const BookNameRed = styled.p`
   }
   @media screen and (min-width: ${desktop}) {
     width: 301px;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-right: 20px;
   } ;
 `;
 
@@ -143,6 +149,8 @@ export const Author = styled.p`
 
   @media screen and (min-width: ${desktop}) {
     width: 381px;
+    margin-top: auto;
+    margin-bottom: auto;
   } ;
 `;
 
@@ -163,6 +171,7 @@ export const AuthorRed = styled.p`
 
   @media screen and (min-width: ${desktop}) {
     width: 258px;
+    line-height: 1.21;
   } ;
 `;
 
@@ -215,6 +224,10 @@ export const Pages = styled.p`
   @media screen and (min-width: ${tablet}) {
     margin-bottom: 0;
     font-size: ${mainFontSize};
+  }
+
+  @media screen and (min-width: ${desktop}) {
+    width: 30px;
   } ;
 `;
 

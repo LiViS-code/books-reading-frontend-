@@ -5,7 +5,8 @@ import sprite from './symbol-defs.svg';
 import { ButtonResume } from './index';
 
 export default function BookCard({ book }) {
-  const { status, rating } = book;
+  const { status } = book;
+
   return (
     <Container>
       {status === 'Reading now' ? (
