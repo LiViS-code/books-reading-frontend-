@@ -26,7 +26,7 @@ export const CalendarWrapper = styled.div`
   left: 0;
   width: 100%;
 `;
-export const DatePicker = styled.button`
+export const DateButton = styled.button`
   position: relative;
   padding: ${spacing(3)};
   width: 100%;
