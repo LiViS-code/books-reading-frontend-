@@ -12,11 +12,9 @@ export const DatePickerWrapper = styled.div`
   margin-top: ${spacing(5)};
   text-align: center;
   justify-content: center;
-  width: ${spacing(70)};
 
   @media (min-width: ${tablet}) {
     display: flex;
-
     justify-content: start;
     margin: ${spacing(5)} 0 ${spacing(6)};
     width: 100%;
@@ -24,7 +22,6 @@ export const DatePickerWrapper = styled.div`
 `;
 export const CalendarWrapper = styled.div`
   ${props => props.isHidden && `display: none;`};
-  /* display: block; */
   position: absolute;
   left: 0;
   width: 100%;
@@ -32,8 +29,7 @@ export const CalendarWrapper = styled.div`
 export const DatePicker = styled.button`
   position: relative;
   padding: ${spacing(3)};
-  width: ${spacing(70)};
-
+  width: 100%;
   margin: ${spacing(3)} 0 ${spacing(3)};
   text-align: start;
   border: ${borderColor} 1px solid;
@@ -41,7 +37,7 @@ export const DatePicker = styled.button`
   color: ${outlineColor};
 
   @media (min-width: ${tablet}) {
-    width: 250px;
+    width: ${spacing(62.5)};
     margin: 0 ${spacing(10)} ${spacing(6)} 0;
   }
 `;

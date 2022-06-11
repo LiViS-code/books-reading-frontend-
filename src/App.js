@@ -16,9 +16,10 @@ function App() {
     <>
       <GlobalStyle />
       <Header />
-      <BooksReading />
+
       <Routes>
         <Route path="/" element={<Layout />}>
+          <Route path="/" element={<BooksReading />} />
           <Route path="/" element={<AuthView />} />
           <Route path="library" element={<LibraryView />} />
           <Route path="training" element={<TrainingView />} />
