@@ -23,11 +23,3 @@ text-decoration-line: underline;
 &:focus {
   color: red;
 `;
-
-export const Div = styled.div`
-  display: flex;
-`;
-
-export const Gabionade = styled.img`
-  margin: 0px 8px;
-`;
