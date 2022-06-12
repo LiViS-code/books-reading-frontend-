@@ -114,9 +114,7 @@ export const Section = styled.div`
   margin-bottom: 24px;
   background-color: #ffffff;
   padding-bottom: 22px;
-  padding-top: 20px;
-  padding-right: 20px;
-  padding-left: 20px;
+  padding: 20px 20px 20px;
 
   @media screen and (min-width: 768px) {
     max-width: 100%;
@@ -127,9 +125,11 @@ export const Section = styled.div`
 `;
 
 export const AddResult = styled.div`
+  display: flex;
+
   @media screen and (min-width: 768px) {
   }
-  display: flex;
+
   margin-bottom: 20px;
   justify-content: space-evenly;
   align-items: center;
@@ -142,6 +142,7 @@ export const AddResult = styled.div`
 export const Labels = styled.div`
   display: flex;
   justify-content: space-evenly;
+
   @media screen and (min-width: 768) {
     margin-right: 0;
   }
@@ -216,12 +217,11 @@ export const ButtonCalendar = styled.div`
 export const ButtonSection = styled.div`
   display: flex;
   justify-content: center;
-
   margin-top: 28px;
   margin-bottom: 24px;
   @media screen and (min-width: 768px) {
     align-items: center;
-    margin-top: 0;
+
     margin-bottom: 0;
   }
   @media screen and (min-width: 1278px) {
@@ -263,19 +263,18 @@ export const Button = styled.button`
   }
 `;
 export const Statistic = styled.h3`
-  font-family: Montserrat;
-  text-align: center;
-  font-weight: 700;
-  line-height: 1.2191;
-  color: #242a37;
-  margin-top: 24px;
   display: flex;
+  font-family: Montserrat;
   font-weight: 700;
   font-size: 12px;
-  line-height: 1.2;
-  justify-content: center;
+  color: #242a37;
+  line-height: 1.2191;
+
   align-items: center;
-  margin: 4px;
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+
   &::before,
   ::after {
     content: url(${Line});
@@ -283,7 +282,11 @@ export const Statistic = styled.h3`
     margin-left: 13px;
     margin-right: 13px;
   }
-  @media screen and (min-width: 768) and (max-width: 1279) {
+  @media screen and (min-width: 768) {
+    justify-content: start;
+    align-items: start;
+    font-size: 14px;
+    margin: 7px;
     &::before {
       content: none;
     }
@@ -295,6 +298,11 @@ export const Statistic = styled.h3`
     }
   }
   @media screen and (min-width: 1280) {
+    font-size: 12px;
+    margin-top: 0;
+    margin-bottom: 4px;
+    margin-left: 0;
+    justify-content: center;
     &::before,
     ::after {
       content: url(${Line});

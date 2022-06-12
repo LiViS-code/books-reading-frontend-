@@ -54,7 +54,7 @@ export default function ResultSection() {
           <Button type="submit">Add Result</Button>
         </ButtonSection>
       </AddResult>
-      <Statistic>STATISTIC</Statistic>
+      <Statistic>СТАТИСТИКА</Statistic>
     </Section>
   );
 }
