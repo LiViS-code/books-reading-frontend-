@@ -3,6 +3,7 @@ import { theme } from '../../../constants/Theme';
 const {
   colors: { primaryColor },
   fonts: { titleFont },
+  media: { tablet },
 } = theme;
 
 export const LogoStyle = styled.div`
@@ -12,4 +13,8 @@ export const LogoStyle = styled.div`
   font-size: 20px;
   line-height: 1.35;
   color: ${primaryColor};
+  margin-right: 68px;
+  @media (min-width: ${tablet}) {
+    //margin-right: 248px;
+  }
 `;

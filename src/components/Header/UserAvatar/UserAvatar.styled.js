@@ -13,6 +13,7 @@ export const Avatar = styled.span`
   height: 33px;
   border-radius: 50%;
   background-color: ${backgroundColorForm};
+  margin-right: 14px;
 
   font-family: ${mainFont};
   font-style: normal;
