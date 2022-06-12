@@ -3,6 +3,6 @@ import LoginText from '../../components/Login/LoginText'
 
 
 export const AuthView = () => {
-  return <div> <LoginForm />
-    <LoginText /></div>;
+  return <><LoginForm ></LoginForm>
+  </>;
 };

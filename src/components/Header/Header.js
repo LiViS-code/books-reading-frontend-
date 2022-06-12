@@ -5,7 +5,7 @@ import { Container } from '../Layout/Layout.styled';
 
 import Logo from './Logo';
 import Navigation from './Navigation';
-import Entrance from './Entrance';
+import LogOut from './LogOut';
 import User from './User';
 
 export default function Header() {
@@ -15,7 +15,7 @@ export default function Header() {
         <Logo />
         <User />
         <Navigation />
-        <Entrance />
+        <LogOut />
       </Div>
     </Container>
   );

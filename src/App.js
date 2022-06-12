@@ -17,9 +17,11 @@ function App() {
       <GlobalStyle />
       <Header />
       <BooksReading />
+      <AuthView />
       <Routes>
+
         <Route path="/" element={<Layout />}>
-          <Route path="/" element={<AuthView />} />
+
           {/* <Route path="library" element={<LibraryView />} /> */}
           <Route path="training" element={<TrainingView />} />
           <Route path="statistics" element={<StatisticsView />} />
