@@ -6,7 +6,6 @@ const {
 
   media: { tablet, desktop },
   spacing,
-  transition: { timing, timingFunction },
 } = theme;
 
 export const DatePickerWrapper = styled.div`

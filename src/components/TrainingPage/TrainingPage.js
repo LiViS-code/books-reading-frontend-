@@ -1,23 +1,27 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import { Countdown } from '../Datepickers';
 import {
   Heading,
   TimingContainer,
   TrainingButton,
+  TrainingBox,
 } from './TrainingPage.styled';
-export const TrainingPage = (startdate, deadline) => {
-  // const [startDate, setStartDate] = useState(new Date());
-  // const [endDate, setEndDate] = useState('');
-
+import MyGoal from '../MyGoal';
+import { TrainLib } from './Library/TrainLib';
+export const TrainingPage = () => {
   const startTraining = () => {
-    console.log({ deadline });
+    console.log();
   };
   return (
     <>
+      <MyGoal />
       <TimingContainer>
         <Heading>Моє тренування</Heading>
-        <Countdown deadline={deadline} start={startdate} />
+        <Countdown />
       </TimingContainer>
+
+      <TrainLib />
+
       <TrainingButton onClick={startTraining}>Почати тренування</TrainingButton>
     </>
   );

@@ -17,7 +17,11 @@ export const Heading = styled.h2`
   line-height: ${spacing(6)};
 `;
 export const TimingContainer = styled.div`
+  margin: ${spacing(12.5)} ${spacing(6.25)};
+  display: flex;
+  flex-direction: column;
   @media (min-width: ${desktop}) {
+    margin: ${spacing(7.5)} ${spacing(6.25)};
     width: ${spacing(232)};
   }
 `;
@@ -32,5 +36,12 @@ export const TrainingButton = styled.button`
   @media (min-width: ${tablet}) {
     width: ${spacing(50)};
     height: ${spacing(15)};
+  } ;
+`;
+export const TrainingBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  @media (min-width: ${desktop}) {
+    flex-direction: row-reverse;
   } ;
 `;
