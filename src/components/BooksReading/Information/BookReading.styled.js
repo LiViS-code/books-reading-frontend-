@@ -3,13 +3,13 @@ import styled from '@emotion/styled';
 
 export const Body = styled.div`
   background-color: primaryColor;
-  padding: 0;
-  margin: 0;
-  padding-right: 20px;
-  padding-left: 20px;
+
   padding-bottom: 40px;
 
-  @media screen and (max-width: 320px) and (min-width: 767px) {
+  @media screen and (max-width: 767px) {
+    width: 100%;
+  }
+  @media screen and (min-width: 768px) {
     display: none;
   }
 `;
@@ -65,6 +65,7 @@ display: flex;
   font-weight: 14px;
   line-height: 1.2142;
   margin-bottom: 12px;
+  margin-right: 0;
  
   };
 
@@ -97,8 +98,10 @@ export const Button = styled.button`
 `;
 
 export const Buttons = styled.div`
+  margin: 0;
+  padding: 0;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 `;
 export const Image = styled.img`
   margin-right: 12px;
