@@ -1,27 +1,32 @@
 import styled from '@emotion/styled';
 import { theme } from '../../constants/Theme';
+const {
+  colors: { activeColor, backgroundColorForm, headingBackground },
+  fonts: { numbersFont },
+  spacing,
+} = theme;
 
 export const MyGoalContainer = styled.div`
-  height: 320px;
-  margin: 30px 25px;
+  height: ${spacing(80)};
+  margin: ${spacing(7, 5)} ${spacing(6, 25)};
   display: block;
 
   @media (min-width: 768px) {
-    width: 680px;
-    height: 105px;
+    width: ${spacing(170)};
+    height: ${spacing(26, 25)};
     margin: 30px 45px 40px 45px;
-    padding: 22px 0 23px 45px;
+    padding: 22px 0px 23px 45px;
     display: flex;
     align-items: center;
     justify-content: space-around;
     flex-wrap: nowrap;
-    background-color: ${theme.colors.activeColor};
+    background-color: ${activeColor};
     box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.25);
   }
 
   @media (min-width: 1280px) {
-    width: 288px;
-    height: 304px;
+    width: ${spacing(72)}x;
+    height: ${spacing(76)};
     margin: 50px 40px auto auto;
     padding: 0;
     flex-wrap: wrap;
@@ -30,18 +35,18 @@ export const MyGoalContainer = styled.div`
 `;
 
 export const GoalTitle = styled.h2`
-  height: 60px;
-  background-color: #b1b5c2;
+  height: ${spacing(15)};
+  background-color: ${headingBackground};
   box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
-  color: ${theme.colors.activeColor};
+  color: ${activeColor};
   text-align: center;
   font-style: normal;
   font-weight: 600;
   font-size: 20px;
   line-height: 1.9;
-  padding-top: 18px;
+  padding-top: ${spacing(4, 5)};
   @media (min-width: 768px) {
-    width: 270px;
+    width: ${spacing(67, 5)};
   }
   @media (min-width: 1280px) {
     margin-bottom: auto;
@@ -54,23 +59,23 @@ export const CounterWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
-  background-color: ${theme.colors.activeColor};
+  background-color: ${activeColor};
   justify-content: space-around;
   @media (min-width: 768px) {
     padding: 0;
     width: auto;
     align-items: center;
     justify-content: space-evenly;
-    padding-top: 12px;
+    padding-top: ${spacing(3)};
     box-shadow: none;
   }
   @media (min-width: 1280px) {
-    margin-bottom: 80px;
+    margin-bottom: ${spacing(20)};
   }
 `;
 
 export const CounterNumber = styled.p`
-  font-family: ${theme.fonts.numbersFont};
+  font-family: ${numbersFont};
   font-weight: bold;
   font-size: 45px;
   line-height: 1.18;
@@ -85,24 +90,24 @@ export const CounterNumber = styled.p`
 `;
 
 export const Counter = styled.div`
-  width: 100px;
-  height: 100px;
-  background-color: ${theme.colors.backgroundColorForm};
+  width: ${spacing(25)};
+  height: ${spacing(25)};
+  background-color: ${backgroundColorForm};
   box-shadow: 4px 4px 8px rgba(36, 42, 55, 0.15);
   text-align: center;
   @media (min-width: 768px) {
-    height: 60px;
+    height: ${spacing(15)};
   }
   @media (min-width: 1280px) {
-    height: 100px;
-    margin-bottom: 15px;
+    height: ${spacing(25)};
+    margin-bottom: ${spacing(3, 75)};
   }
 `;
 export const CounterLabelContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-around;
-  margin-top: 14px;
+  margin-top: ${spacing(3, 5)};
   @media (min-width: 768px) {
     margin-top: -12px;
     justify-content: space-evenly;
@@ -113,14 +118,14 @@ export const CounterLabelContainer = styled.div`
 `;
 
 export const CounterLabel = styled.p`
-  width: 66px;
+  width: ${spacing(16, 5)};
   font-weight: 500;
   font-size: 14px;
   line-height: 0.82;
   text-align: center;
   color: #898f9f;
   @media (min-width: 768px) {
-    width: 100px;
+    width: ${spacing(25)};
     font-size: 11px;
   }
   @media (min-width: 1280px) {
