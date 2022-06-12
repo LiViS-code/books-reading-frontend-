@@ -6,6 +6,7 @@ const {
 
   media: { tablet, desktop },
   spacing,
+  transition: { timing, timingFunction },
 } = theme;
 
 export const DatePickerWrapper = styled.div`
@@ -30,7 +31,7 @@ export const CalendarWrapper = styled.div`
   width: 100%;
 `;
 export const DateButton = styled.button`
-  position: relative;
+  display: flex;
   padding: ${spacing(3)};
   width: 100%;
   margin: ${spacing(3)} 0 ${spacing(3)};
@@ -50,7 +51,7 @@ export const Icon = styled.img`
   display: inline-block;
 `;
 export const Arrow = styled.img`
-  justify-self: flex-end;
+  margin-left: auto;
   padding-right: ${spacing(4.5)};
   display: inline-block;
 `;

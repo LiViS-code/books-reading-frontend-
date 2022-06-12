@@ -21,7 +21,7 @@ export const Countdown = () => {
   const [endDate, setEndDate] = useState('');
   const currentDate = new Date().getTime();
 
-  const CustomInput = ({ value, onClick }, ref, width) => (
+  const CustomInput = ({ value, onClick }, ref) => (
     <DateButton onClick={onClick}>
       <Icon src={calendar} alt="calendar" />
       {value}
