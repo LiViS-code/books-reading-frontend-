@@ -8,6 +8,7 @@ import {
 } from './TrainingPage.styled';
 import MyGoal from '../MyGoal';
 import { TrainLib } from './Library/TrainLib';
+import ResultSection from '../ResultSection';
 export const TrainingPage = () => {
   const startTraining = () => {
     console.log();
@@ -23,6 +24,8 @@ export const TrainingPage = () => {
       <TrainLib />
 
       <TrainingButton onClick={startTraining}>Почати тренування</TrainingButton>
+
+      <ResultSection />
     </>
   );
 };
