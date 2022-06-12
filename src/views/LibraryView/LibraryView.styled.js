@@ -17,8 +17,8 @@ const {
 export const Library = styled.div`
   width: 240px;
   padding: 0;
-  margin-left: auto;
-  margin-right: auto;
+  // margin-left: auto;
+  // margin-right: auto;
   background-color: ${backgroundColor};
 
   @media screen and (min-width: ${tablet}) {

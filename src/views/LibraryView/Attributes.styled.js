@@ -14,7 +14,7 @@ export const BookRed = styled.p`
   font-family: ${mainFont};
 
   @media screen and (min-width: ${desktop}) {
-    width: ${spacing(90)};
+    width: ${spacing(94)};
     margin-right: 0;
   } ;
 `;
@@ -33,7 +33,7 @@ export const Author = styled.p`
   }
 
   @media screen and (min-width: ${desktop}) {
-    width: ${spacing(68)};
+    width: ${spacing(71)};
   } ;
 `;
 
@@ -43,7 +43,7 @@ export const Year = styled.p`
   }
 
   @media screen and (min-width: ${desktop}) {
-    width: ${spacing(24)};
+    width: ${spacing(27)};
   } ;
 `;
 
