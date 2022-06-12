@@ -11,6 +11,7 @@ export const AccentButton = styled.button`
   width: 171px;
   height: 42px;
   border: transparent;
+  cursor: pointer;
   background-color: ${theme.colors.accentColor};
   color: ${theme.colors.activeColor};
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
