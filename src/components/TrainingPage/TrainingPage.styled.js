@@ -32,6 +32,7 @@ export const TrainingButton = styled.button`
   background-color: ${accentColor};
   color: ${activeColor};
   border: none;
+  margin: ${spacing(8)}${spacing(8)};
   cursor: pointer;
   @media (min-width: ${tablet}) {
     width: ${spacing(50)};
@@ -40,8 +41,8 @@ export const TrainingButton = styled.button`
 `;
 export const TrainingBox = styled.div`
   display: flex;
-  flex-direction: column;
+
   @media (min-width: ${desktop}) {
-    flex-direction: row-reverse;
   } ;
 `;
+export const Sidebar = styled.div``;

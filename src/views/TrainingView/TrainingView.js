@@ -1,11 +1,11 @@
 import { TrainingPage } from '../../components/TrainingPage';
-// import MyGoal from '../../components/MyGoal';
+import { DesktopView } from '../../components/TrainingPage/DesktopViev';
 
 export const TrainingView = () => {
   return (
     <>
-      {/* <MyGoal /> */}
       <TrainingPage />
+      <DesktopView />
     </>
   );
 };

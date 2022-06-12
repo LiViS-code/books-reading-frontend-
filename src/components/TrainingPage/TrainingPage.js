@@ -4,9 +4,9 @@ import {
   Heading,
   TimingContainer,
   TrainingButton,
-  TrainingBox,
 } from './TrainingPage.styled';
 import MyGoal from '../MyGoal';
+import LineChart from '../LineChart/LineChart';
 import { TrainLib } from './Library/TrainLib';
 import ResultSection from '../ResultSection';
 export const TrainingPage = () => {
@@ -22,8 +22,8 @@ export const TrainingPage = () => {
       </TimingContainer>
 
       <TrainLib />
-
       <TrainingButton onClick={startTraining}>Почати тренування</TrainingButton>
+      <LineChart />
 
       <ResultSection />
     </>
