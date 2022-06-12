@@ -1,5 +1,8 @@
 import React from 'react';
-import RaitingStars from './raitingStars';
+import { useFormik } from 'formik';
+import { useDispatch } from 'react-redux';
+import { ratingStars, resume } from '../../../redux/slices/resumeSlice';
+import RatingStars from './ratingStars';
 import {
   Title,
   Content,
@@ -12,19 +15,36 @@ import {
 } from './ResumeModal.styled';
 
 const ResumeModal = ({ toggleModal }) => {
+  const dispatch = useDispatch();
+  const formik = useFormik({
+    initialValues: {
+      text: '',
+      'simple-controlled': 0,
+    },
+    onSubmit: values => {
+      console.log(values);
+      dispatch(resume(values.text));
+      dispatch(ratingStars(values['simple-controlled']));
+    },
+  });
   return (
-    <Content>
-      <Title>Choose rating of the book</Title>
+    <Content onSubmit={formik.handleSubmit}>
+      <Title>Обрати рейтинг книги</Title>
       <Stars>
-        <RaitingStars />
+        <RatingStars onChange={formik.handleChange} />
       </Stars>
-      <Resume>Resume</Resume>
-      <Textarea placeholder="..."></Textarea>
+      <Resume>Резюме</Resume>
+      <Textarea
+        value={formik.values.text}
+        name="text"
+        onChange={formik.handleChange}
+        placeholder="..."
+      ></Textarea>
       <Buttons>
         <Back onClick={toggleModal} type="button">
-          Back
+          Назад
         </Back>
-        <Save type="submit">Save</Save>
+        <Save type="submit">Зберегти</Save>
       </Buttons>
     </Content>
   );

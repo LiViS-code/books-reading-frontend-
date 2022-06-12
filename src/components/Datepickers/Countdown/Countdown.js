@@ -1,14 +1,12 @@
 import endOfYear from 'date-fns/endOfYear';
 import { useState } from 'react';
-import 'react-calendar/dist/Calendar.css';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import Calendar from 'react-calendar';
+
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import { Timer } from '../Timer/Timer';
 import {
-  CalendarWrapper,
   DatePickerWrapper,
-  DatePicker,
+  DateButton,
   Icon,
   TimerWrapper,
   TimeBlock,
@@ -19,38 +17,17 @@ import Polygon from '../../../image/svg/Polygon.svg';
 
 export const Countdown = () => {
   const yearEnd = endOfYear(new Date());
-  const [date, setDate] = useState(new Date());
   const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
-  const [isHidden, setIsHidden] = useState(true);
-
-  console.log(date);
+  const [endDate, setEndDate] = useState('');
   const currentDate = new Date().getTime();
 
-  const toggleCalendar = () => {
-    setIsHidden(isHidden => !isHidden);
-  };
-
-  const setInterval = () => {
-    setDate(date);
-    if (!startDate) {
-      setStartDate(date);
-      return;
-    }
-    if (startDate) {
-      setEndDate(date);
-      toggleCalendar();
-
-      return;
-    }
-  };
-  toast(t => (
-    <span>
-      Custom and <b>bold</b>
-      <button onClick={setInterval}>Dismiss</button>
-    </span>
-  ));
-
+  const CustomInput = ({ value, onClick }, ref) => (
+    <DateButton onClick={onClick}>
+      <Icon src={calendar} alt="calendar" />
+      {value}
+      <Arrow src={Polygon} alt="polygon" />
+    </DateButton>
+  );
   return (
     <>
       {endDate && (
@@ -68,22 +45,18 @@ export const Countdown = () => {
         </>
       )}
       <DatePickerWrapper>
-        <DatePicker onClick={toggleCalendar}>
-          <Icon src={calendar} alt="calendar" />
-          Початок
-          <Arrow src={Polygon} alt="polygon" />
-        </DatePicker>
-        <DatePicker onClick={toggleCalendar}>
-          <Icon src={calendar} alt="calendar" />
-          Завершення
-          <Arrow src={Polygon} alt="polygon" />
-        </DatePicker>
-
-        <CalendarWrapper hidden>
-          <Calendar value={date} onChange={setDate} onClickDay={toast} />
-        </CalendarWrapper>
-
-        <ToastContainer />
+        <DatePicker
+          selected={startDate}
+          onChange={date => setStartDate(date)}
+          customInput={<CustomInput />}
+          value={'Початок'}
+        />
+        <DatePicker
+          selected={endDate}
+          onChange={date => setEndDate(date)}
+          customInput={<CustomInput />}
+          value={'Завершення'}
+        />
       </DatePickerWrapper>
     </>
   );
