@@ -10,12 +10,14 @@ import { TrainingView } from './views/TrainingView/TrainingView';
 
 import Header from './components/Header';
 import BooksReading from './components/BooksReading/Information/BooksReading';
+import ResultSection from './components/ResultSection';
 
 function App() {
   return (
     <>
       <GlobalStyle />
       <Header />
+      <ResultSection />
 
       <Routes>
         <Route path="/" element={<Layout />}>
