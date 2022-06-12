@@ -10,6 +10,8 @@ import {
 } from './index';
 import data from './data.json';
 import sprite from './symbol-defs.svg';
+// import { LineChart } from '../../components/LineChart';
+// import { fetchBooksAPI } from '../../redux/api/request';
 
 export default function LibraryView() {
   const alreadyRed = data.filter(book => book.status === 'Already read');
@@ -51,8 +53,11 @@ export default function LibraryView() {
           <use href={`${sprite}#plus`} />
         </svg>
       </ButtonAdd>
+
+      {/* <LineChart></LineChart> */}
     </Library>
   );
 }
 
 LibraryView();
+// fetchBooksAPI();
