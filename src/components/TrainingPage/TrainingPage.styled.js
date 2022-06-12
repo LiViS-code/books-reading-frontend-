@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { theme } from '../../constants/Theme';
 const {
   colors: { activeColor, headingBackground },
-  media: { tablet, desktop },
+  media: { desktop },
   spacing,
 } = theme;
 
