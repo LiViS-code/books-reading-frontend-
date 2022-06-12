@@ -2,6 +2,23 @@ import styled from '@emotion/styled';
 import Line from '../../image/svg/line.svg';
 import LineLarge from '../../image/svg/line2.svg';
 import Polygon from '../../image/svg/Polygon.svg';
+import { theme } from '../../constants/Theme';
+const {
+  colors: { borderColor, outlineColor },
+
+  spacing,
+} = theme;
+
+export const DateButton = styled.button`
+  position: relative;
+  padding: ${spacing(3)};
+  width: 110px;
+
+  font-size: 14px;
+  border: ${borderColor} 1px solid;
+  background-color: transparent;
+  color: ${outlineColor};
+`;
 
 export const Text = styled.label`
   margin-bottom: 4px;
@@ -20,10 +37,10 @@ export const Amount = styled.div`
 `;
 export const InputNewDate = styled.input`
   width: 110px;
-  height:42px;
+  height: 42px;
   font-size: 14px;
   line-height: 1.21;
-  margin right:20px;
+  margin-right: 20px;
   border-color: 1px #a6abb9;
   background-color: #e0e5eb;
   :hover {
@@ -110,17 +127,17 @@ export const Section = styled.div`
 `;
 
 export const AddResult = styled.div`
-@media screen and (min-width: 768px){
-display: flex;  
-margin-bottom:20px;
-justify-content: space-evenly;
-align-items: center;
+  @media screen and (min-width: 768px) {
+  }
+  display: flex;
+  margin-bottom: 20px;
+  justify-content: space-evenly;
+  align-items: center;
 
-    @media screen and (min-width: 1280px)  {
-      flex-direction: column;
-      align-items: center;
-   
-    }
+  @media screen and (min-width: 1280px) {
+    flex-direction: column;
+    align-items: center;
+  } ;
 `;
 export const Labels = styled.div`
   display: flex;
@@ -212,25 +229,10 @@ export const ButtonSection = styled.div`
     margin-bottom: 24px;
   }
 `;
-export const ButtonIcon = styled.button`
-  width: 110px;
-  height: 42px;
-  font-size: 14px;
-  line-height: 1.21;
-  margin: 0;
-  padding: 0;
-  border-color: 1px #a6abb9;
-  background-color: #e0e5eb;
-  &::after {
-    content: url(${Polygon});
-
-    :hover {
-      border-color: 1px #a6abb9;
-    }
-    :focus {
-      border-color: 1px #a6abb9;
-    }
-  }
+export const ButtonIcon = styled.img`
+  justify-self: flex-end;
+  padding-right: ${spacing(4.5)};
+  display: inline-block;
 `;
 export const Button = styled.button`
   width: 240px;
