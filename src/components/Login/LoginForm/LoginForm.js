@@ -18,10 +18,9 @@ import {
 } from './LoginForm.styled';
 
 const initialValues = {
-    title: '',
-    name: '',
-    year: '',
-    pages: '',
+    email: '',
+    password: '',
+
 };
 
 const LoginForm = () => {
@@ -44,7 +43,7 @@ const LoginForm = () => {
                                 Електронна адреса <StarContainer>*</StarContainer>
                                 <Input
                                     onChange={formik.handleChange}
-                                    value={formik.values.title}
+                                    value={formik.values.email}
                                     name="email"
                                     type="text"
                                     placeholder="your@email.com"
@@ -58,7 +57,7 @@ const LoginForm = () => {
                                     Пароль <StarContainer2>*</StarContainer2>
                                     <Input
                                         onChange={formik.handleChange}
-                                        value={formik.values.name}
+                                        value={formik.values.password}
                                         name="password"
                                         type="text"
                                         placeholder="Пароль"

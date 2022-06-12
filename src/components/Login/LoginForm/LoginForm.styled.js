@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import img from '../../../image/picture-min.jpg';
 import { theme } from '../../../constants/Theme';
 
-const { accentColor, activeColor } = theme.colors
+const { accentColor, borderColor, activeColor, backgroundColorForm, secondaryColor } = theme.colors
 const { mainFont } = theme.fonts
 const { spacing } = theme
 const { mobile, tablet } = theme.media
@@ -15,25 +15,31 @@ export const BackgroundContainer = styled.div`
   @media screen and (min-width: ${tablet}) {
     height:${spacing(140)};
      padding-top:${spacing(16)};
+     margin-top:0
   }
 
 `;
 
 export const FormContainer = styled.div`
   
-  justify-content: center;
+  
   padding-left: ${spacing(5)};
   padding-right: ${spacing(5)};
   padding-top: ${spacing(8)};
   padding-bottom: ${spacing(8)};
-  @media screen and (min-width: ${tablet}) {
-  background-color:${activeColor};
-  width:${spacing(100)};
-  height:${spacing(87.5)};
   margin-right:auto;
   margin-left:auto;
-   padding-top: ${spacing(10)};
-  padding-bottom: ${spacing(10)};
+  
+  @media screen and (min-width: ${tablet}) {
+  background-color:${activeColor};
+  box-sizing:border-box;
+  width:${spacing(100)};
+  height:${spacing(107.5)};
+  margin-right:auto;
+  margin-left:auto;
+  padding: ${spacing(10)};
+ 
+  
 
 
   }
@@ -41,7 +47,7 @@ export const FormContainer = styled.div`
 
 
    @media screen and (max-width: ${spacing(320)}) {
-   margin-top: ${spacing(10)};
+   
 
   }
 `;
@@ -55,8 +61,9 @@ export const GoogleButton = styled.div`
   align-items: center;
   width: ${spacing(37.5)};
   height: ${spacing(10)};
-  background-color:${activeColor};
+  background-color:${backgroundColorForm};
   font-family: 'Roboto';
+  cursor:pointer;
 font-style: normal;
 font-weight: 700;
 font-size: ${spacing(4)};
@@ -101,41 +108,54 @@ export const StarContainer2 = styled.div`
 
 export const InputWrapper = styled.div`
  position:relative;
+ 
   display: flex;
   flex-direction: column;
   width: 100%;
   @media screen and (min-width: ${spacing(320)}) {
-    display: flex;
-    flex-direction: row;
   }
 `;
 
 export const Input = styled.input`
   display: flex;
+  background-color: ${backgroundColorForm};
+  box-shadow: inset 0px 1px 2px rgba(29, 29, 27, 0.15);
   flex-direction: column;
   box-sizing: border-box;
   height: ${spacing(10.5)};
-  border: 1px solid #a6abb9;
+  border: 0px solid #a6abb9;
   padding: ${spacing(3)};
   margin-top: ${spacing(2)};
   margin-bottom: ${spacing(5)};
-  background-color: ${activeColor};
-  @media screen and (max-width: 767px) {
+  margin-right: auto;
+   margin-left: auto;
+   width: 100%;
+
+ 
+  @media screen and (min-width: ${tablet}) {
     width: 100%;
+    
+    
   }
+
+  ::placeholder{
+    color:${borderColor}
+  }
+
+  
   
   
   
   :focus {
     background-color: #ffffff;
-    box-shadow: inset 0px 1px 2px rgba(29, 29, 27, 0.15);
-    border: transparent;
+    
+    border: none;
     outline: none;
   }
 `;
 
 export const Label = styled.label`
-  color: ${activeColor};
+  color: ${secondaryColor};
   font:${mainFont};
  
 `;
@@ -155,10 +175,7 @@ export const NumberDiv = styled.div`
 export const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
-  @media screen and (min-width: 1280px) {
-    margin-left: 24px;
-    align-items: center;
-  }
+  
 `;
 export const LoginButton = styled.button`
 
@@ -169,20 +186,24 @@ export const LoginButton = styled.button`
   line-height: 17px;
   color:${activeColor};
   background-color: ${accentColor};
-  border: 1px solid #242a37;
+  border: 0px solid #242a37;
   width: ${spacing(70)};
   height: ${spacing(15)};
   margin-bottom:${spacing(4)};
+  margin-top:${spacing(3)};
+  cursor:pointer;
   &:hover,
+
   &:focus {
     border: transparent;
     background-color: #ff6b08;
     color: #ffffff;
   }
-  @media screen and (min-width: 1280px) {
-    width: 181px;
-    height: 42px;
+
+  @media screen and (min-width: ${tablet}) {
+   margin-bottom:${spacing(5)};
   }
+
 `;
 
 export const Registration = styled.div`
@@ -197,6 +218,7 @@ export const Registration = styled.div`
   margin-left:auto;
   margin-right:auto;
   text-align:center;
+  cursor:pointer;
 
   
   

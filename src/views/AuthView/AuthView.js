@@ -4,5 +4,6 @@ import LoginText from '../../components/Login/LoginText'
 
 export const AuthView = () => {
   return <><LoginForm ></LoginForm>
+    <LoginText></LoginText>
   </>;
 };

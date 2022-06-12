@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import { GlobalStyle } from './App.styled';
 import { Layout } from './components/Layout/Layout';
 import { AuthView } from './views/AuthView/AuthView';
-import { LibraryView } from './views/LibraryView/LibraryView';
+import LibraryView from './views/LibraryView/LibraryView';
 import { StatisticsView } from './views/StatisticsView/StatisticsView';
 import { TrainingView } from './views/TrainingView/TrainingView';
 
@@ -16,13 +16,13 @@ function App() {
     <>
       <GlobalStyle />
       <Header />
-      <BooksReading />
       <AuthView />
       <Routes>
 
         <Route path="/" element={<Layout />}>
-
-          {/* <Route path="library" element={<LibraryView />} /> */}
+          {/* <Route path="/" element={[<AuthView />, <BooksReading />]} /> */}
+          {/* <Route path="/" element={} /> */}
+          <Route path="library" element={<LibraryView />} />
           <Route path="training" element={<TrainingView />} />
           <Route path="statistics" element={<StatisticsView />} />
         </Route>

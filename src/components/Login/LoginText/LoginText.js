@@ -1,8 +1,18 @@
 import {
-    FormContainer,
+    FormTextContainer,
+    Quotes,
+    QuotesText,
+    Title,
+
+
 
 } from './LoginText.styled';
 
 
-const LoginForm = () => { return (<FormContainer></FormContainer>) }
-export default LoginForm
+const LoginText = () => {
+    return (<><FormTextContainer><Quotes>“
+    </Quotes><QuotesText>Книги — это корабли мысли, странствующие по волнам времени и бережно несущие свой драгоценный груз от поколения к поколению. </QuotesText>
+        <Title>Бэкон Ф.</Title>
+    </FormTextContainer></>)
+}
+export default LoginText
