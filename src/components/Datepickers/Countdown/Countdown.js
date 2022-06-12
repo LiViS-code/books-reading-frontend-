@@ -21,7 +21,7 @@ export const Countdown = () => {
   const [endDate, setEndDate] = useState('');
   const currentDate = new Date().getTime();
 
-  const CustomInput = ({ value, onClick }, ref) => (
+  const CustomInput = ({ value, onClick }, ref, width) => (
     <DateButton onClick={onClick}>
       <Icon src={calendar} alt="calendar" />
       {value}
@@ -44,20 +44,27 @@ export const Countdown = () => {
           </TimerWrapper>
         </>
       )}
-      <DatePickerWrapper>
-        <DatePicker
-          selected={startDate}
-          onChange={date => setStartDate(date)}
-          customInput={<CustomInput />}
-          value={'Початок'}
-        />
-        <DatePicker
-          selected={endDate}
-          onChange={date => setEndDate(date)}
-          customInput={<CustomInput />}
-          value={'Завершення'}
-        />
-      </DatePickerWrapper>
+      {!endDate && (
+        <DatePickerWrapper>
+          <div style={{ maxWidth: '280px' }}>
+            <DatePicker
+              selected={startDate}
+              onChange={date => setStartDate(date)}
+              customInput={<CustomInput />}
+              value={'Початок'}
+              width="250px"
+            />
+          </div>
+          <div style={{ maxWidth: '280px' }}>
+            <DatePicker
+              selected={endDate}
+              onChange={date => setEndDate(date)}
+              customInput={<CustomInput />}
+              value={'Завершення'}
+            />
+          </div>
+        </DatePickerWrapper>
+      )}
     </>
   );
 };

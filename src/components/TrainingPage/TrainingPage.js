@@ -1,10 +1,12 @@
 import { Countdown } from '../Datepickers';
-import { Heading } from './TrainingPage.styled';
+import { Heading, TimingContainer } from './TrainingPage.styled';
 export const TrainingPage = () => {
   return (
     <>
-      <Heading>Моє тренування</Heading>
-      <Countdown />
+      <TimingContainer>
+        <Heading>Моє тренування</Heading>
+        <Countdown />
+      </TimingContainer>
     </>
   );
 };
