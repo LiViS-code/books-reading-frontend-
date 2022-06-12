@@ -8,12 +8,12 @@ const {
 
 export const MyGoalContainer = styled.div`
   height: ${spacing(80)};
-  margin: ${spacing(7, 5)} ${spacing(6, 25)};
+  margin: ${spacing(7.5)} ${spacing(6.25)};
   display: block;
 
   @media (min-width: 768px) {
     width: ${spacing(170)};
-    height: ${spacing(26, 25)};
+    height: ${spacing(26.25)};
     margin: 30px 45px 40px 45px;
     padding: 22px 0px 23px 45px;
     display: flex;
@@ -25,7 +25,7 @@ export const MyGoalContainer = styled.div`
   }
 
   @media (min-width: 1280px) {
-    width: ${spacing(72)}x;
+    width: ${spacing(72)};
     height: ${spacing(76)};
     margin: 50px 40px auto auto;
     padding: 0;
@@ -44,9 +44,9 @@ export const GoalTitle = styled.h2`
   font-weight: 600;
   font-size: 20px;
   line-height: 1.9;
-  padding-top: ${spacing(4, 5)};
+  padding-top: ${spacing(4.5)};
   @media (min-width: 768px) {
-    width: ${spacing(67, 5)};
+    width: ${spacing(67.5)};
   }
   @media (min-width: 1280px) {
     margin-bottom: auto;
@@ -100,14 +100,14 @@ export const Counter = styled.div`
   }
   @media (min-width: 1280px) {
     height: ${spacing(25)};
-    margin-bottom: ${spacing(3, 75)};
+    margin-bottom: ${spacing(3.75)};
   }
 `;
 export const CounterLabelContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-around;
-  margin-top: ${spacing(3, 5)};
+  margin-top: ${spacing(3.5)};
   @media (min-width: 768px) {
     margin-top: -12px;
     justify-content: space-evenly;
@@ -118,7 +118,7 @@ export const CounterLabelContainer = styled.div`
 `;
 
 export const CounterLabel = styled.p`
-  width: ${spacing(16, 5)};
+  width: ${spacing(16.5)};
   font-weight: 500;
   font-size: 14px;
   line-height: 0.82;
