@@ -20,7 +20,6 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route path="/" element={<BooksReading />} />
           <Route path="/" element={[<AuthView />, <BooksReading />]} />
           <Route path="/registration" element={<RegistrationView />} />
           <Route path="library" element={<LibraryView />} />
