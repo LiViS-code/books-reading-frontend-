@@ -3,14 +3,14 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { GlobalStyle } from './App.styled';
 import { Layout } from './components/Layout/Layout';
-import { AuthView } from './views/AuthView/AuthView';
-import { RegistrationView } from './views/RegistrationView/RegistrationView'
+// import { AuthView } from './views/AuthView/AuthView';
+// import { RegistrationView } from './views/RegistrationView/RegistrationView';
 import LibraryView from './views/LibraryView/LibraryView';
 import { StatisticsView } from './views/StatisticsView/StatisticsView';
 import { TrainingView } from './views/TrainingView/TrainingView';
 
 import Header from './components/Header';
-import BooksReading from './components/BooksReading/Information/BooksReading';
+// import BooksReading from './components/BooksReading/Information/BooksReading';
 
 function App() {
   return (
@@ -19,7 +19,6 @@ function App() {
       <Header />
 
       <Routes>
-
         <Route path="/" element={<Layout />}>
           {/* <Route path="/" element={[<AuthView />, <BooksReading />]} /> */}
           {/* <Route path="/" element={} /> */}
