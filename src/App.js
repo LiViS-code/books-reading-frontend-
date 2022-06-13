@@ -17,8 +17,7 @@ function App() {
     <>
       <GlobalStyle />
       <Header />
-      {/* <AuthView /> */}
-      <RegistrationView />
+
       <Routes>
 
         <Route path="/" element={<Layout />}>
