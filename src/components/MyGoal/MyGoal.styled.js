@@ -12,9 +12,9 @@ export const MyGoalContainer = styled.div`
   display: block;
 
   @media (min-width: 768px) {
-    /* width: ${spacing(170)}; */
+    width: ${spacing(170)};
     height: ${spacing(26.25)};
-    /* margin: 30px 45px 40px 45px; */
+    margin: 30px 0 40px 0;
     padding: 22px 0px 23px 45px;
     display: flex;
     align-items: center;
@@ -27,7 +27,7 @@ export const MyGoalContainer = styled.div`
   @media (min-width: 1280px) {
     width: ${spacing(72)};
     height: ${spacing(76)};
-    /* margin: 50px 40px auto auto; */
+    margin: 0;
     padding: 0;
     flex-wrap: wrap;
     box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);

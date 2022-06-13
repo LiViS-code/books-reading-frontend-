@@ -5,6 +5,7 @@ import {
   TrainingButton,
   TrainingBox,
   Sidebar,
+  Box,
 } from './TrainingPage.styled';
 import MyGoal from '../MyGoal';
 import LineChart from '../LineChart/LineChart';
@@ -15,7 +16,7 @@ export const DesktopView = () => {
   return (
     <>
       <TrainingBox>
-        <>
+        <Box>
           <TimingContainer>
             <Heading>Моє тренування</Heading>
             <Countdown />
@@ -23,7 +24,7 @@ export const DesktopView = () => {
           <TrainLib />
           <TrainingButton>Почати тренування</TrainingButton>
           <LineChart />
-        </>
+        </Box>
         <Sidebar>
           <ResultSection />
           <MyGoal />
