@@ -3,9 +3,9 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import Stack from '@mui/material/Stack';
-import { http } from './api/http-common';
+// import { http } from './api/http-common';
 
-axios.defaults.baseURL = `${http.baseURL}`;
+axios.defaults.baseURL = `https://book-reader-team.herokuapp.com/`;
 
 const token = {
   set(token) {
@@ -18,7 +18,7 @@ const token = {
 
 const register = createAsyncThunk('auth/register', async credentials => {
   try {
-    const { data } = await axios.post('/users/signup', credentials);
+    const { data } = await axios.post('/api/auth/signup', credentials);
     token.set(data.token);
     return data;
   } catch (error) {
@@ -35,7 +35,24 @@ const register = createAsyncThunk('auth/register', async credentials => {
 
 const logIn = createAsyncThunk('auth/login', async credentials => {
   try {
-    const { data } = await axios.post('/users/login', credentials);
+    const { data } = await axios.post('/api/auth/singin', credentials);
+    token.set(data.token);
+    return data;
+  } catch (error) {
+    return (
+      <Stack sx={{ width: '100%' }} spacing={2}>
+        <Alert severity="error">
+          <AlertTitle>Error</AlertTitle>
+          This is an error alert — <strong>check it out!</strong>
+        </Alert>{' '}
+      </Stack>
+    );
+  }
+});
+
+const google = createAsyncThunk('auth/google', async credentials => {
+  try {
+    const { data } = await axios.post('/api/auth/google', credentials);
     token.set(data.token);
     return data;
   } catch (error) {
@@ -52,7 +69,7 @@ const logIn = createAsyncThunk('auth/login', async credentials => {
 
 const logOut = createAsyncThunk('auth/logout', async () => {
   try {
-    await axios.post('/users/logout');
+    await axios.get('/api/auth/logout');
     token.unset();
   } catch (error) {
     return (
@@ -78,7 +95,7 @@ const fetchCurrentUser = createAsyncThunk(
 
     token.set(persistedToken);
     try {
-      const { data } = await axios.get('/users/current');
+      const { data } = await axios.get('/api/users/current');
       return data;
     } catch (error) {
       return (
@@ -106,6 +123,7 @@ const operations = {
   register,
   logOut,
   logIn,
+  google,
   fetchCurrentUser,
   resume,
 };
