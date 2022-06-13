@@ -1,30 +1,11 @@
-// import { useState } from 'react';
 import { Countdown } from '../Datepickers';
-import {
-  Heading,
-  TimingContainer,
-  TrainingButton,
-} from './TrainingPage.styled';
-import MyGoal from '../MyGoal';
-import LineChart from '../LineChart/LineChart';
-import { TrainLib } from './Library/TrainLib';
+import { Heading } from './TrainingPage.styled';
 import ResultSection from '../ResultSection';
 export const TrainingPage = () => {
-  const startTraining = () => {
-    console.log();
-  };
   return (
     <>
-      <MyGoal />
-      <TimingContainer>
-        <Heading>Моє тренування</Heading>
-        <Countdown />
-      </TimingContainer>
-
-      <TrainLib />
-      <TrainingButton onClick={startTraining}>Почати тренування</TrainingButton>
-      <LineChart />
-
+      <Heading>Моє тренування</Heading>
+      <Countdown />
       <ResultSection />
     </>
   );

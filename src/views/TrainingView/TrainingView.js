@@ -1,11 +1,11 @@
 import { TrainingPage } from '../../components/TrainingPage';
-import { DesktopView } from '../../components/TrainingPage/DesktopViev';
+import MyGoal from '../../components/MyGoal';
 
 export const TrainingView = () => {
   return (
     <>
       <TrainingPage />
-      <DesktopView />
+      <MyGoal />
     </>
   );
 };

@@ -8,13 +8,13 @@ const {
 
 export const MyGoalContainer = styled.div`
   height: ${spacing(80)};
-  margin: ${spacing(7.5)} 0 ${spacing(6.25)} 0;
+  margin: ${spacing(7.5)} ${spacing(6.25)};
   display: block;
 
   @media (min-width: 768px) {
-    /* width: ${spacing(170)}; */
+    width: ${spacing(170)};
     height: ${spacing(26.25)};
-    /* margin: 30px 45px 40px 45px; */
+    margin: 30px 45px 40px 45px;
     padding: 22px 0px 23px 45px;
     display: flex;
     align-items: center;
@@ -27,7 +27,7 @@ export const MyGoalContainer = styled.div`
   @media (min-width: 1280px) {
     width: ${spacing(72)};
     height: ${spacing(76)};
-    /* margin: 50px 40px auto auto; */
+    margin: 50px 40px auto auto;
     padding: 0;
     flex-wrap: wrap;
     box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
@@ -35,7 +35,7 @@ export const MyGoalContainer = styled.div`
 `;
 
 export const GoalTitle = styled.h2`
-  padding: ${spacing(4.3)} 0;
+  height: ${spacing(15)};
   background-color: ${headingBackground};
   box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
   color: ${activeColor};
@@ -43,6 +43,7 @@ export const GoalTitle = styled.h2`
   font-style: normal;
   font-weight: 600;
   font-size: 20px;
+  line-height: 1.9;
   padding-top: ${spacing(4.5)};
   @media (min-width: 768px) {
     width: ${spacing(67.5)};

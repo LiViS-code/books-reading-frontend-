@@ -15,12 +15,9 @@ export const DatePickerWrapper = styled.div`
 
   @media (min-width: ${tablet}) {
     display: flex;
-    justify-content: flex-start;
+    justify-content: start;
     margin: ${spacing(5)} 0 ${spacing(6)};
     width: 100%;
-  }
-  @media (min-width: ${desktop}) {
-    justify-content: center;
   }
 `;
 export const CalendarWrapper = styled.div`
@@ -30,7 +27,7 @@ export const CalendarWrapper = styled.div`
   width: 100%;
 `;
 export const DateButton = styled.button`
-  display: flex;
+  position: relative;
   padding: ${spacing(3)};
   width: 100%;
   margin: ${spacing(3)} 0 ${spacing(3)};
@@ -50,7 +47,7 @@ export const Icon = styled.img`
   display: inline-block;
 `;
 export const Arrow = styled.img`
-  margin-left: auto;
+  justify-self: flex-end;
   padding-right: ${spacing(4.5)};
   display: inline-block;
 `;

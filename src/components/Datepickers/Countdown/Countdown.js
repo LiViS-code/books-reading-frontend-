@@ -44,27 +44,20 @@ export const Countdown = () => {
           </TimerWrapper>
         </>
       )}
-      {!endDate && (
-        <DatePickerWrapper>
-          <div style={{ maxWidth: '280px' }}>
-            <DatePicker
-              selected={startDate}
-              onChange={date => setStartDate(date)}
-              customInput={<CustomInput />}
-              value={'Початок'}
-              width="250px"
-            />
-          </div>
-          <div style={{ maxWidth: '280px' }}>
-            <DatePicker
-              selected={endDate}
-              onChange={date => setEndDate(date)}
-              customInput={<CustomInput />}
-              value={'Завершення'}
-            />
-          </div>
-        </DatePickerWrapper>
-      )}
+      <DatePickerWrapper>
+        <DatePicker
+          selected={startDate}
+          onChange={date => setStartDate(date)}
+          customInput={<CustomInput />}
+          value={'Початок'}
+        />
+        <DatePicker
+          selected={endDate}
+          onChange={date => setEndDate(date)}
+          customInput={<CustomInput />}
+          value={'Завершення'}
+        />
+      </DatePickerWrapper>
     </>
   );
 };
