@@ -41,8 +41,11 @@ export const TrainingButton = styled.button`
 `;
 export const TrainingBox = styled.div`
   display: flex;
-
+  flex-direction: column;
+  width: 928px;
   @media (min-width: ${desktop}) {
   } ;
 `;
-export const Sidebar = styled.div``;
+export const Sidebar = styled.div`
+  display: flex;
+`;

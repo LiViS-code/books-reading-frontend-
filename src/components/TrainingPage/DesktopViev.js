@@ -15,14 +15,15 @@ export const DesktopView = () => {
   return (
     <>
       <TrainingBox>
-        <TimingContainer>
-          <Heading>Моє тренування</Heading>
-          <Countdown />
-        </TimingContainer>
-
-        <TrainLib />
-        <TrainingButton>Почати тренування</TrainingButton>
-        <LineChart />
+        <>
+          <TimingContainer>
+            <Heading>Моє тренування</Heading>
+            <Countdown />
+          </TimingContainer>
+          <TrainLib />
+          <TrainingButton>Почати тренування</TrainingButton>
+          <LineChart />
+        </>
         <Sidebar>
           <ResultSection />
           <MyGoal />
