@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { theme } from '../../../constants/Theme';
+import { NavLink } from 'react-router-dom';
+
 const {
   colors: { primaryColor, backgroundColorForm },
   fonts: { mainFont },
@@ -17,7 +19,7 @@ export const Nav = styled.div`
   }
 `;
 
-export const Div = styled.div`
+export const Link = styled(NavLink)`
   display: flex;
   justify-content: center;
   align-items: center;

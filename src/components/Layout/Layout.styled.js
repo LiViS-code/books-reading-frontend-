@@ -15,10 +15,10 @@ export const Container = styled.div`
   margin-left: auto;
   margin-right: auto;
   @media (min-width: ${mobile}) {
-    width: ${mobile};
+    width: ${spacing(70)};
   }
   @media (min-width: ${tablet}) {
-    width: ${tablet};
+    width: ${spacing(176)};
     padding: 0 ${spacing(8)};
   }
   @media (min-width: ${desktop}) {

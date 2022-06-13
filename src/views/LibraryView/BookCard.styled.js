@@ -134,6 +134,8 @@ export const Attribute = styled.p`
 `;
 
 export const Author = styled.p`
+  height: 15px;
+  overflow: hidden;
   margin-bottom: 14px;
   font-size: 12px;
   font-weight: 500;
@@ -145,16 +147,20 @@ export const Author = styled.p`
     margin-bottom: 0;
     font-size: ${mainFontSize};
     width: 206px;
+    height: 34px;
   }
 
   @media screen and (min-width: ${desktop}) {
     width: 381px;
+    height: 15px;
     margin-top: auto;
     margin-bottom: auto;
   } ;
 `;
 
 export const AuthorRed = styled.p`
+  height: 15px;
+  overflow: hidden;
   margin-bottom: 14px;
   font-size: 12px;
   font-weight: 500;
@@ -166,11 +172,13 @@ export const AuthorRed = styled.p`
     margin-bottom: 0;
     font-size: ${mainFontSize};
     width: 126px;
+    height: 34px;
     padding-right: 20px;
   }
 
   @media screen and (min-width: ${desktop}) {
     width: 258px;
+    height: 15px;
     line-height: 1.21;
   } ;
 `;
@@ -274,7 +282,10 @@ export const ResumeSection = styled.div`
 
 export const Stars = styled.div`
   display: flex;
-  margin-left: 32px;
+
+  @media screen and (min-width: ${tablet}) {
+    margin-left: 32px;
+  }
 
   @media screen and (min-width: ${desktop}) {
     margin-left: 110px;

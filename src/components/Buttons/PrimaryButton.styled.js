@@ -8,6 +8,7 @@ export const PrimaryButton = styled.button`
   font-size: 14px;
   line-height: 17px;
   box-sizing: border-box;
+  cursor: pointer;
   background-color: transparent;
   border: 1px solid ${theme.colors.primaryColor};
   width: 171px;
