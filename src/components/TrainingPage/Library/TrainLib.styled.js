@@ -3,7 +3,7 @@ import { theme } from '../../../constants/Theme';
 const {
   colors: { secondaryColor, accentColor, borderColor },
   media: { tablet, desktop },
-  transition: { timing, timingFunction },
+  transition: { timing },
 } = theme;
 
 export const Wrapper = styled.div`
