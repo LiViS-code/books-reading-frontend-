@@ -114,7 +114,7 @@ export const Section = styled.div`
   margin-bottom: 24px;
   background-color: #ffffff;
   padding-bottom: 22px;
-  padding: 20px 20px 20px;
+  padding: 20px 20px 22px;
 
   @media screen and (min-width: 768px) {
     max-width: 100%;
