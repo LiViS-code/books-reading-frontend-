@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import { GlobalStyle } from './App.styled';
 import { Layout } from './components/Layout/Layout';
 import { AuthView } from './views/AuthView/AuthView';
+import { RegistrationView } from './views/RegistrationView/RegistrationView'
 import LibraryView from './views/LibraryView/LibraryView';
 import { StatisticsView } from './views/StatisticsView/StatisticsView';
 import { TrainingView } from './views/TrainingView/TrainingView';
@@ -16,7 +17,8 @@ function App() {
     <>
       <GlobalStyle />
       <Header />
-      <AuthView />
+      {/* <AuthView /> */}
+      <RegistrationView />
       <Routes>
 
         <Route path="/" element={<Layout />}>

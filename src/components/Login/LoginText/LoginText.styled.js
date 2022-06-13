@@ -3,7 +3,7 @@ import { theme } from '../../../constants/Theme';
 
 const { accentColor, primaryColor, secondaryColor } = theme.colors;
 const { spacing } = theme;
-const { tablet } = theme.media
+const { tablet, desktop } = theme.media
 
 
 export const FormTextContainer = styled.div`
@@ -13,9 +13,12 @@ export const FormTextContainer = styled.div`
   align-items: center;
   padding-left: ${spacing(5)};
   padding-right: ${spacing(5)};
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: ${desktop}) {
     margin-top: ${spacing(10)};
-  }`;
+    width:730px;
+  }
+  
+  `;
 
 export const Quotes = styled.div`
   font-size:59px;

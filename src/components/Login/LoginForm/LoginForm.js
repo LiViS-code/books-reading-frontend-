@@ -13,9 +13,11 @@ import {
     LoginButton,
     StarContainer,
     StarContainer2,
-    BackgroundContainer
+    BackgroundContainer,
+    SectionContainer
 
 } from './LoginForm.styled';
+import google_icon from '../../../image/google_icon.png'
 
 const initialValues = {
     email: '',
@@ -35,7 +37,7 @@ const LoginForm = () => {
     return (
         <BackgroundContainer>
             <FormContainer>
-                <GoogleButton>Google<GoogleImage></GoogleImage></GoogleButton>
+                <GoogleButton>Google<GoogleImage src={google_icon} alt="google icon"></GoogleImage></GoogleButton>
                 <Form onSubmit={formik.handleSubmit}>
                     <InputWrapper>
                         <div>
@@ -75,6 +77,7 @@ const LoginForm = () => {
                 <Registration>Реєстрація</Registration>
             </FormContainer>
         </BackgroundContainer>
+
 
     );
 };

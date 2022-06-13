@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-import img from '../../../image/picture-min.jpg';
-import { theme } from '../../../constants/Theme';
+import img from '../../image/picture-min.jpg';
+import { theme } from '../../constants/Theme';
 
 const { accentColor, borderColor, activeColor, backgroundColorForm, secondaryColor } = theme.colors
 const { mainFont } = theme.fonts
@@ -21,15 +21,16 @@ margin-right:auto}
 
 export const BackgroundContainer = styled.div`
   background:linear-gradient(0deg, rgba(9, 30, 63, 0.8), rgba(9, 30, 63, 0.8)), url(${img});
-  width:100vw; 
-  background-size:100%;
-  @media screen and (min-width: ${tablet}) {
+ background-size: cover;
+  width:100vw;
+    @media screen and (min-width: ${tablet}) {
     height:${spacing(140)};
      padding-top:${spacing(16)};
-     margin-top:0
+     padding-bottom:${spacing(16)};
+     margin-top:0;
   }
   @media screen and (min-width: ${desktop}) {
-   max-width:550px;
+   max-width:610px;
   }
 
 `;
@@ -48,12 +49,12 @@ export const FormContainer = styled.div`
   background-color:${activeColor};
   box-sizing:border-box;
   width:${spacing(100)};
-  height:${spacing(107.5)};
+  height:${spacing(152.5)};
   margin-right:auto;
   margin-left:auto;
   padding: ${spacing(10)};
- 
-  
+  margin-bottom:${spacing(14)};
+
 
 
   }
@@ -112,16 +113,29 @@ export const StarContainer = styled.div`
  color:${accentColor};
  position:absolute;
  top:${spacing(-0.5)};
- left:${spacing(36.5)};
+ left:${spacing(7.5)};
 `;
 
 export const StarContainer2 = styled.div`
  color:${accentColor};
  position:absolute;
  top:${spacing(-0.5)};
+ left:${spacing(36)};
+`;
+
+export const StarContainer3 = styled.div`
+ color:${accentColor};
+ position:absolute;
+ top:${spacing(-0.5)};
  left:${spacing(14.5)};
 `;
 
+export const StarContainer4 = styled.div`
+ color:${accentColor};
+ position:absolute;
+ top:${spacing(-0.5)};
+ left:${spacing(38)};
+`;
 
 
 export const InputWrapper = styled.div`
@@ -172,13 +186,9 @@ export const Input = styled.input`
 `;
 
 export const Label = styled.label`
-  color: ${activeColor};
+  color: ${secondaryColor};
   font:${mainFont};
-  @media screen and (min-width: 768px) {
-    color: ${secondaryColor};
-  }
-  
-
+ 
 `;
 
 export const InputContainer = styled.div`
@@ -228,20 +238,40 @@ export const LoginButton = styled.button`
 `;
 
 export const Registration = styled.div`
+ 
 
   font: inherit;
   font-style: normal;
   font-weight: 500;
   font-size: ${spacing(3.25)};
   line-height: ${spacing(4)};
-  color:${accentColor};
-  text-decoration-line: underline;
-  margin-left:auto;
-  margin-right:auto;
+  color:${secondaryColor};
   text-align:center;
   cursor:pointer;
-
-  
-  
-  
 `;
+
+export const RegistrationActive = styled.div`
+  color:${accentColor};
+  margin-left:4px;
+  text-decoration-line: underline;
+  font: inherit;
+  font-style: normal;
+  font-weight: 500;
+  font-size: ${spacing(3.25)};
+  line-height: ${spacing(4)};
+  margin-bottom:${spacing(11)};
+   @media screen and (min-width: ${tablet}) {
+   margin-bottom:${spacing(10)};
+  }
+
+
+`;
+
+export const RegistrationBox = styled.div`
+  display:flex;
+  justify-content:center;
+ 
+
+
+`;
+
