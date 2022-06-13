@@ -16,7 +16,6 @@ function App() {
     <>
       <GlobalStyle />
       <Header />
-
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<BooksReading />} />
