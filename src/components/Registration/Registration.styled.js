@@ -11,7 +11,11 @@ const {
 } = theme.colors;
 const { mainFont } = theme.fonts;
 const { spacing } = theme;
-const { tablet, desktop } = theme.media;
+const {
+  // mobile,
+  tablet,
+  desktop,
+} = theme.media;
 
 export const SectionContainer = styled.div`
   @media screen and (min-width: ${desktop}) {

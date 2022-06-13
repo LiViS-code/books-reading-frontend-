@@ -20,7 +20,8 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route path="/login" element={[<AuthView />, <BooksReading />]} />
+          <Route path="/" element={<BooksReading />} />
+          <Route path="/" element={[<AuthView />, <BooksReading />]} />
           <Route path="/registration" element={<RegistrationView />} />
           <Route path="library" element={<LibraryView />} />
           <Route path="training" element={<TrainingView />} />
