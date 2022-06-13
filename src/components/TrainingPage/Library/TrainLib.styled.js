@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 import { theme } from '../../../constants/Theme';
 const {
-  colors: { secondaryColor, accentColor, borderColor },
+  colors: { secondaryColor, accentColor, borderColor, outlineColor },
   media: { tablet, desktop },
-  transition: { timing },
 } = theme;
 
 export const Wrapper = styled.div`
@@ -19,8 +18,6 @@ export const HeaderList = styled.div`
     border-top: 1px solid #f6f7fb;
   }
 `;
-export const BookIcon = styled.img``;
-
 export const HeaderListItem = styled.p`
   font-weight: 500;
   font-size: 14px;
@@ -31,18 +28,20 @@ export const HeaderListItem = styled.p`
 `;
 
 export const ListBooks = styled.ul`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 280px;
-  margin: 0 auto;
-  border-top: 1px solid #f6f7fb;
-  @media screen and (min-width: ${tablet}) {
-    width: 704px;
-  }
-  @media screen and (min-width: ${desktop}) {
-    width: 100%;
+  & .trainingList {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 280px;
+    margin: 0 auto;
+    border-top: 1px solid #f6f7fb;
+    @media screen and (min-width: ${tablet}) {
+      width: 704px;
+    }
+    @media screen and (min-width: ${desktop}) {
+      width: 100%;
+    }
   }
 `;
 
@@ -54,7 +53,52 @@ export const ItemBooks = styled.li`
   padding-top: 20px;
   padding-bottom: 20px;
   border-bottom: 1px solid #e0e5eb;
-  & .someClass {
+  & .icon {
+    position: absolute;
+    left: 0;
+  }
+  & .iconDelete {
+    position: absolute;
+    right: 0;
+    margin-top: 0;
+    fill: ${outlineColor};
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: transparent;
+    }
+    &:hover svg,
+    &:focus svg,
+    &:active svg {
+      fill: ${accentColor};
+    }
+  }
+  @media screen and (min-width: ${tablet}) {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 704px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    justify-content: space-around;
+  }
+  @media screen and (min-width: ${desktop}) {
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+`;
+
+export const BookItem = styled.li`
+  & .listItem {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 280px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e0e5eb;
     position: absolute;
     left: 0;
   }
@@ -63,7 +107,7 @@ export const ItemBooks = styled.li`
     right: 0;
     margin-top: 0;
     fill: ${borderColor};
-    transition: ${timing('background-color')}, ${timing('fill')};
+
     &:hover,
     &:focus,
     &:active {
@@ -150,7 +194,7 @@ export const EmptyItem = styled.li`
   padding-top: 32px;
   padding-bottom: 32px;
   border-bottom: 1px solid #e0e5eb;
-  & .someClass {
+  & .icon {
     position: absolute;
     left: 0;
   }
