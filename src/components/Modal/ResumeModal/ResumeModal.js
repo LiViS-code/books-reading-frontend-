@@ -1,7 +1,8 @@
 import React from 'react';
-import { useFormik } from 'formik';
-import { useDispatch } from 'react-redux';
-import { ratingStars, resume } from '../../../redux/slices/resumeSlice';
+// import { useFormik } from 'formik';
+import { useDispatch, useSelector } from 'react-redux';
+import { useState, useEffect } from 'react';
+import operations from '../../../redux/asyncThunks';
 import RatingStars from './ratingStars';
 import {
   Title,
@@ -14,32 +15,66 @@ import {
   Save,
 } from './ResumeModal.styled';
 
-const ResumeModal = ({ toggleModal }) => {
+import resumeSelectors from '../../../redux/selectors/resume-selectors';
+
+const ResumeModal = ({ toggleModal, bookId }) => {
   const dispatch = useDispatch();
-  const formik = useFormik({
-    initialValues: {
-      text: '',
-      'simple-controlled': 0,
-    },
-    onSubmit: values => {
-      console.log(values);
-      dispatch(resume(values.text));
-      dispatch(ratingStars(values['simple-controlled']));
-    },
-  });
+  const [text, setText] = useState('');
+  const [rating, setRating] = useState('');
+
+  useEffect(() => {
+    dispatch(operations.fetchResume(bookId));
+  }, [dispatch]);
+
+  const resumeText = useSelector(resumeSelectors.getResumeText);
+  const ratingStars = useSelector(resumeSelectors.getRaitingStars);
+
+  const inputChange = e => {
+    const { name, value } = e.currentTarget;
+    switch (name) {
+      case 'text':
+        setText(value);
+        break;
+
+      case 'simple-controlled':
+        setRating(value);
+        break;
+      default:
+        return;
+    }
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    console.log(rating);
+    dispatch(operations.resume({ bookId, text, rating }));
+  };
+
   return (
-    <Content onSubmit={formik.handleSubmit}>
+    <Content onSubmit={handleSubmit}>
       <Title>Обрати рейтинг книги</Title>
       <Stars>
-        <RatingStars onChange={formik.handleChange} />
+        {ratingStars ? (
+          <RatingStars onChange={ratingStars} />
+        ) : (
+          <RatingStars onChange={inputChange} />
+        )}
       </Stars>
       <Resume>Резюме</Resume>
-      <Textarea
-        value={formik.values.text}
-        name="text"
-        onChange={formik.handleChange}
-        placeholder="..."
-      ></Textarea>
+      {resumeText ? (
+        <Textarea
+          value={resumeText}
+          name="text"
+          onChange={inputChange}
+        ></Textarea>
+      ) : (
+        <Textarea
+          value={text}
+          name="text"
+          onChange={inputChange}
+          placeholder="..."
+        ></Textarea>
+      )}
       <Buttons>
         <Back onClick={toggleModal} type="button">
           Назад
