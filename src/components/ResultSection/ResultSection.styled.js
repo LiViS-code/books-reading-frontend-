@@ -3,28 +3,37 @@ import Line from '../../image/svg/line.svg';
 import LineLarge from '../../image/svg/line2.svg';
 import { theme } from '../../constants/Theme';
 const {
-  colors: { borderColor, outlineColor },
+  colors: { borderColor, outlineColor, primaryColor, backgroundColor },
+  spacing,
 } = theme;
 
 export const DateButton = styled.button`
+  display: flex;
+  align-items: center;
   width: 110px;
   font-size: 14px;
   line-height: 1.21;
-
+  padding: ${spacing(3)};
   border: ${borderColor} 1px solid;
-  background-color: transparent;
-  color: ${outlineColor};
-  :hover {
+  background-color: ${backgroundColor};
+  color: ${primaryColor};
+  text-align: start;
+  &:hover &:focus {
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
     background-color: #ff6b08;
     border-color: #ff6b08;
     color: white;
   }
-  :focus {
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
-    background-color: #ff6b08;
-    border-color: #ff6b08;
-    color: white;
+  & .icon {
+    top: 65%;
+    right: 0;
+    margin: 0 0 0 7px;
+
+    &:hover,
+    &:focus,
+    &:active {
+      fill: transparent;
+    }
   }
 `;
 
@@ -102,18 +111,6 @@ export const Label = styled.label`
   min-height: 42px;
   color: #898f9f;
 
-  & .icon {
-    position: absolute;
-    top: 65%;
-    right: 0;
-    margin-top: 0;
-    transform: translateY(-50%);
-    &:hover,
-    &:focus,
-    &:active {
-      background-color: transparent;
-    }
-  }
   @media screen and (min-width: 768px) {
     margin-right: 20px;
   }
@@ -123,16 +120,26 @@ export const Label = styled.label`
 `;
 
 export const Pages = styled.input`
+  box-sizing: border-box;
   width: 110px;
   font-size: 14px;
   line-height: 1.21;
   background-color: #f6f7fb;
   outline: transparent;
+  border: 1px solid ${outlineColor};
+  padding: ${spacing(3)};
+
+  *:focus &:hover {
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    background-color: #ff6b08;
+    border-color: #ff6b08;
+    color: white;
+  }
 `;
 
 export const Button = styled.button`
   width: 240px;
-  height: 40px;
+  height: 42px;
   outline: transparent;
   border: none;
   background-color: #ff6b08;
@@ -140,29 +147,22 @@ export const Button = styled.button`
   font-size: 16px;
   font-family: Montserrat;
   padding: 0;
-  margin: 28 0 0 0;
+  margin: 28px 0 24px 0;
 
   display: inline-flex;
   align-items: center;
   justify-content: center;
   transition: background-color 250ms var(--timing-function);
-  :hover {
+
+  :focus :hover {
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
     background-color: #ff6b08;
     border-color: #ff6b08;
     color: white;
   }
-  :focus {
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
-    background-color: #ff6b08;
-    border-color: #ff6b08;
-    color: white;
-  }
+
   @media screen and (min-width: 768px) {
-    margin-bottom: 0;
-    margin-top: 17px;
-    margin-left: 12px;
-    margin-right: 0;
+    margin: 30px 17px 12px 0;
   }
   @media screen and (min-width: 1280px) {
     margin-top: 28px;

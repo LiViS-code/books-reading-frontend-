@@ -50,6 +50,7 @@ export const Countdown = () => {
             <DatePicker
               selected={startDate}
               onChange={date => setStartDate(date)}
+              includeDates={[new Date()]}
               customInput={<CustomInput />}
               value={'Початок'}
               width="250px"
@@ -59,6 +60,7 @@ export const Countdown = () => {
             <DatePicker
               selected={endDate}
               onChange={date => setEndDate(date)}
+              minDate={new Date()}
               customInput={<CustomInput />}
               value={'Завершення'}
             />
