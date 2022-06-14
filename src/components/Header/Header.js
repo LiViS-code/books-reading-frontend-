@@ -8,14 +8,16 @@ import UserName from './UserName';
 import UserAvatar from './UserAvatar';
 import Line from './Line';
 import { useMediaQuery } from './hooks/useMediaQuery';
+import { authSelectors } from '../../redux/selectors';
+import { useSelector } from 'react-redux';
 
 export default function Header() {
   const isMatches = useMediaQuery('(min-width: 768px)');
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   return (
     <Div>
       <Logo />
-
-      {isMatches && (
+      {isLoggedIn && isMatches && (
         <>
           <UserAvatar />
           <UserName />
@@ -24,7 +26,7 @@ export default function Header() {
           <LogOut />
         </>
       )}
-      {!isMatches && (
+      {isLoggedIn && !isMatches && (
         <MobDiv>
           <Navigation />
           <Line />
