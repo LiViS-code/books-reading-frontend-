@@ -9,6 +9,7 @@ import MyGoal from '../MyGoal';
 import LineChart from '../LineChart/LineChart';
 import { TrainLib } from './Library/TrainLib';
 import ResultSection from '../ResultSection';
+
 export const TrainingPage = () => {
   const startTraining = () => {
     console.log();
@@ -20,8 +21,10 @@ export const TrainingPage = () => {
         <Heading>Моє тренування</Heading>
         <Countdown />
       </TimingContainer>
+      <div style={{ maxWidth: '928px' }}>
+        <TrainLib />
+      </div>
 
-      <TrainLib />
       <TrainingButton onClick={startTraining}>Почати тренування</TrainingButton>
       <LineChart />
 

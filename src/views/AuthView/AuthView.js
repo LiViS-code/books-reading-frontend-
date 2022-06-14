@@ -1,3 +1,9 @@
+import LoginForm from '../../components/Login/LoginForm'
+import LoginText from '../../components/Login/LoginText'
+import { SectionContainer } from '../../components/Login/LoginForm/LoginForm.styled'
+
 export const AuthView = () => {
-  return <div> Login Page goes here</div>;
+  return <SectionContainer><LoginForm ></LoginForm>
+    <LoginText></LoginText>
+  </SectionContainer>;
 };
