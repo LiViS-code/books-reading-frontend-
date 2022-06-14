@@ -11,7 +11,7 @@ export const userSlice = createSlice({
   extraReducers: {
     [operations.allBooks.fulfilled](state, action) {
       console.log(action.payload);
-      state.allBooks = action.payload.data;
+      state.allBooks = action.payload.data.books;
       console.log(state.allBooks);
     },
   },
