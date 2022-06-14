@@ -1,4 +1,5 @@
-import React from 'react';
+import { React, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import Attributes from './Attributes';
 import {
   Title,
@@ -10,13 +11,19 @@ import {
 } from './index';
 import data from './data.json';
 import sprite from './symbol-defs.svg';
+import operations from '../../redux/asyncThunks';
 // import { LineChart } from '../../components/LineChart';
 // import { fetchBooksAPI } from '../../redux/api/request';
 
 export default function LibraryView() {
+  const dispatch = useDispatch();
   const alreadyRed = data.filter(book => book.status === 'Already read');
   const readingNow = data.filter(book => book.status === 'Reading now');
   const goingToRead = data.filter(book => book.status === 'Going to read');
+
+  useEffect(() => {
+    dispatch(operations.allBooks());
+  }, [dispatch]);
 
   return (
     <Library>
@@ -59,5 +66,5 @@ export default function LibraryView() {
   );
 }
 
-LibraryView();
+// LibraryView();
 // fetchBooksAPI();

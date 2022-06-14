@@ -3,10 +3,10 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import Stack from '@mui/material/Stack';
-import { http } from './api/http-common';
+// import { http } from './api/http-common';
 
-axios.defaults.baseURL = `${http.baseURL}`;
-
+// axios.defaults.baseURL = `${http.baseURL}`;
+axios.defaults.baseURL = 'https://book-reader-team.herokuapp.com/api';
 const token = {
   set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -35,8 +35,8 @@ const register = createAsyncThunk('auth/register', async credentials => {
 
 const logIn = createAsyncThunk('auth/login', async credentials => {
   try {
-    const { data } = await axios.post('/users/login', credentials);
-    token.set(data.token);
+    const { data } = await axios.post('/users/signin', credentials);
+    // token.set(data.token);
     return data;
   } catch (error) {
     return (
@@ -102,11 +102,21 @@ const resume = createAsyncThunk('auth/resume', async credentials => {
   }
 });
 
+const allBooks = createAsyncThunk('user/books', async () => {
+  try {
+    const { data } = await axios.get('/books/');
+    return data;
+  } catch (error) {
+    return console.log(error);
+  }
+});
+
 const operations = {
   register,
   logOut,
   logIn,
   fetchCurrentUser,
   resume,
+  allBooks,
 };
 export default operations;
