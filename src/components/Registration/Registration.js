@@ -93,7 +93,10 @@ const RegistrationForm = () => {
   return (
     <BackgroundContainer>
       <FormContainer>
-        <GoogleButton>
+        <GoogleButton
+          // onClick={dispatch(operations.google())}
+          type="submit"
+        >
           Google<GoogleImage src={google_icon} alt="google icon"></GoogleImage>
         </GoogleButton>
         <Form

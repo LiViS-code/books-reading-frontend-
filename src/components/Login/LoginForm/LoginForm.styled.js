@@ -62,7 +62,7 @@ export const FormContainer = styled.div`
   @media screen and (max-width: ${spacing(320)}) {
   }
 `;
-export const GoogleButton = styled.div`
+export const GoogleButton = styled.button`
   position: relative;
   margin-right: auto;
   margin-left: auto;
@@ -73,6 +73,7 @@ export const GoogleButton = styled.div`
   width: ${spacing(37.5)};
   height: ${spacing(10)};
   background-color: ${backgroundColorForm};
+  border: none;
   font-family: 'Roboto';
   cursor: pointer;
   font-style: normal;
@@ -87,7 +88,6 @@ export const GoogleButton = styled.div`
 export const GoogleImage = styled.img`
   position: absolute;
   left: 14px;
-  top: 11px;
   width: 18px;
   height: 18px;
   z-index: 2;
