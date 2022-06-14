@@ -10,10 +10,8 @@ import {
   Text,
   Section,
   AddResult,
-  Labels,
   Label,
   Pages,
-  ButtonSection,
   Button,
   Statistic,
 } from './ResultSection.styled';
@@ -24,7 +22,7 @@ export default function ResultSection() {
   const CustomInput = ({ value, onClick }, ref) => (
     <DateButton onClick={onClick}>
       {value}
-      <Arrow src={Polygon} alt="polygon" />
+      <Arrow src={Polygon} alt="polygon" className={'icon'} />
     </DateButton>
   );
 
@@ -32,27 +30,24 @@ export default function ResultSection() {
     <Section>
       <Title>Результати</Title>
       <AddResult>
-        <Labels>
-          <Label>
-            <Text>Дата</Text>
-            <div style={{ width: '110px' }}>
-              <DatePicker
-                selected={date}
-                onChange={date => setDate(date)}
-                customInput={<CustomInput />}
-                value={date}
-              />
-            </div>
-          </Label>
+        <Label>
+          <Text>Дата</Text>
+          <div style={{ width: '110px' }}>
+            <DatePicker
+              selected={date}
+              onChange={date => setDate(date)}
+              customInput={<CustomInput />}
+              value={date}
+            />
+          </div>
+        </Label>
 
-          <Label>
-            <Text>Кількість сторінок</Text>
-            <Pages />
-          </Label>
-        </Labels>
-        <ButtonSection>
-          <Button type="submit">Add Result</Button>
-        </ButtonSection>
+        <Label>
+          <Text>Кількість сторінок</Text>
+          <Pages />
+        </Label>
+
+        <Button type="submit">Add Result</Button>
       </AddResult>
       <Statistic>СТАТИСТИКА</Statistic>
     </Section>
