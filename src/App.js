@@ -11,7 +11,7 @@ import { TrainingView } from './views/TrainingView/TrainingView';
 
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import authSelectors from './redux/selectors/auth-selectors';
+import { getIsLoggedIn } from './redux/selectors/auth-selectors';
 import operations from './redux/asyncThunks';
 
 import Header from './components/Header';
@@ -19,7 +19,7 @@ import BooksReading from './components/BooksReading/Information/BooksReading';
 
 function App() {
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+  const isLoggedIn = useSelector(getIsLoggedIn);
 
   useEffect(() => {
     dispatch(operations.fetchCurrentUser());
