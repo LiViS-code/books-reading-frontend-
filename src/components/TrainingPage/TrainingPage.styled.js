@@ -21,8 +21,7 @@ export const TimingContainer = styled.div`
   display: flex;
   flex-direction: column;
   @media (min-width: ${desktop}) {
-    margin: ${spacing(7.5)} ${spacing(6.25)};
-    width: ${spacing(232)};
+    margin: 0 0;
   }
 `;
 
@@ -32,7 +31,7 @@ export const TrainingButton = styled.button`
   background-color: ${accentColor};
   color: ${activeColor};
   border: none;
-  margin: ${spacing(8)}${spacing(8)};
+  margin: ${spacing(8)} auto ${spacing(8)} auto;
   cursor: pointer;
   @media (min-width: ${tablet}) {
     width: ${spacing(50)};
@@ -41,11 +40,17 @@ export const TrainingButton = styled.button`
 `;
 export const TrainingBox = styled.div`
   display: flex;
-  flex-direction: column;
-  width: 928px;
+  /* flex-direction: column; */
+  width: ${spacing(232)};
   @media (min-width: ${desktop}) {
+    margin-top: ${spacing(10)};
   } ;
 `;
 export const Sidebar = styled.div`
   display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  width: ${58};
+  margin-left: ${spacing(8)};
 `;
+export const Box = styled.div``;
