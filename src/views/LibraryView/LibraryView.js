@@ -23,7 +23,6 @@ export default function LibraryView() {
     dispatch(operations.allBooks());
   }, [dispatch]);
 
-  console.log(books);
   const alreadyRed = books
     ? books.filter(book => book.wish === 'Already read')
     : [];
@@ -66,7 +65,7 @@ export default function LibraryView() {
         </div>
       )}
 
-      <Link to="../training">
+      <Link to="../training" style={{ textDecoration: 'none' }}>
         <ButtonTraining type="button">
           <ButtonName>Моє тренування</ButtonName>
         </ButtonTraining>
