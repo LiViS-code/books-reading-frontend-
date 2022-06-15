@@ -9,8 +9,7 @@ const {
 export const ChartContainer = styled.div`
   width: 280px;
   height: auto;
-  padding-right: 20px;
-  padding-left: 20px;
+
   background-color: #ffffff;
   box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.25);
   margin-bottom: 49px;

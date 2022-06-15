@@ -14,6 +14,8 @@ import {
 import sprite from './symbol-defs.svg';
 import operations from '../../redux/asyncThunks';
 import userSelectors from '../../redux/selectors/user-selectors';
+import LibraryForm from '../../components/LibraryForm/LibraryForm';
+import LibraryModal from '../../components/LibraryModal';
 
 export default function LibraryView() {
   const dispatch = useDispatch();
@@ -37,6 +39,8 @@ export default function LibraryView() {
 
   return (
     <Library>
+      <LibraryForm />
+      {!books && <LibraryModal />}
       {alreadyRed.length !== 0 && (
         <div id="already_red">
           <Title>Прочитано</Title>

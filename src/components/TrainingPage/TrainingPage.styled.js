@@ -17,7 +17,7 @@ export const Heading = styled.h2`
   line-height: ${spacing(6)};
 `;
 export const TimingContainer = styled.div`
-  margin: ${spacing(12.5)} ${spacing(6.25)};
+  margin: ${spacing(12.5)} 0 ${spacing(6.25)} 0;
   display: flex;
   flex-direction: column;
   @media (min-width: ${desktop}) {
