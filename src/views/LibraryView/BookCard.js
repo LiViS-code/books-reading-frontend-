@@ -14,11 +14,11 @@ export default function BookCard({ book }) {
     setShowModal(state => !state);
   };
 
-  const { status } = book;
+  const { wish } = book;
 
   return (
     <Container>
-      {status === 'Reading now' ? (
+      {wish === 'Reading now' ? (
         <Icon width={22} height={17}>
           <use href={`${sprite}#yellow_book`} />
         </Icon>
@@ -30,7 +30,7 @@ export default function BookCard({ book }) {
 
       <BookData data={book}></BookData>
 
-      {status === 'Already read' && (
+      {wish === 'Already read' && (
         <>
           <ButtonResume type="button" onClick={toggleModal}>
             Резюме

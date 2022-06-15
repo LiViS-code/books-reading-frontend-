@@ -5,8 +5,8 @@ import AlertTitle from '@mui/material/AlertTitle';
 import Stack from '@mui/material/Stack';
 // import { http } from './api/http-common';
 
-axios.defaults.baseURL = `https://book-reader-team.herokuapp.com/`;
-
+// axios.defaults.baseURL = `${http.baseURL}`;
+axios.defaults.baseURL = 'https://book-reader-team.herokuapp.com/';
 const token = {
   set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -151,6 +151,15 @@ export const fetchResume = createAsyncThunk(
   }
 );
 
+const allBooks = createAsyncThunk('api/user/books', async () => {
+  try {
+    const { data } = await axios.get('/books/');
+    return data;
+  } catch (error) {
+    return console.log(error);
+  }
+});
+
 const operations = {
   register,
   logOut,
@@ -159,5 +168,6 @@ const operations = {
   fetchCurrentUser,
   resume,
   fetchResume,
+  allBooks,
 };
 export default operations;

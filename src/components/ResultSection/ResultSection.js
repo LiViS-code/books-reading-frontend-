@@ -37,6 +37,7 @@ export default function ResultSection() {
               selected={date}
               onChange={date => setDate(date)}
               customInput={<CustomInput />}
+              includeDates={[new Date()]}
               value={date}
             />
           </div>

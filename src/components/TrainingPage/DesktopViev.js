@@ -11,6 +11,7 @@ import MyGoal from '../MyGoal';
 import LineChart from '../LineChart/LineChart';
 import { TrainLib } from './Library/TrainLib';
 import ResultSection from '../ResultSection';
+import { Dropdown } from './Select/Select';
 
 export const DesktopView = () => {
   return (
@@ -21,6 +22,7 @@ export const DesktopView = () => {
             <Heading>Моє тренування</Heading>
             <Countdown />
           </TimingContainer>
+          <Dropdown />
           <TrainLib />
           <TrainingButton>Почати тренування</TrainingButton>
           <LineChart />
