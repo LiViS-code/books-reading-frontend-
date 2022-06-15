@@ -1,5 +1,5 @@
-import { useFormik } from 'formik';
-import addBookSchema from '../../models/addBookSchema';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import {
   FormContainer,
   Form,
@@ -12,32 +12,60 @@ import {
 } from './LibraryForm.styled';
 import { PrimaryButton } from '../Buttons/PrimaryButton.styled';
 
-const initialValues = {
-  title: '',
-  name: '',
-  year: '',
-  pages: '',
-};
+import { addBook } from '../../redux/books/books-operations';
 
 const LibraryForm = () => {
-  const formik = useFormik({
-    initialValues,
-    initialErrors: initialValues,
-    validationSchema: addBookSchema,
-    validateOnBlur: true,
-    onSubmit: values => console.log(values),
-  });
+  const dispatch = useDispatch();
+
+  const [title, setTitle] = useState('');
+  const [author, setAuthor] = useState('');
+  const [year, setYear] = useState('');
+  const [pages, setPages] = useState('');
+
+  const handleChange = e => {
+    switch (e.target.name) {
+      case 'title':
+        setTitle(e.target.value);
+        break;
+      case 'author':
+        setAuthor(e.target.value);
+        break;
+      case 'year':
+        setYear(e.target.value);
+        break;
+      case 'pages':
+        setPages(e.target.value);
+        break;
+      default:
+        return;
+    }
+  };
+
+  const reset = () => {
+    setTitle('');
+    setAuthor('');
+    setYear('');
+    setPages('');
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    dispatch(addBook({ title, author, year, pages }));
+
+    reset();
+  };
 
   return (
     <FormContainer>
-      <Form onSubmit={formik.handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <InputWrapper>
           <div>
             <Label>
               Назва книги
               <Input
-                onChange={formik.handleChange}
-                value={formik.values.title}
+                onChange={handleChange}
+                value={title}
                 name="title"
                 type="text"
                 placeholder="..."
@@ -50,10 +78,12 @@ const LibraryForm = () => {
               <Label>
                 Автор книги
                 <Input
-                  onChange={formik.handleChange}
-                  value={formik.values.name}
-                  name="name"
+                  onChange={handleChange}
+                  value={author}
+                  name="author"
                   type="text"
+                  pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+                  title="Author name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
                   placeholder="..."
                   required
                 />
@@ -63,8 +93,8 @@ const LibraryForm = () => {
               <Label>
                 Рік випуску
                 <Input
-                  onChange={formik.handleChange}
-                  value={formik.values.year}
+                  onChange={handleChange}
+                  value={year}
                   name="year"
                   type="text"
                   placeholder="..."
@@ -74,8 +104,8 @@ const LibraryForm = () => {
               <Label>
                 Кількість сторінок
                 <Input
-                  onChange={formik.handleChange}
-                  value={formik.values.pages}
+                  onChange={handleChange}
+                  value={pages}
                   name="pages"
                   type="number"
                   placeholder="..."
@@ -85,7 +115,7 @@ const LibraryForm = () => {
             </NumberDiv>
           </InputContainer>
           <ButtonWrapper>
-            <PrimaryButton>Додати</PrimaryButton>
+            <PrimaryButton type="submit">Додати</PrimaryButton>
           </ButtonWrapper>
         </InputWrapper>
       </Form>

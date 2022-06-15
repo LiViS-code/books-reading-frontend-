@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Button, Text } from './LogOut.styled';
-
 import Modal from '../../Modal/Modal';
 import LogoutModal from '../../Modal/LogOutModal/LogOutModal';
 
