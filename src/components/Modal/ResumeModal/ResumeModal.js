@@ -1,7 +1,10 @@
 import React from 'react';
 // import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { useState, useEffect } from 'react';
+import {
+  useState,
+  // useEffect
+} from 'react';
 import operations from '../../../redux/asyncThunks';
 import RatingStars from './ratingStars';
 import {
@@ -22,9 +25,9 @@ const ResumeModal = ({ toggleModal, bookId }) => {
   const [text, setText] = useState('');
   const [rating, setRating] = useState('');
 
-  useEffect(() => {
-    dispatch(operations.fetchResume(bookId));
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(operations.fetchResume(bookId));
+  // }, [dispatch]);
 
   const resumeText = useSelector(resumeSelectors.getResumeText);
   const ratingStars = useSelector(resumeSelectors.getRaitingStars);
