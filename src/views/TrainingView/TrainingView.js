@@ -12,3 +12,5 @@ export const TrainingView = () => {
     </>
   );
 };
+
+export default TrainingView;
