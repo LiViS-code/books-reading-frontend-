@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   DropDownContainer,
   DropDownHeader,
@@ -7,32 +8,61 @@ import {
   ListItem,
   Button,
 } from './Select.styled';
+import { getAllBooks } from '../../../redux/selectors/user-selectors';
+import { getTrainingBooks } from '../../../redux/books/books-selectors';
+import { addTrainingBook } from '../../../redux/books/books-operations';
+
 export const Dropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
+  // const [selectedBooks, setSelectedBooks] = useState([]);
+  const books = useSelector(getAllBooks);
+  const selectedBooks = useSelector(getTrainingBooks);
+
+  const dispatch = useDispatch();
 
   const toggling = () => setIsOpen(!isOpen);
-  const onOptionClicked = value => () => {
+
+  const onOptionClicked = value => {
     setSelectedOption(value);
     setIsOpen(false);
-    console.log(selectedOption);
   };
-  const options = ['Mangoes', 'Apples', 'Oranges'];
+
+  const addBook = () => {
+    const selectedBook = books.find(book => book.title === selectedOption);
+    const isBookInArray = selectedBooks.find(
+      book => book._id === selectedBook._id
+    );
+    if (!isBookInArray) {
+      // setSelectedBooks([...selectedBooks, selectedBook]);
+      dispatch(addTrainingBook(selectedBook));
+    }
+    // bookList(selectedBooks);
+  };
+
   return (
     <DropDownContainer>
       <DropDownHeader onClick={toggling}>
-        {selectedOption || 'Mangoes'}
+        {selectedOption || 'BOOKS'}
       </DropDownHeader>
       {isOpen && (
         <DropDownListContainer>
           <DropDownList>
-            {options.map(option => (
-              <ListItem onClick={onOptionClicked(option)}>{option}</ListItem>
-            ))}
+            {books &&
+              books.map(option => (
+                <ListItem
+                  onClick={() => onOptionClicked(option.title)}
+                  key={option._id}
+                >
+                  {option.title}
+                </ListItem>
+              ))}
           </DropDownList>
         </DropDownListContainer>
       )}
-      <Button>Додати</Button>
+      <Button type="button" onClick={addBook}>
+        Додати
+      </Button>
     </DropDownContainer>
   );
 };

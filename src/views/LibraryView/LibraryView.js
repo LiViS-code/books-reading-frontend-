@@ -13,11 +13,11 @@ import {
 // import data from './data.json';
 import sprite from './symbol-defs.svg';
 import operations from '../../redux/asyncThunks';
-import userSelectors from '../../redux/selectors/user-selectors';
+import { getAllBooks } from '../../redux/selectors/user-selectors';
 
 export default function LibraryView() {
   const dispatch = useDispatch();
-  const books = useSelector(userSelectors.getAllBooks);
+  const books = useSelector(getAllBooks);
 
   useEffect(() => {
     dispatch(operations.allBooks());
@@ -32,8 +32,6 @@ export default function LibraryView() {
   const goingToRead = books
     ? books.filter(book => book.wish === 'Going to read')
     : [];
-
-  const openModal = () => {};
 
   return (
     <Library>
@@ -71,7 +69,7 @@ export default function LibraryView() {
         </ButtonTraining>
       </Link>
 
-      <ButtonAdd type="button" onClick={openModal}>
+      <ButtonAdd type="button">
         <svg width={16} height={16}>
           <use href={`${sprite}#plus`} />
         </svg>

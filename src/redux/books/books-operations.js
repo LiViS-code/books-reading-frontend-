@@ -33,3 +33,18 @@ export const addBook = createAsyncThunk(
     }
   }
 );
+
+export const setTrainingBooks = createAsyncThunk('books/set', async list => {
+  return list;
+});
+
+export const addTrainingBook = createAsyncThunk(
+  'books/addTraining',
+  async book => {
+    return book;
+  }
+);
+
+export const deleteBook = createAsyncThunk('books/delete', async id => {
+  return id;
+});
