@@ -9,7 +9,7 @@ import MyGoal from '../MyGoal';
 import LineChart from '../LineChart/LineChart';
 import { TrainLib } from './Library/TrainLib';
 import ResultSection from '../ResultSection';
-
+import { Dropdown } from './Select/Select';
 export const TrainingPage = () => {
   const startTraining = () => {
     console.log();
@@ -21,6 +21,7 @@ export const TrainingPage = () => {
         <Heading>Моє тренування</Heading>
         <Countdown />
       </TimingContainer>
+      <Dropdown />
       <div style={{ maxWidth: '928px' }}>
         <TrainLib />
       </div>
