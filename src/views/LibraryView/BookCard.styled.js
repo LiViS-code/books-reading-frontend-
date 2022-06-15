@@ -89,6 +89,8 @@ export const BookName = styled.p`
   @media screen and (min-width: ${tablet}) {
     margin-bottom: 0;
     width: 308px;
+    margin-top: auto;
+    margin-bottom: auto;
     font-size: ${mainFontSize};
   }
 
@@ -144,17 +146,16 @@ export const Author = styled.p`
   color: ${primaryColor};
 
   @media screen and (min-width: ${tablet}) {
-    margin-bottom: 0;
+    margin-top: auto;
+    margin-bottom: auto;
     font-size: ${mainFontSize};
     width: 206px;
-    height: 34px;
+    // max-height: 34px;
   }
 
   @media screen and (min-width: ${desktop}) {
     width: 381px;
     height: 15px;
-    margin-top: auto;
-    margin-bottom: auto;
   } ;
 `;
 

@@ -14,30 +14,30 @@ import sprite from './symbol-defs.svg';
 import { BookNameRed, AuthorRed, YearRed } from './BookCard.styled';
 
 export default function BookData({ data }) {
-  const { name, author, year, pages, rating, status } = data;
+  const { title, author, year, pages, rating, wish } = data;
   return (
     <Book>
-      {status === 'Already read' ? (
-        <BookNameRed>{name}</BookNameRed>
+      {wish === 'Already read' ? (
+        <BookNameRed>{title}</BookNameRed>
       ) : (
-        <BookName>{name}</BookName>
+        <BookName>{title}</BookName>
       )}
       <ListsContainer>
         <AttributeList>
           <Attribute>Автор:</Attribute>
           <Attribute>Рік:</Attribute>
           <Attribute>Стор.:</Attribute>
-          {status === 'Already read' && <Attribute>Рейтинг:</Attribute>}
+          {wish === 'Already read' && <Attribute>Рейтинг:</Attribute>}
         </AttributeList>
 
         <ValueList>
-          {status === 'Already read' ? (
+          {wish === 'Already read' ? (
             <AuthorRed>{author}</AuthorRed>
           ) : (
             <Author>{author}</Author>
           )}
 
-          {status === 'Already read' ? (
+          {wish === 'Already read' ? (
             <YearRed>{year}</YearRed>
           ) : (
             <Year>{year}</Year>
@@ -45,7 +45,7 @@ export default function BookData({ data }) {
 
           <Pages>{pages}</Pages>
 
-          {status === 'Already read' && (
+          {wish === 'Already read' && (
             <Stars>
               {rating >= 1 ? (
                 <svg width={17} height={17}>
