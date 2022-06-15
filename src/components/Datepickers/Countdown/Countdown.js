@@ -11,6 +11,7 @@ import {
   TimerWrapper,
   TimeBlock,
   Arrow,
+  Heading,
 } from './Calendar.styled';
 import calendar from '../../../image/svg/calendar.svg';
 import Polygon from '../../../image/svg/Polygon.svg';
@@ -32,6 +33,7 @@ export const Countdown = () => {
     <>
       {endDate && (
         <>
+          <Heading>Моє тренування</Heading>
           <TimerWrapper>
             <TimeBlock>
               <>До закінчення року залишилось</>

@@ -97,6 +97,8 @@ export const ButtonName = styled.p`
 `;
 
 export const ButtonAdd = styled.button`
+  position: sticky;
+  bottom: 0;
   width: 52px;
   height: 52px;
   border-radius: 50%;
