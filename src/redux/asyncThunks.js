@@ -104,9 +104,6 @@ const resume = createAsyncThunk('auth/resume', async credentials => {
 
 const allBooks = createAsyncThunk('user/books', async () => {
   try {
-    token.set(
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYTg0OTg5YzNkM2I1OWIzMjgxNDdmMiIsImlhdCI6MTY1NTIxODA2NSwiZXhwIjoxNjU1MjIxNjY1fQ.V0fxjrAr65ogQU95OkI5jvyr6_Qlg7NcpQ1meYuhWZA'
-    );
     const { data } = await axios.get('/books/');
     return data;
   } catch (error) {

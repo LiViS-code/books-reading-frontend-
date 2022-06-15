@@ -1,5 +1,6 @@
 import { React, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Attributes from './Attributes';
 import {
   Title,
@@ -9,53 +10,69 @@ import {
   ButtonAdd,
   BookCard,
 } from './index';
-import data from './data.json';
+// import data from './data.json';
 import sprite from './symbol-defs.svg';
 import operations from '../../redux/asyncThunks';
-// import { LineChart } from '../../components/LineChart';
-// import { fetchBooksAPI } from '../../redux/api/request';
+import userSelectors from '../../redux/selectors/user-selectors';
 
 export default function LibraryView() {
   const dispatch = useDispatch();
-  const alreadyRed = data.filter(book => book.status === 'Already read');
-  const readingNow = data.filter(book => book.status === 'Reading now');
-  const goingToRead = data.filter(book => book.status === 'Going to read');
+  const books = useSelector(userSelectors.getAllBooks);
 
   useEffect(() => {
     dispatch(operations.allBooks());
   }, [dispatch]);
 
+  console.log(books);
+  const alreadyRed = books
+    ? books.filter(book => book.wish === 'Already read')
+    : [];
+  const readingNow = books
+    ? books.filter(book => book.wish === 'Reading now')
+    : [];
+  const goingToRead = books
+    ? books.filter(book => book.wish === 'Going to read')
+    : [];
+
+  const openModal = () => {};
+
   return (
     <Library>
-      <div id="already_red">
-        <Title>Прочитано</Title>
-        <Attributes status={'already_red'} />
-        {alreadyRed.map(el => (
-          <BookCard book={el} key={el.name} />
-        ))}
-      </div>
+      {alreadyRed.length !== 0 && (
+        <div id="already_red">
+          <Title>Прочитано</Title>
+          <Attributes status={'already_red'} />
+          {alreadyRed.map(el => (
+            <BookCard book={el} key={el.title} />
+          ))}
+        </div>
+      )}
+      {readingNow.length !== 0 && (
+        <div id="reading_now">
+          <Title>Читаю</Title>
+          <Attributes />
+          {readingNow.map(el => (
+            <BookCard book={el} key={el.title} />
+          ))}
+        </div>
+      )}
+      {goingToRead.length !== 0 && (
+        <div id="going_to_read">
+          <Title>Маю намір прочитати</Title>
+          <Attributes />
+          {goingToRead.map(el => (
+            <BookCard book={el} key={el.title} />
+          ))}
+        </div>
+      )}
 
-      <div id="reading_now">
-        <Title>Читаю</Title>
-        <Attributes />
-        {readingNow.map(el => (
-          <BookCard book={el} key={el.name} />
-        ))}
-      </div>
+      <Link to="../training">
+        <ButtonTraining type="button">
+          <ButtonName>Моє тренування</ButtonName>
+        </ButtonTraining>
+      </Link>
 
-      <div id="going_to_read">
-        <Title>Маю намір прочитати</Title>
-        <Attributes />
-        {goingToRead.map(el => (
-          <BookCard book={el} key={el.name} />
-        ))}
-      </div>
-
-      <ButtonTraining type="button">
-        <ButtonName>Моє тренування</ButtonName>
-      </ButtonTraining>
-
-      <ButtonAdd type="button">
+      <ButtonAdd type="button" onClick={openModal}>
         <svg width={16} height={16}>
           <use href={`${sprite}#plus`} />
         </svg>
