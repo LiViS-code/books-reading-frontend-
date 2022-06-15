@@ -36,7 +36,7 @@ const register = createAsyncThunk('auth/register', async credentials => {
 const logIn = createAsyncThunk('auth/login', async credentials => {
   try {
     const { data } = await axios.post('/api/auth/signin', credentials);
-    token.set(data.token);
+    token.set(data.user.token);
     return data;
   } catch (error) {
     return (
@@ -119,9 +119,9 @@ const resume = createAsyncThunk('auth/resume', async credentials => {
   }
 });
 
-const allBooks = createAsyncThunk('api/user/books', async () => {
+const allBooks = createAsyncThunk('user/books', async () => {
   try {
-    const { data } = await axios.get('/books/');
+    const { data } = await axios.get('api/books/');
     return data;
   } catch (error) {
     return console.log(error);
