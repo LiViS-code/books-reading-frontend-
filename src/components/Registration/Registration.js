@@ -26,6 +26,7 @@ import google_icon from '../../image/google_icon.png';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import operations from '../../redux/asyncThunks';
+import { Link, useLocation } from 'react-router-dom';
 
 // const initialValues = {
 //     email: '',
@@ -37,6 +38,7 @@ import operations from '../../redux/asyncThunks';
 
 const RegistrationForm = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -177,7 +179,9 @@ const RegistrationForm = () => {
         </Form>
         <RegistrationBox>
           <Registration>Вже з нами? </Registration>
-          <RegistrationActive> Увійти</RegistrationActive>
+          <Link to="/" state={location.state}>
+            <RegistrationActive> Увійти</RegistrationActive>
+          </Link>
         </RegistrationBox>
       </FormContainer>
     </BackgroundContainer>
