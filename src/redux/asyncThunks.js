@@ -110,14 +110,46 @@ const fetchCurrentUser = createAsyncThunk(
   }
 );
 
-const resume = createAsyncThunk('auth/resume', async credentials => {
-  try {
-    const { data } = await axios.post('/users/resume', credentials);
-    return data;
-  } catch (error) {
-    return console.log(error);
+const resume = createAsyncThunk(
+  '/books/resume',
+  async ({ bookId, text, rating }, thunkAPI) => {
+    try {
+      const { data } = await axios.patch(`/api/books/${bookId}/rating`, {
+        text,
+        rating,
+      });
+      return data;
+    } catch (error) {
+      <Stack sx={{ width: '100%' }} spacing={2}>
+        <Alert severity="error">
+          <AlertTitle>Error</AlertTitle>
+          This is an error alert — <strong>check it out!</strong>
+        </Alert>
+        {'Error'}
+      </Stack>;
+      return thunkAPI.rejectWithValue();
+    }
   }
-});
+);
+
+export const fetchResume = createAsyncThunk(
+  '/books/getResume',
+  async (bookId, thunkAPI) => {
+    try {
+      const { data } = await axios.get(`/api/books/${bookId}`);
+      return data;
+    } catch (error) {
+      <Stack sx={{ width: '100%' }} spacing={2}>
+        <Alert severity="error">
+          <AlertTitle>Error</AlertTitle>
+          This is an error alert — <strong>check it out!</strong>
+        </Alert>
+        {'Error'}
+      </Stack>;
+      return thunkAPI.rejectWithValue();
+    }
+  }
+);
 
 const allBooks = createAsyncThunk('api/user/books', async () => {
   try {
@@ -135,6 +167,7 @@ const operations = {
   google,
   fetchCurrentUser,
   resume,
+  fetchResume,
   allBooks,
 };
 export default operations;
