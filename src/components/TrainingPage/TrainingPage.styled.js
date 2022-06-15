@@ -40,10 +40,11 @@ export const TrainingButton = styled.button`
 `;
 export const TrainingBox = styled.div`
   display: flex;
-  /* flex-direction: column; */
+  flex-direction: column;
   width: ${spacing(232)};
   @media (min-width: ${desktop}) {
     margin-top: ${spacing(10)};
+    flex-direction: row;
   } ;
 `;
 export const Sidebar = styled.div`
@@ -53,4 +54,6 @@ export const Sidebar = styled.div`
   width: ${58};
   margin-left: ${spacing(8)};
 `;
-export const Box = styled.div``;
+export const Box = styled.div`
+  /* display: flex; */
+`;
