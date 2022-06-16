@@ -9,18 +9,18 @@ import { TrainLib } from './Library/TrainLib';
 import ResultSection from '../ResultSection';
 import { Dropdown } from './Select/Select';
 import {
-  getTrainingBooks,
-  getDaysLeft,
+  // getTrainingBooks,
+  // getDaysLeft,
   getStartTraining,
   getEndTraining,
-  getTraining,
+  // getTraining,
 } from '../../redux/books/books-selectors';
 import {
   addTraining,
   getTrainingData,
 } from '../../redux/books/books-operations';
 import operations from '../../redux/asyncThunks';
-import { getAllBooks } from '../../redux/selectors/user-selectors';
+// import { getAllBooks } from '../../redux/selectors/user-selectors';
 import { useMediaQuery } from '../Header/hooks/useMediaQuery';
 import sprite from '../../views/LibraryView/symbol-defs.svg';
 import Modal from '../Modal/Modal';
@@ -30,20 +30,20 @@ export const TrainingPage = () => {
   useEffect(() => {
     dispatch(operations.allBooks());
     dispatch(getTrainingData());
-  }, []);
+  }, [dispatch]);
 
   // const [trainingBooks, setTrainingBooks] = useState(null);
-  const allUserBooks = useSelector(getAllBooks);
-  const trainingBooks = useSelector(getTrainingBooks);
-  const training = useSelector(getTraining);
+  // const allUserBooks = useSelector(getAllBooks);
+  // const trainingBooks = useSelector(getTrainingBooks);
+  // const training = useSelector(getTraining);
   const start = useSelector(getStartTraining);
   const end = useSelector(getEndTraining);
-  let allPages = 0;
+  // let allPages = 0;
 
   // const daysLeft = useSelector(getDaysLeft);
 
   const startTraining = () => {
-    const daysLeft = Math.floor((end - start) / 86400000);
+    // const daysLeft = Math.floor((end - start) / 86400000);
     dispatch(addTraining({ start, end }));
     // console.log(training);
     // const booksForTraining = allUserBooks.filter(book =>

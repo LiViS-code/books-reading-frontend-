@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import add from 'date-fns/esm/add/index';
 import operations from '../asyncThunks';
 import {
   setTrainingBooks,

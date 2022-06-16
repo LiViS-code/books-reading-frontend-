@@ -30,7 +30,7 @@ export const Countdown = () => {
   useEffect(() => {
     dispatch(startTraining(startDate));
     dispatch(endTraining(endDate));
-  }, [endDate]);
+  });
 
   const CustomInput = ({ value, onClick }) => (
     <DateButton onClick={onClick}>

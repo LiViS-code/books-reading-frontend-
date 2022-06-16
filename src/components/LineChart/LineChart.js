@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import { Line } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -16,7 +16,7 @@ import {
   DayNumber,
   TitleContainer,
 } from './LineChart.styled';
-import { getDaysLeft } from '../../redux/books/books-selectors';
+// import { getDaysLeft } from '../../redux/books/books-selectors';
 
 ChartJS.register(
   CategoryScale,

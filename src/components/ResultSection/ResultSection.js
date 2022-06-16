@@ -1,9 +1,9 @@
 // import { ReactComponent as Polygon } from '../../image/svg/Polygon.svg';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Polygon from '../../image/svg/Polygon.svg';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Arrow } from '../Datepickers/Countdown/Calendar.styled';
 import {
   DateButton,
@@ -16,13 +16,14 @@ import {
   Button,
   Statistic,
 } from './ResultSection.styled';
-import { getTraining } from '../../redux/books/books-selectors';
+// import { getTraining } from '../../redux/books/books-selectors';
 import { addResultToTraining } from '../../redux/books/books-operations';
 
 export default function ResultSection() {
   const dispatch = useDispatch();
   const [date, setDate] = useState(new Date());
   const [pages, setPages] = useState(null);
+  // const [amount, SetAmount] = useState(null);
   // const training = useSelector(getTraining);
   // console.log(training);
   // const trainingId = training ? training.data._id : null;
@@ -34,15 +35,15 @@ export default function ResultSection() {
       <Arrow src={Polygon} alt="polygon" className={'icon'} />
     </DateButton>
   );
-  const handleChange = e => {
-    SetAmount(e.target.value);
-    console.log(amount);
-  };
-  const addResult = e => {
-    e.preventDefault();
+  // const handleChange = e => {
+  //   SetAmount(e.target.value);
+  //   console.log(amount);
+  // };
+  // const addResult = e => {
+  //   e.preventDefault();
 
-    dispatch();
-  };
+  //   dispatch();
+  // };
   return (
     <Section>
       <Title>Результати</Title>

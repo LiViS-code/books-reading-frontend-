@@ -1,11 +1,11 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+// import {useDispatch } from 'react-redux';
 import differenceInSeconds from 'date-fns/differenceInSeconds';
 import { Days, TimerWrapper, Numbers, Delimeter } from './Timer.styled';
-import { countDays } from '../../../redux/books/books-operations';
+// import { countDays } from '../../../redux/books/books-operations';
 
 export const Timer = ({ deadline, startdate }) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const ONE_DAY = 60 * 60 * 24;
   const ONE_HOUR = 60 * 60;
   const ONE_MINUTE = 60;
