@@ -11,15 +11,19 @@ import LineChart from '../LineChart/LineChart';
 import { TrainLib } from './Library/TrainLib';
 import ResultSection from '../ResultSection';
 import { Dropdown } from './Select/Select';
-import { getTrainingBooks } from '../../redux/books/books-selectors';
+import {
+  getTrainingBooks,
+  getDaysLeft,
+} from '../../redux/books/books-selectors';
 
 export const TrainingPage = () => {
   // const [trainingBooks, setTrainingBooks] = useState(null);
   const trainingBooks = useSelector(getTrainingBooks);
-  console.log(trainingBooks);
+  let allPages = 0;
+  const daysLeft = useSelector(getDaysLeft);
 
   const startTraining = () => {
-    console.log();
+    trainingBooks.map(book => (allPages += book.pages));
   };
 
   return (
