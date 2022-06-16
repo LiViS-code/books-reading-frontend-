@@ -13,6 +13,7 @@ import operations from './redux/asyncThunks';
 import Header from './components/Header';
 import { Loader } from './components/Loader/Loader';
 import BooksReading from './components/BooksReading/Information/BooksReading';
+import { useMediaQuery } from './components/Header/hooks/useMediaQuery';
 
 const AuthView = lazy(() => import('./views/AuthView/AuthView'));
 const RegistrationView = lazy(() =>
@@ -30,6 +31,8 @@ function App() {
   useEffect(() => {
     dispatch(operations.fetchCurrentUser());
   }, [dispatch]);
+
+  const isMatches = useMediaQuery('(max-width: 768px)');
   return (
     <>
       <GlobalStyle />
@@ -41,7 +44,7 @@ function App() {
               path="/"
               element={
                 <PublicRoute restricted>
-                  <AuthView /> <BooksReading />
+                  {isMatches ? <BooksReading /> : <AuthView />}
                 </PublicRoute>
               }
             />
@@ -50,6 +53,14 @@ function App() {
               element={
                 <PublicRoute restricted>
                   <RegistrationView />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="login"
+              element={
+                <PublicRoute restricted>
+                  <AuthView />
                 </PublicRoute>
               }
             />

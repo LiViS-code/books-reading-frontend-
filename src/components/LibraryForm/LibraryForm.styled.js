@@ -6,8 +6,10 @@ export const FormContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   margin-top: 32px;
-  padding-left: 20px;
-  padding-right: 20px;
+  @media (max-width: ${theme.media.tablet}) {
+    width: 280px;
+    padding: 0 20px 20px 20px;
+  }
   @media screen and (min-width: 1280px) {
     margin-top: 40px;
     padding-bottom: 0px;
