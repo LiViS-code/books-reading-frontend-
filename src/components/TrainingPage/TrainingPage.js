@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Countdown } from '../Datepickers';
 import {
@@ -14,16 +14,43 @@ import { Dropdown } from './Select/Select';
 import {
   getTrainingBooks,
   getDaysLeft,
+  getStartTraining,
+  getEndTraining,
+  getTraining,
 } from '../../redux/books/books-selectors';
+import {
+  addTraining,
+  getTrainingData,
+} from '../../redux/books/books-operations';
+import operations from '../../redux/asyncThunks';
+import { getAllBooks } from '../../redux/selectors/user-selectors';
 
 export const TrainingPage = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(operations.allBooks());
+    dispatch(getTrainingData());
+  }, []);
+
   // const [trainingBooks, setTrainingBooks] = useState(null);
+  const allUserBooks = useSelector(getAllBooks);
   const trainingBooks = useSelector(getTrainingBooks);
+  const training = useSelector(getTraining);
+  const start = useSelector(getStartTraining);
+  const end = useSelector(getEndTraining);
   let allPages = 0;
-  const daysLeft = useSelector(getDaysLeft);
+
+  // const daysLeft = useSelector(getDaysLeft);
 
   const startTraining = () => {
-    trainingBooks.map(book => (allPages += book.pages));
+    const daysLeft = Math.floor((end - start) / 86400000);
+    dispatch(addTraining({ start, end }));
+    const booksForTraining = allUserBooks.filter(book =>
+      training.data.books.includes(book._id)
+    );
+    booksForTraining.map(book => (allPages += book.pages));
+    console.log(allPages);
+    console.log(daysLeft);
   };
 
   return (

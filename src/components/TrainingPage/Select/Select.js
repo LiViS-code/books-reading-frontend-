@@ -10,7 +10,10 @@ import {
 } from './Select.styled';
 import { getAllBooks } from '../../../redux/selectors/user-selectors';
 import { getTrainingBooks } from '../../../redux/books/books-selectors';
-import { addTrainingBook } from '../../../redux/books/books-operations';
+import {
+  addTrainingBook,
+  addBookToTraining,
+} from '../../../redux/books/books-operations';
 
 export const Dropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -33,10 +36,14 @@ export const Dropdown = () => {
     const isBookInArray = selectedBooks.find(
       book => book._id === selectedBook._id
     );
+
     if (!isBookInArray) {
       // setSelectedBooks([...selectedBooks, selectedBook]);
       dispatch(addTrainingBook(selectedBook));
     }
+    console.log(selectedBook._id);
+    dispatch(addBookToTraining(selectedBook._id));
+
     // bookList(selectedBooks);
   };
 

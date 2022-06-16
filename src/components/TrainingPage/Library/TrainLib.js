@@ -16,7 +16,10 @@ import {
 import { ReactComponent as BookIcon } from '../../../image/svg/iconlibrary.svg';
 import { ReactComponent as DeleteIcon } from '../../../image/svg/delete.svg';
 import { getTrainingBooks } from '../../../redux/books/books-selectors';
-import { setTrainingBooks } from '../../../redux/books/books-operations';
+import {
+  setTrainingBooks,
+  deleteBookFromTraining,
+} from '../../../redux/books/books-operations';
 
 export const TrainLib = () => {
   // const [bookList, setBookList] = useState(null);
@@ -31,6 +34,7 @@ export const TrainLib = () => {
       const newBooks = bookList.filter(b => b._id !== id);
       // setBookList(newBooks);
       dispatch(setTrainingBooks(newBooks));
+      dispatch(deleteBookFromTraining(id));
     }
   };
 

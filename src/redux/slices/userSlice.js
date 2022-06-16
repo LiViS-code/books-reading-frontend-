@@ -5,11 +5,22 @@ import {
   setTrainingBooks,
   addTrainingBook,
   deleteBook,
+  countDays,
+  startTraining,
+  endTraining,
+  resultsTraining,
+  addTraining,
+  getTrainingData,
 } from '../books/books-operations';
 
 const initialState = {
   allBooks: null,
   trainingBooks: [],
+  daysLeft: 0,
+  start: null,
+  end: null,
+  results: [],
+  training: null,
 };
 
 export const userSlice = createSlice({
@@ -29,6 +40,24 @@ export const userSlice = createSlice({
       state.trainingBooks = state.trainingBooks.filter(
         b => b._id !== action.payload
       );
+    },
+    [countDays.fulfilled](state, action) {
+      state.daysLeft = action.payload;
+    },
+    [startTraining.fulfilled](state, action) {
+      state.start = action.payload;
+    },
+    [endTraining.fulfilled](state, action) {
+      state.end = action.payload;
+    },
+    [resultsTraining.fulfilled](state, action) {
+      state.results = action.payload;
+    },
+    [addTraining.fulfilled](state, action) {
+      state.training = action.payload;
+    },
+    [getTrainingData.fulfilled](state, action) {
+      state.training = action.payload;
     },
   },
 });
