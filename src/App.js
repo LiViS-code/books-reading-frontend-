@@ -11,6 +11,7 @@ import { useDispatch } from 'react-redux';
 import operations from './redux/asyncThunks';
 
 import Header from './components/Header';
+import { Loader } from './components/Loader/Loader';
 import BooksReading from './components/BooksReading/Information/BooksReading';
 
 const AuthView = lazy(() => import('./views/AuthView/AuthView'));
@@ -33,14 +34,14 @@ function App() {
     <>
       <GlobalStyle />
       <Header />
-      <Suspense fallback={<h1>Loadig...</h1>}>
+      <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route
               path="/"
               element={
                 <PublicRoute restricted>
-                  [<AuthView />, <BooksReading />]
+                  <AuthView /> <BooksReading />
                 </PublicRoute>
               }
             />
