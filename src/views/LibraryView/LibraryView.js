@@ -1,4 +1,4 @@
-import { React, useEffect } from 'react';
+import { React, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Attributes from './Attributes';
@@ -14,10 +14,16 @@ import {
 import sprite from './symbol-defs.svg';
 import operations from '../../redux/asyncThunks';
 import { getAllBooks } from '../../redux/selectors/user-selectors';
+import userSelectors from '../../redux/selectors/user-selectors';
+import LibraryForm from '../../components/LibraryForm/LibraryForm';
+import LibraryModal from '../../components/LibraryModal';
+import { useMediaQuery } from '../../components/Header/hooks/useMediaQuery';
+import Modal from '../../components/Modal/Modal';
 
 export default function LibraryView() {
   const dispatch = useDispatch();
   const books = useSelector(getAllBooks);
+  const [hidden, setIsHidden] = useState(true);
 
   useEffect(() => {
     dispatch(operations.allBooks());
@@ -33,8 +39,22 @@ export default function LibraryView() {
     ? books.filter(book => book.wish === 'Going to read')
     : [];
 
+  const toggleHidden = () => {
+    setIsHidden(state => !state);
+  };
+  const isMatches = useMediaQuery('(max-width: 768px)');
+  
   return (
     <Library>
+      {!books && isMatches && (
+        <LibraryForm style={{ width: '280px;', padding: '20px;' }} />
+      )}
+      {!hidden && (
+        <Modal onClose={toggleHidden}>
+          <LibraryForm style={{ width: '280px' }} />
+        </Modal>
+      )}
+      {!books && <LibraryModal />}
       {alreadyRed.length !== 0 && (
         <div id="already_red">
           <Title>Прочитано</Title>
@@ -69,7 +89,7 @@ export default function LibraryView() {
         </ButtonTraining>
       </Link>
 
-      <ButtonAdd type="button">
+      <ButtonAdd type="button" onClick={toggleHidden}>
         <svg width={16} height={16}>
           <use href={`${sprite}#plus`} />
         </svg>

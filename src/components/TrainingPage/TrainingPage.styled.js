@@ -1,25 +1,19 @@
 import styled from 'styled-components';
 import { theme } from '../../constants/Theme';
 const {
-  colors: { activeColor, headingBackground, accentColor },
+  colors: { activeColor, accentColor },
   media: { tablet, desktop },
   spacing,
 } = theme;
 
-export const Heading = styled.h2`
-  color: ${activeColor};
-  background-color: ${headingBackground};
-  padding: ${spacing(4.3)} 0;
-  width: 100%;
-  text-align: center;
-  font-size: ${spacing(5)};
-  font-weight: 600;
-  line-height: ${spacing(6)};
-`;
 export const TimingContainer = styled.div`
-  margin: ${spacing(12.5)} ${spacing(6.25)};
+  margin: ${spacing(12.5)} 0 ${spacing(6.25)} 0;
   display: flex;
   flex-direction: column;
+  @media (max-width: ${tablet}) {
+    width: 280px;
+    padding: 0 20px 20px 20px;
+  }
   @media (min-width: ${desktop}) {
     margin: 0 0;
   }

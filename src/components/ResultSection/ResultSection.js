@@ -34,7 +34,15 @@ export default function ResultSection() {
       <Arrow src={Polygon} alt="polygon" className={'icon'} />
     </DateButton>
   );
+  const handleChange = e => {
+    SetAmount(e.target.value);
+    console.log(amount);
+  };
+  const addResult = e => {
+    e.preventDefault();
 
+    dispatch();
+  };
   return (
     <Section>
       <Title>Результати</Title>
@@ -62,7 +70,7 @@ export default function ResultSection() {
             dispatch(addResultToTraining({ id: 22, date: date, pages: pages }))
           }
         >
-          Add Result
+          Додати результат
         </Button>
       </AddResult>
       <Statistic>СТАТИСТИКА</Statistic>

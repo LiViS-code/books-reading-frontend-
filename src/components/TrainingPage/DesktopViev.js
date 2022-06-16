@@ -1,6 +1,5 @@
 import { Countdown } from '../Datepickers';
 import {
-  Heading,
   TimingContainer,
   TrainingButton,
   TrainingBox,
@@ -19,7 +18,6 @@ export const DesktopView = () => {
       <TrainingBox>
         <Box>
           <TimingContainer>
-            <Heading>Моє тренування</Heading>
             <Countdown />
           </TimingContainer>
           <Dropdown />

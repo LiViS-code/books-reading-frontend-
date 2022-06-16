@@ -1,11 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Countdown } from '../Datepickers';
-import {
-  Heading,
-  TimingContainer,
-  TrainingButton,
-} from './TrainingPage.styled';
+import { TimingContainer, TrainingButton } from './TrainingPage.styled';
+import { ButtonAdd } from '../../views/LibraryView';
 import MyGoal from '../MyGoal';
 import LineChart from '../LineChart/LineChart';
 import { TrainLib } from './Library/TrainLib';
@@ -24,6 +21,9 @@ import {
 } from '../../redux/books/books-operations';
 import operations from '../../redux/asyncThunks';
 import { getAllBooks } from '../../redux/selectors/user-selectors';
+import { useMediaQuery } from '../Header/hooks/useMediaQuery';
+import sprite from '../../views/LibraryView/symbol-defs.svg';
+import Modal from '../Modal/Modal';
 
 export const TrainingPage = () => {
   const dispatch = useDispatch();
@@ -54,13 +54,27 @@ export const TrainingPage = () => {
     // console.log(daysLeft);
   };
 
+  const [hidden, setIsHidden] = useState(true);
+  const toggleHidden = () => {
+    setIsHidden(state => !state);
+  };
+  const isMatches = useMediaQuery('(min-width: 768px)');
+
   return (
     <>
       <MyGoal />
-      <TimingContainer>
-        <Heading>Моє тренування</Heading>
-        <Countdown />
-      </TimingContainer>
+      {isMatches && (
+        <TimingContainer>
+          <Countdown />
+        </TimingContainer>
+      )}
+      {!hidden && (
+        <Modal onClose={toggleHidden}>
+          <TimingContainer style={{ width: '280px;', height: '100vw;' }}>
+            <Countdown />
+          </TimingContainer>
+        </Modal>
+      )}
       <Dropdown />
       <div style={{ maxWidth: '928px' }}>
         <TrainLib />
@@ -68,7 +82,11 @@ export const TrainingPage = () => {
 
       <TrainingButton onClick={startTraining}>Почати тренування</TrainingButton>
       <LineChart />
-
+      <ButtonAdd type="button" onClick={toggleHidden}>
+        <svg width={16} height={16}>
+          <use href={`${sprite}#plus`} />
+        </svg>
+      </ButtonAdd>
       <ResultSection />
     </>
   );
