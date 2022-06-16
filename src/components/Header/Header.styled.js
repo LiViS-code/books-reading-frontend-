@@ -21,3 +21,8 @@ export const MobDiv = styled.div`
   justify-content: space-around;
   align-items: center;
 `;
+
+export const Avatar = styled.div`
+  display: flex;
+  align-items: center;
+`;
