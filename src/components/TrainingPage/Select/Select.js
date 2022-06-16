@@ -6,8 +6,9 @@ import {
   DropDownListContainer,
   DropDownList,
   ListItem,
-  Button,
+  Container,
 } from './Select.styled';
+import { PrimaryButton } from '../../Buttons/PrimaryButton.styled';
 import { getAllBooks } from '../../../redux/selectors/user-selectors';
 import { getTrainingBooks } from '../../../redux/books/books-selectors';
 import {
@@ -48,28 +49,33 @@ export const Dropdown = () => {
   };
 
   return (
-    <DropDownContainer>
-      <DropDownHeader onClick={toggling}>
-        {selectedOption || 'BOOKS'}
-      </DropDownHeader>
-      {isOpen && (
-        <DropDownListContainer>
-          <DropDownList>
-            {books &&
-              books.map(option => (
-                <ListItem
-                  onClick={() => onOptionClicked(option.title)}
-                  key={option._id}
-                >
-                  {option.title}
-                </ListItem>
-              ))}
-          </DropDownList>
-        </DropDownListContainer>
-      )}
-      <Button type="button" onClick={addBook}>
+    <Container>
+      <DropDownContainer>
+        <DropDownHeader onClick={toggling}>
+          Обрати книги з бібліотеки
+        </DropDownHeader>
+        {isOpen && (
+          <DropDownListContainer>
+            <DropDownList>
+              {books &&
+                books.map(option => (
+                  <ListItem
+                    onClick={() => onOptionClicked(option.title)}
+                    key={option._id}
+                  >
+                    <span>{option.title}</span>
+                    <span>{option.author}</span>
+                    <span>{option.pages}</span>
+                  </ListItem>
+                ))}
+            </DropDownList>
+          </DropDownListContainer>
+        )}
+      </DropDownContainer>
+
+      <PrimaryButton type="button" onClick={addBook}>
         Додати
-      </Button>
-    </DropDownContainer>
+      </PrimaryButton>
+    </Container>
   );
 };

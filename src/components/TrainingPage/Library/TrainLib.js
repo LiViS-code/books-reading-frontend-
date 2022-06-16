@@ -71,7 +71,9 @@ export const TrainLib = () => {
                 <TextItem> {pages}</TextItem>
               </Item>
               <button type="button" onClick={() => deleteBook(_id)}>
-                <img src={DeleteIcon} alt="delete"></img>
+                <svg width={16} height={16}>
+                  <use href={`${DeleteIcon}`} />
+                </svg>
               </button>
             </ItemBooks>
           ))

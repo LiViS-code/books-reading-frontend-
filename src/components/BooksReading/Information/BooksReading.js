@@ -46,7 +46,7 @@ export default function BooksReading({ loggined }) {
           </p>
           <p className={styles.text}>
             <svg className={styles.icon} width="16" height="12">
-              <use hhref={`${sprite}#icon-vector`}></use>
+              <use href={`${sprite}#icon-vector`}></use>
             </svg>
             Стати цікавим співрозмовником
           </p>
