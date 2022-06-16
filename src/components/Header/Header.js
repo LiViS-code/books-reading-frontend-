@@ -1,5 +1,5 @@
 import React from 'react';
-import { Div, MobDiv } from './Header.styled';
+import { Div, MobDiv, Avatar } from './Header.styled';
 
 import Logo from './Logo';
 import Navigation from './Navigation';
@@ -19,11 +19,15 @@ export default function Header() {
       <Logo />
       {isLoggedIn && isMatches && (
         <>
-          <UserAvatar />
-          <UserName />
-          <Navigation />
-          <Line />
-          <LogOut />
+          <Avatar>
+            <UserAvatar />
+            <UserName />
+          </Avatar>
+          <Avatar>
+            <Navigation />
+            <Line />
+            <LogOut />
+          </Avatar>
         </>
       )}
       {isLoggedIn && !isMatches && (
