@@ -52,7 +52,7 @@ const logIn = createAsyncThunk('auth/login', async credentials => {
 
 const google = createAsyncThunk('auth/google', async credentials => {
   try {
-    const { data } = await axios.post('/api/auth/google', credentials);
+    const { data } = await axios.get('/api/auth/google', credentials);
     token.set(data.token);
     return data;
   } catch (error) {

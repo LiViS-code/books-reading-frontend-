@@ -7,7 +7,7 @@ import {
   Label,
   InputWrapper,
   Registration,
-  GoogleButton,
+  // GoogleButton,
   GoogleImage,
   ButtonWrapper,
   LoginButton,
@@ -16,6 +16,7 @@ import {
   BackgroundContainer,
   // SectionContainer
 } from './LoginForm.styled';
+import GoogleAuth from '../../GoogleAuth/GoogleAuth';
 import google_icon from '../../../image/google_icon.png';
 
 import React from 'react';
@@ -73,12 +74,13 @@ const LoginForm = () => {
   return (
     <BackgroundContainer>
       <FormContainer>
-        <GoogleButton
+        {/* <GoogleButton
           // onClick={dispatch(operations.google())}
           type="submit"
         >
           Google<GoogleImage src={google_icon} alt="google icon"></GoogleImage>
-        </GoogleButton>
+        </GoogleButton> */}
+        <GoogleAuth></GoogleAuth>
         <Form
           onSubmit={handleSubmit}
           // {formik.handleSubmit}
