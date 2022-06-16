@@ -1,9 +1,11 @@
 import React, { useState, useMemo, useEffect } from 'react';
-
+// import {useDispatch } from 'react-redux';
 import differenceInSeconds from 'date-fns/differenceInSeconds';
 import { Days, TimerWrapper, Numbers, Delimeter } from './Timer.styled';
+// import { countDays } from '../../../redux/books/books-operations';
 
 export const Timer = ({ deadline, startdate }) => {
+  // const dispatch = useDispatch();
   const ONE_DAY = 60 * 60 * 24;
   const ONE_HOUR = 60 * 60;
   const ONE_MINUTE = 60;
@@ -37,6 +39,7 @@ export const Timer = ({ deadline, startdate }) => {
   };
 
   const countdown = useMemo(getCoundown, [ONE_DAY, ONE_HOUR, diffInSeconds]);
+  // dispatch(countDays(countdown.days));
 
   useEffect(() => {
     setInterval(() => {
