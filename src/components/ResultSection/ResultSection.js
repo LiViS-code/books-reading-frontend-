@@ -15,9 +15,13 @@ import {
   Button,
   Statistic,
 } from './ResultSection.styled';
+import { useDispatch } from 'react-redux';
 
 export default function ResultSection() {
+  const dispatch = useDispatch();
+
   const [date, setDate] = useState(new Date());
+  const [amount, SetAmount] = useState(null);
 
   const CustomInput = ({ value, onClick }, ref) => (
     <DateButton onClick={onClick}>
@@ -25,7 +29,15 @@ export default function ResultSection() {
       <Arrow src={Polygon} alt="polygon" className={'icon'} />
     </DateButton>
   );
+  const handleChange = e => {
+    SetAmount(e.target.value);
+    console.log(amount);
+  };
+  const addResult = e => {
+    e.preventDefault();
 
+    dispatch();
+  };
   return (
     <Section>
       <Title>Результати</Title>
@@ -45,10 +57,12 @@ export default function ResultSection() {
 
         <Label>
           <Text>Кількість сторінок</Text>
-          <Pages />
+          <Pages onChange={handleChange} />
         </Label>
 
-        <Button type="submit">Add Result</Button>
+        <Button type="submit" onClick={addResult}>
+          Додати результат
+        </Button>
       </AddResult>
       <Statistic>СТАТИСТИКА</Statistic>
     </Section>

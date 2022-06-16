@@ -1,5 +1,5 @@
 const getResumeText = state => state.resume.values.text;
-const getRaitingStars = state => state.resume.values['simple-controlled'];
+const getRaitingStars = state => state.resume.values.rating;
 
 const resumeSelectors = {
   getResumeText,
