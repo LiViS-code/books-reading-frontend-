@@ -1,6 +1,6 @@
 import endOfYear from 'date-fns/endOfYear';
-import { useState } from 'react';
-
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Timer } from '../Timer/Timer';
@@ -15,14 +15,24 @@ import {
 } from './Calendar.styled';
 import calendar from '../../../image/svg/calendar.svg';
 import Polygon from '../../../image/svg/Polygon.svg';
+import {
+  startTraining,
+  endTraining,
+} from '../../../redux/books/books-operations';
 
 export const Countdown = () => {
+  const dispatch = useDispatch();
   const yearEnd = endOfYear(new Date());
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState('');
   const currentDate = new Date().getTime();
 
-  const CustomInput = ({ value, onClick }, ref) => (
+  useEffect(() => {
+    dispatch(startTraining(startDate));
+    dispatch(endTraining(endDate));
+  });
+
+  const CustomInput = ({ value, onClick }) => (
     <DateButton onClick={onClick}>
       <Icon src={calendar} alt="calendar" />
       {value}
