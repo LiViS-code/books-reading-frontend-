@@ -23,12 +23,12 @@ export default function ResultSection() {
   const dispatch = useDispatch();
   const [date, setDate] = useState(new Date());
   const [pages, setPages] = useState(null);
-  const training = useSelector(getTraining);
-  console.log(training);
-  const trainingId = training ? training._id : null;
-  console.log(trainingId);
+  // const training = useSelector(getTraining);
+  // console.log(training);
+  // const trainingId = training ? training.data._id : null;
+  // console.log(trainingId);
 
-  const CustomInput = ({ value, onClick }, ref) => (
+  const CustomInput = ({ value, onClick }) => (
     <DateButton onClick={onClick}>
       {value}
       <Arrow src={Polygon} alt="polygon" className={'icon'} />

@@ -31,7 +31,7 @@ export const Countdown = () => {
     dispatch(endTraining(endDate));
   }, [endDate]);
 
-  const CustomInput = ({ value, onClick }, ref) => (
+  const CustomInput = ({ value, onClick }) => (
     <DateButton onClick={onClick}>
       <Icon src={calendar} alt="calendar" />
       {value}

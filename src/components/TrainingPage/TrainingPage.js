@@ -45,12 +45,13 @@ export const TrainingPage = () => {
   const startTraining = () => {
     const daysLeft = Math.floor((end - start) / 86400000);
     dispatch(addTraining({ start, end }));
-    const booksForTraining = allUserBooks.filter(book =>
-      training.data.books.includes(book._id)
-    );
-    booksForTraining.map(book => (allPages += book.pages));
-    console.log(allPages);
-    console.log(daysLeft);
+    // console.log(training);
+    // const booksForTraining = allUserBooks.filter(book =>
+    //   console.log(training.books)
+    // );
+    // booksForTraining.map(book => allPages += book.pages);
+    // console.log(allPages);
+    // console.log(daysLeft);
   };
 
   return (

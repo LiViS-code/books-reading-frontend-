@@ -41,7 +41,7 @@ export const Dropdown = () => {
       // setSelectedBooks([...selectedBooks, selectedBook]);
       dispatch(addTrainingBook(selectedBook));
     }
-    console.log(selectedBook._id);
+    // console.log(selectedBook._id);
     dispatch(addBookToTraining(selectedBook._id));
 
     // bookList(selectedBooks);
