@@ -9,7 +9,7 @@ const {
 } = theme;
 
 export const Container = styled.div`
-  width: 280px;
+  width: 240px;
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 16px;

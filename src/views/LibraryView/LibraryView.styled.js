@@ -15,7 +15,7 @@ const {
 } = theme;
 
 export const Library = styled.div`
-  width: 240px;
+  width: 280px;
   padding: 0;
   // margin-left: auto;
   // margin-right: auto;

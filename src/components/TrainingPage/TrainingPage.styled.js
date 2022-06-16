@@ -10,7 +10,10 @@ export const TimingContainer = styled.div`
   margin: ${spacing(12.5)} 0 ${spacing(6.25)} 0;
   display: flex;
   flex-direction: column;
-
+  @media (max-width: ${tablet}) {
+    width: 280px;
+    padding: 0 20px 20px 20px;
+  }
   @media (min-width: ${desktop}) {
     margin: 0 0;
   }

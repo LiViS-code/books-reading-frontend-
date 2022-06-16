@@ -33,7 +33,6 @@ export const Countdown = () => {
     <>
       {endDate && (
         <>
-          <Heading>Моє тренування</Heading>
           <TimerWrapper>
             <TimeBlock>
               <>До закінчення року залишилось</>
@@ -47,27 +46,30 @@ export const Countdown = () => {
         </>
       )}
       {!endDate && (
-        <DatePickerWrapper>
-          <div style={{ maxWidth: '280px' }}>
-            <DatePicker
-              selected={startDate}
-              onChange={date => setStartDate(date)}
-              includeDates={[new Date()]}
-              customInput={<CustomInput />}
-              value={'Початок'}
-              width="250px"
-            />
-          </div>
-          <div style={{ maxWidth: '280px' }}>
-            <DatePicker
-              selected={endDate}
-              onChange={date => setEndDate(date)}
-              minDate={new Date()}
-              customInput={<CustomInput />}
-              value={'Завершення'}
-            />
-          </div>
-        </DatePickerWrapper>
+        <>
+          <Heading>Моє тренування</Heading>
+          <DatePickerWrapper>
+            <div style={{ maxWidth: '280px' }}>
+              <DatePicker
+                selected={startDate}
+                onChange={date => setStartDate(date)}
+                includeDates={[new Date()]}
+                customInput={<CustomInput />}
+                value={'Початок'}
+                width="250px"
+              />
+            </div>
+            <div style={{ maxWidth: '280px' }}>
+              <DatePicker
+                selected={endDate}
+                onChange={date => setEndDate(date)}
+                minDate={new Date()}
+                customInput={<CustomInput />}
+                value={'Завершення'}
+              />
+            </div>
+          </DatePickerWrapper>
+        </>
       )}
     </>
   );

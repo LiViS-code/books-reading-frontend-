@@ -44,10 +44,12 @@ export default function LibraryView() {
   const isMatches = useMediaQuery('(max-width: 768px)');
   return (
     <Library>
-      {!books && isMatches && <LibraryForm />}
+      {!books && isMatches && (
+        <LibraryForm style={{ width: '280px;', padding: '20px;' }} />
+      )}
       {!hidden && (
         <Modal onClose={toggleHidden}>
-          <LibraryForm />
+          <LibraryForm style={{ width: '280px' }} />
         </Modal>
       )}
       {!books && <LibraryModal />}

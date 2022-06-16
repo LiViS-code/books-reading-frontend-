@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from '../Information/BooksReading.module.css';
+import { PrimaryButton } from '../../Buttons/PrimaryButton.styled';
 
 export default function BooksReading({ loggined }) {
   return (
@@ -8,47 +9,47 @@ export default function BooksReading({ loggined }) {
       <div>
         <h2 className={styles.mainTitle}>Books Reading</h2>
 
-        <h3 className={styles.title}>Will help you too</h3>
+        <h3 className={styles.title}>Допоможе вам</h3>
         <div className={styles.firstSection}>
           <p className={styles.text}>
             <svg className={styles.icon} width="16" height="12">
               <use href="./symbol-defs.svg#icon-vector"></use>
             </svg>
-            Create your goal faster and proceed to read
+            Швидше сформулювати свою ціль i розпочати читати
           </p>
           <p className={styles.text}>
             <svg className={styles.icon} width="16" height="12">
               <use href="./symbol-defs.svg#icon-vector"></use>
             </svg>
-            Divide process proportionally for each day
+            Пропорційно розподілити навантаження на кожний день
           </p>
           <p className={styles.text}>
             <svg className={styles.icon} width="16" height="12">
               <use href="./symbol-defs.svg#icon-vector"></use>
             </svg>
-            Track your success
+            Відстежувати особистий успіх
           </p>
         </div>
 
-        <h3 className={styles.title}>You may also</h3>
+        <h3 className={styles.title}>Також ви зможете</h3>
         <div className={styles.secondSection}>
           <p className={styles.text}>
             <svg className={styles.icon} width="16" height="12">
               <use href="./symbol-defs.svg#icon-vector"></use>
             </svg>
-            Pose your own independent point of view
+            Формувати особисту думку незалежну від інших
           </p>
           <p className={styles.text}>
             <svg className={styles.icon} width="16" height="12">
               <use href="./symbol-defs.svg#icon-vector"></use>
             </svg>
-            Improve your professional skills according to new knowledge
+            Підвищити свої професійні якості опираючись на нові знання
           </p>
           <p className={styles.text}>
             <svg className={styles.icon} width="16" height="12">
               <use href="./symbol-defs.svg#icon-vector"></use>
             </svg>
-            Become an interesting interlocutor
+            Стати цікавим співрозмовником
           </p>
         </div>
         <div className={styles.button}>
@@ -58,16 +59,16 @@ export default function BooksReading({ loggined }) {
             </Link>
           ) : (
             <>
-              <button className={styles.sign}>
+              <PrimaryButton>
                 <Link className={styles.link} to="login">
                   Log in
                 </Link>
-              </button>
-              <button className={styles.sign}>
+              </PrimaryButton>
+              <PrimaryButton>
                 <Link className={styles.link} to="register">
                   Register
                 </Link>
-              </button>
+              </PrimaryButton>
             </>
           )}
         </div>

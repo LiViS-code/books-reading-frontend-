@@ -21,6 +21,7 @@ export const DatePickerWrapper = styled.div`
 
   @media (min-width: ${tablet}) {
     display: flex;
+
     justify-content: flex-start;
     margin: ${spacing(5)} 0 ${spacing(6)};
     width: 100%;

@@ -30,7 +30,7 @@ export const TrainingPage = () => {
       )}
       {!hidden && (
         <Modal onClose={toggleHidden}>
-          <TimingContainer>
+          <TimingContainer style={{ width: '280px;', height: '100vw;' }}>
             <Countdown />
           </TimingContainer>
         </Modal>
