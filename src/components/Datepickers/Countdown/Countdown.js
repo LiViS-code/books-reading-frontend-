@@ -1,6 +1,6 @@
 import endOfYear from 'date-fns/endOfYear';
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Timer } from '../Timer/Timer';
@@ -15,6 +15,7 @@ import {
 } from './Calendar.styled';
 import calendar from '../../../image/svg/calendar.svg';
 import Polygon from '../../../image/svg/Polygon.svg';
+import { getTraining } from '../../../redux/books/books-selectors';
 import {
   startTraining,
   endTraining,
@@ -24,13 +25,19 @@ export const Countdown = () => {
   const dispatch = useDispatch();
   const yearEnd = endOfYear(new Date());
   const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState('');
+  const [endDate, setEndDate] = useState(null);
   const currentDate = new Date().getTime();
+  const training = useSelector(getTraining);
 
   useEffect(() => {
-    dispatch(startTraining(startDate));
-    dispatch(endTraining(endDate));
-  });
+    const { start, end } = training.training[0];
+    training.training.length !== 0
+      ? setEndDate(new Date(end))
+      : setEndDate(null);
+    training.training.length !== 0
+      ? setStartDate(new Date(start))
+      : setStartDate(null);
+  }, [training.training]);
 
   const CustomInput = ({ value, onClick }) => (
     <DateButton onClick={onClick}>
@@ -62,7 +69,10 @@ export const Countdown = () => {
             <div style={{ maxWidth: '280px' }}>
               <DatePicker
                 selected={startDate}
-                onChange={date => setStartDate(date)}
+                onChange={date => {
+                  setStartDate(date);
+                  dispatch(startTraining(date));
+                }}
                 includeDates={[new Date()]}
                 customInput={<CustomInput />}
                 value={'Початок'}
@@ -72,7 +82,10 @@ export const Countdown = () => {
             <div style={{ maxWidth: '280px' }}>
               <DatePicker
                 selected={endDate}
-                onChange={date => setEndDate(date)}
+                onChange={date => {
+                  setEndDate(date);
+                  dispatch(endTraining(date));
+                }}
                 minDate={new Date()}
                 customInput={<CustomInput />}
                 value={'Завершення'}
