@@ -252,10 +252,8 @@ export const IconButton = styled.button`
   background-color: transparent;
   border: transparent;
   cursor: pointer;
+`;
 
-  & svg {
-    fill: ${borderColor};
-    /* width: 30px;
-    height: 30px; */
-  }
+export const DeleteIcon = styled.img`
+  display: inline-block;
 `;
