@@ -119,7 +119,7 @@ const LoginForm = () => {
               </div>
             </InputWrapper>
             <ButtonWrapper>
-              <LoginButton type="submit">Додати</LoginButton>
+              <LoginButton type="submit">Увійти</LoginButton>
             </ButtonWrapper>
           </InputWrapper>
         </Form>
