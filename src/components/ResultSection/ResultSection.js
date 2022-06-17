@@ -52,18 +52,18 @@ export default function ResultSection() {
     <Section>
       <Title>Результати</Title>
       <AddResult>
-        <Label>
+        {/* <Label>
           <Text>Дата</Text>
           <div style={{ width: '110px' }}>
             <DatePicker
               selected={date}
-              onChange={date => setDate(date)}
+              onChange={date => console.log(date)}
               customInput={<CustomInput />}
               includeDates={[new Date()]}
               value={date}
             />
           </div>
-        </Label>
+        </Label> */}
         <Label>
           <Text>Кількість сторінок</Text>
           <Pages onChange={e => setPages(e.target.value)} />
@@ -73,10 +73,18 @@ export default function ResultSection() {
         <Button
           type="submit"
           onClick={() => {
-            dispatch(
-              addResultToTraining({ date: date, page: pages, id: trainingId })
-            );
-            dispatch(getTrainingData);
+            if (!pages) {
+              alert('Введіть кількість прочитаних сторінок');
+            } else {
+              dispatch(
+                addResultToTraining({
+                  date: new Date(),
+                  page: pages,
+                  id: trainingId,
+                })
+              );
+              dispatch(getTrainingData);
+            }
           }}
         >
           Додати результат

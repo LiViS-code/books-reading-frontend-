@@ -88,7 +88,7 @@ export const Section = styled.div`
   }
 `;
 
-export const AddResult = styled.div`
+export const AddResult = styled.form`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
