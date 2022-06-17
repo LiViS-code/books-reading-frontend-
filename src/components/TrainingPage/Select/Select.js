@@ -15,6 +15,8 @@ import {
   addTrainingBook,
   addBookToTraining,
 } from '../../../redux/books/books-operations';
+import { Arrow } from '../../Datepickers/Countdown/Calendar.styled';
+import Polygon from '../../../image/svg/Polygon.svg';
 
 export const Dropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -53,6 +55,7 @@ export const Dropdown = () => {
       <DropDownContainer>
         <DropDownHeader onClick={toggling}>
           {selectedOption || 'Обрати книги з бібліотеки '}
+          <Arrow src={Polygon} alt="polygon" style={{ marginLeft: 'auto' }} />
         </DropDownHeader>
         {isOpen && (
           <DropDownListContainer>

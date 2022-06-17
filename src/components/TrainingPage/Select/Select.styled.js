@@ -47,9 +47,11 @@ export const DropDownHeader = styled.div`
 `;
 export const DropDownListContainer = styled.div`
   position: absolute;
+  z-index: 9;
   box-shadow: inset 0px 1px 2px rgba(29, 29, 27, 0.15);
   background-color: ${activeColor};
   padding: 20px;
+
   @media screen and (min-width: ${tablet}) {
     width: 483px;
     position: static;
@@ -103,6 +105,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   @media screen and (min-width: ${tablet}) {
     flex-direction: row;
   }

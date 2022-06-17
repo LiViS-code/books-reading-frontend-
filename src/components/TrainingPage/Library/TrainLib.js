@@ -13,6 +13,7 @@ import {
   EmptyTextItem,
   Placeholder,
   IconButton,
+  DeleteIcon,
 } from './TrainLib.styled';
 import { ReactComponent as BookIcon } from '../../../image/svg/iconlibrary.svg';
 import deleteIcon from '../../../image/svg/deleteIcon.svg';
@@ -72,12 +73,13 @@ export const TrainLib = () => {
                 <TextItem> {pages}</TextItem>
               </Item>
 
-              <IconButton
-                type="button"
-                style={{ fill: '#A6ABB9;' }}
-                IconComponent={`${deleteIcon}`}
-                onClick={() => deleteBook(_id)}
-              />
+              <IconButton type="button" onClick={() => deleteBook(_id)}>
+                <DeleteIcon
+                  src={deleteIcon}
+                  alt="delete"
+                  style={{ fill: '#A6ABB9' }}
+                />
+              </IconButton>
             </ItemBooks>
           ))
         ) : (

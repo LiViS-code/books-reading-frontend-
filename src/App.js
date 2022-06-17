@@ -5,11 +5,11 @@ import { GlobalStyle } from './App.styled';
 import { Layout } from './components/Layout/Layout';
 import PrivateRoute from './components/PrivateRoutes';
 import PublicRoute from './components/PublicRoutes';
-
+import { PrimaryButton } from './components/Buttons/PrimaryButton.styled';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import operations from './redux/asyncThunks';
-
+import { Link } from 'react-router-dom';
 import Header from './components/Header';
 import { Loader } from './components/Loader/Loader';
 import BooksReading from './components/BooksReading/Information/BooksReading';
@@ -24,6 +24,7 @@ const StatisticsView = lazy(() =>
   import('./views/StatisticsView/StatisticsView')
 );
 const TrainingView = lazy(() => import('./views/TrainingView/TrainingView'));
+// const NotFound = lazy(() => import('./views/NotFound/NotFound'));
 
 function App() {
   const dispatch = useDispatch();
@@ -33,6 +34,17 @@ function App() {
   }, [dispatch]);
 
   const isMatches = useMediaQuery('(max-width: 768px)');
+  const NotFound = () => {
+    return (
+      <>
+        <h1>NotFound</h1>
+        <PrimaryButton>
+          <Link to="/">Go home</Link>
+        </PrimaryButton>
+      </>
+    );
+  };
+
   return (
     <>
       <GlobalStyle />
@@ -92,6 +104,7 @@ function App() {
               }
             />
           </Route>
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
     </>
