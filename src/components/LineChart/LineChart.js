@@ -1,4 +1,4 @@
-// import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Line } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -17,6 +17,8 @@ import {
   TitleContainer,
 } from './LineChart.styled';
 // import { getDaysLeft } from '../../redux/books/books-selectors';
+import { getTraining } from '../../redux/books/books-selectors';
+import { getAllBooks } from '../../redux/selectors/user-selectors';
 
 ChartJS.register(
   CategoryScale,
@@ -28,19 +30,33 @@ ChartJS.register(
   Legend
 );
 
-const results = [
-  { day: 1, pages: 3 },
-  { day: 3, pages: 4 },
-  { day: 6, pages: 2 },
-  { day: 7, pages: 5 },
-  { day: 10, pages: 7 },
-  { day: 12, pages: 5 },
-  { day: 13, pages: 8 },
-  { day: 15, pages: 6 },
-];
-
 export default function LineChart() {
-  // const daysLeft = useSelector(getDaysLeft);
+  const training = useSelector(getTraining);
+  const IdBooksInTraining = training.training[0].books;
+
+  const { start, end } = training.training[0];
+  const dayStart = new Date(start);
+  const dayEnd = new Date(end);
+  const daysLeft = Math.floor((dayEnd - dayStart) / 86400000);
+
+  const books = useSelector(getAllBooks);
+  const trainingBooks = books.filter(book =>
+    IdBooksInTraining.find(id => book._id === id)
+  );
+
+  let totalPages = 0;
+  trainingBooks.map(el => (totalPages += el.pages));
+  const pagesForDay = totalPages / daysLeft;
+
+  const planDays = [];
+  for (let i = 1; i < daysLeft; i++) {
+    planDays.push(i);
+  }
+  // const planData = planDays.map(el => ({"day": el, "pages": pagesForDay}));
+
+  const planPages = Array(daysLeft).fill(pagesForDay);
+
+  const results = training.training[0].result;
 
   const options = {
     borderWidth: '2',
@@ -50,25 +66,21 @@ export default function LineChart() {
       legend: {
         position: 'top',
       },
-      // title: {
-      //   display: true,
-      //   text: 'Кількість сторінок / день ',
-      // },
     },
   };
-  const labels = results.map(result => result.day);
+  const labels = planDays;
   const data = {
     labels,
     datasets: [
       {
         label: 'ФАКТ',
-        data: results.map(result => result.pages),
+        data: results.map(result => result.page),
         borderColor: '#FF6B08',
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
       },
       {
         label: 'ПЛАН',
-        data: [5, 7, 4, 5, 6, 5, 8, 5],
+        data: planPages,
         borderColor: '#242A37',
         backgroundColor: 'rgba(53, 162, 235, 0.5)',
       },
