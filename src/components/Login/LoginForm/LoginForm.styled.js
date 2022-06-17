@@ -6,6 +6,7 @@ const {
   accentColor,
   borderColor,
   activeColor,
+  primaryColor,
   backgroundColorForm,
   secondaryColor,
 } = theme.colors;
@@ -218,4 +219,9 @@ export const Registration = styled.div`
   margin-right: auto;
   text-align: center;
   cursor: pointer;
+
+  &:hover,
+  &:focus {
+    color: ${primaryColor};
+  }
 `;
