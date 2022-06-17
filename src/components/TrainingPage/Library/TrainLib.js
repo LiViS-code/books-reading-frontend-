@@ -1,3 +1,5 @@
+// import { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   Wrapper,
   ListBooks,
@@ -13,7 +15,29 @@ import {
 } from './TrainLib.styled';
 import { ReactComponent as BookIcon } from '../../../image/svg/iconlibrary.svg';
 import { ReactComponent as DeleteIcon } from '../../../image/svg/delete.svg';
-export const TrainLib = ({ books = [] }) => {
+import { getTrainingBooks } from '../../../redux/books/books-selectors';
+import {
+  setTrainingBooks,
+  deleteBookFromTraining,
+} from '../../../redux/books/books-operations';
+
+export const TrainLib = () => {
+  // const [bookList, setBookList] = useState(null);
+  const bookList = useSelector(getTrainingBooks);
+  const dispatch = useDispatch();
+  // useEffect(() => {
+  //   setBookList(books);
+  // }, []);
+
+  const deleteBook = id => {
+    if (bookList) {
+      const newBooks = bookList.filter(b => b._id !== id);
+      // setBookList(newBooks);
+      dispatch(setTrainingBooks(newBooks));
+      dispatch(deleteBookFromTraining(id));
+    }
+  };
+
   return (
     <Wrapper>
       <HeaderList>
@@ -24,12 +48,12 @@ export const TrainLib = ({ books = [] }) => {
       </HeaderList>
 
       <ListBooks>
-        {books.length ? (
-          books.map(({ id, name, author, year, pages }) => (
-            <ItemBooks key={id}>
+        {bookList ? (
+          bookList.map(({ _id, title, author, year, pages }) => (
+            <ItemBooks key={_id}>
               <BookIcon style={{ fill: '#A6ABB9' }} className={'icon'} />
               <Item style={{ width: '180px' }}>
-                <TextItem className="isHiddenItem">{name}</TextItem>
+                <TextItem>{title}</TextItem>
               </Item>
 
               <Item style={{ width: '170px' }}>
@@ -46,7 +70,7 @@ export const TrainLib = ({ books = [] }) => {
                 <TitleItem className="isHiddenItem">Стор.:</TitleItem>
                 <TextItem> {pages}</TextItem>
               </Item>
-              <button>
+              <button type="button" onClick={() => deleteBook(_id)}>
                 <img src={DeleteIcon} alt="delete"></img>
               </button>
             </ItemBooks>

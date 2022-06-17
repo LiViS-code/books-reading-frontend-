@@ -13,7 +13,8 @@ import {
 // import data from './data.json';
 import sprite from './symbol-defs.svg';
 import operations from '../../redux/asyncThunks';
-import userSelectors from '../../redux/selectors/user-selectors';
+import { getAllBooks } from '../../redux/selectors/user-selectors';
+// import userSelectors from '../../redux/selectors/user-selectors';
 import LibraryForm from '../../components/LibraryForm/LibraryForm';
 import LibraryModal from '../../components/LibraryModal';
 import { useMediaQuery } from '../../components/Header/hooks/useMediaQuery';
@@ -21,7 +22,7 @@ import Modal from '../../components/Modal/Modal';
 
 export default function LibraryView() {
   const dispatch = useDispatch();
-  const books = useSelector(userSelectors.getAllBooks);
+  const books = useSelector(getAllBooks);
   const [hidden, setIsHidden] = useState(true);
 
   useEffect(() => {
@@ -42,6 +43,7 @@ export default function LibraryView() {
     setIsHidden(state => !state);
   };
   const isMatches = useMediaQuery('(max-width: 768px)');
+
   return (
     <Library>
       {!books && isMatches && (

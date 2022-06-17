@@ -1,3 +1,4 @@
+// import { useSelector } from 'react-redux';
 import { Line } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -15,6 +16,7 @@ import {
   DayNumber,
   TitleContainer,
 } from './LineChart.styled';
+// import { getDaysLeft } from '../../redux/books/books-selectors';
 
 ChartJS.register(
   CategoryScale,
@@ -38,6 +40,8 @@ const results = [
 ];
 
 export default function LineChart() {
+  // const daysLeft = useSelector(getDaysLeft);
+
   const options = {
     borderWidth: '2',
     radius: '4',
