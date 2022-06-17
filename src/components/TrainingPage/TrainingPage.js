@@ -59,7 +59,7 @@ export const TrainingPage = () => {
           </TimingContainer>
         </Modal>
       )}
-      {training.training.length === 0 && (
+      {training.training[0].length === 0 && (
         <>
           <Dropdown />
           <div style={{ maxWidth: '928px' }}>
@@ -68,7 +68,7 @@ export const TrainingPage = () => {
         </>
       )}
 
-      {training.training.length === 0 && (
+      {training.training[0].length === 0 && (
         <TrainingButton onClick={startTraining}>
           Почати тренування
         </TrainingButton>
