@@ -43,12 +43,13 @@ export default function LibraryView() {
     setIsHidden(state => !state);
   };
   const isMatches = useMediaQuery('(max-width: 768px)');
-
+  const bigMedia = useMediaQuery('(min-width: 768px)');
   return (
     <Library>
       {!books && isMatches && (
         <LibraryForm style={{ width: '280px;', padding: '20px;' }} />
       )}
+      {bigMedia && <LibraryForm />}
       {!hidden && (
         <Modal onClose={toggleHidden}>
           <LibraryForm style={{ width: '280px' }} />

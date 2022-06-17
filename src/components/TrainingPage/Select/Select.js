@@ -52,7 +52,7 @@ export const Dropdown = () => {
     <Container>
       <DropDownContainer>
         <DropDownHeader onClick={toggling}>
-          Обрати книги з бібліотеки
+          {selectedOption || 'Обрати книги з бібліотеки '}
         </DropDownHeader>
         {isOpen && (
           <DropDownListContainer>

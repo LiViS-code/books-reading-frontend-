@@ -12,9 +12,10 @@ import {
   EmptyItem,
   EmptyTextItem,
   Placeholder,
+  IconButton,
 } from './TrainLib.styled';
 import { ReactComponent as BookIcon } from '../../../image/svg/iconlibrary.svg';
-import { ReactComponent as DeleteIcon } from '../../../image/svg/delete.svg';
+import deleteIcon from '../../../image/svg/deleteIcon.svg';
 import { getTrainingBooks } from '../../../redux/books/books-selectors';
 import {
   setTrainingBooks,
@@ -70,11 +71,13 @@ export const TrainLib = () => {
                 <TitleItem className="isHiddenItem">Стор.:</TitleItem>
                 <TextItem> {pages}</TextItem>
               </Item>
-              <button type="button" onClick={() => deleteBook(_id)}>
-                <svg width={16} height={16}>
-                  <use href={`${DeleteIcon}`} />
-                </svg>
-              </button>
+
+              <IconButton
+                type="button"
+                style={{ fill: '#A6ABB9;' }}
+                IconComponent={`${deleteIcon}`}
+                onClick={() => deleteBook(_id)}
+              />
             </ItemBooks>
           ))
         ) : (
