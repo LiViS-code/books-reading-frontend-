@@ -113,10 +113,10 @@ export const deleteBookFromTraining = createAsyncThunk(
 
 export const addResultToTraining = createAsyncThunk(
   'training/addResult',
-  async ({ id, date, pages }) => {
+  async ({ id, date, page }) => {
     try {
       const { data } = await axios.post(`api/training/${id}`, {
-        result: { date: date, page: pages },
+        result: [{ date: date, page: page }],
       });
       return data;
     } catch (error) {

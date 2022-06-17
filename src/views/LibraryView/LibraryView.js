@@ -19,6 +19,7 @@ import LibraryForm from '../../components/LibraryForm/LibraryForm';
 import LibraryModal from '../../components/LibraryModal';
 import { useMediaQuery } from '../../components/Header/hooks/useMediaQuery';
 import Modal from '../../components/Modal/Modal';
+import { getTrainingData } from '../../redux/books/books-operations';
 
 export default function LibraryView() {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ export default function LibraryView() {
 
   useEffect(() => {
     dispatch(operations.allBooks());
+    dispatch(getTrainingData());
   }, [dispatch]);
 
   const alreadyRed = books
