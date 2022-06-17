@@ -240,3 +240,22 @@ export const Placeholder = styled.span`
     line-height: 1.21;
   }
 `;
+export const IconButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 24px;
+  padding: 7px;
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: transparent;
+  cursor: pointer;
+
+  & svg {
+    fill: ${borderColor};
+    /* width: 30px;
+    height: 30px; */
+  }
+`;
