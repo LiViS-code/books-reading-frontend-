@@ -13,8 +13,8 @@ export const authSlice = createSlice({
   initialState,
   extraReducers: {
     [operations.register.fulfilled](state, action) {
-      state.user = action.payload.data.user;
-      console.log(action.payload.data);
+      state.user = action.payload.user;
+      console.log(action.payload);
       state.token = action.payload.user.token;
       state.isLoggedIn = true;
     },

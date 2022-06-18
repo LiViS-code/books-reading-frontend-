@@ -93,14 +93,9 @@ const RegistrationForm = () => {
         .required('Email is required'),
       password: Yup.string()
         .min(6, 'Password must be at least 6 characters.')
-        .max(15, 'Password must be no more than 15 characters long.')
         .required('Password is required'),
-      confrimPassword: Yup.string()
-        .matches(/password/, { excludeEmptyString: false })
-        .required('Confrim Password is required'),
     }),
-    onSubmit: (values, { resetForm }) => {
-      console.log(values);
+    onSubmit: values => {
       dispatch(
         operations.register({
           name: values.name,
@@ -108,7 +103,6 @@ const RegistrationForm = () => {
           password: values.password,
         })
       );
-      resetForm({ values: '' });
     },
   });
 
@@ -116,8 +110,8 @@ const RegistrationForm = () => {
     <BackgroundContainer>
       <FormContainer>
         <GoogleButton
-          // onClick={dispatch(operations.google())}
-          type="submit"
+        // onClick={dispatch(operations.google())}
+        // type="submit"
         >
           Google<GoogleImage src={google_icon} alt="google icon"></GoogleImage>
         </GoogleButton>
@@ -130,10 +124,13 @@ const RegistrationForm = () => {
               <Label>
                 Ім’я <StarContainer>*</StarContainer>
                 <Input
-                  onChange=// {handleInputChange}
-                  {formik.handleChange}
-                  value=// {name}
-                  {formik.values.name}
+                  onChange={ // {handleInputChange}
+                    formik.handleChange
+                  }
+                  value={ // {name}
+                    formik.values.name
+                  }
+                  onBlur={formik.handleBlur}
                   id="name"
                   name="name"
                   type="text"
@@ -147,10 +144,11 @@ const RegistrationForm = () => {
                 <Label>
                   Електронна адреса <StarContainer2>*</StarContainer2>
                   <Input
-                    onChange=// {handleInputChange}
-                    {formik.handleChange}
-                    value=// {email}
-                    {formik.values.email}
+                    onChange={formik.handleChange}
+                    // {handleInputChange}
+                    value={formik.values.email}
+                    // {email}
+                    onBlur={formik.handleBlur}
                     id="email"
                     name="email"
                     type="email"
@@ -165,10 +163,11 @@ const RegistrationForm = () => {
                 <Label>
                   Пароль<StarContainer3>*</StarContainer3>
                   <Input
-                    onChange=// {handleInputChange}
-                    {formik.handleChange}
-                    value=// {password}
-                    {formik.values.password}
+                    onChange={formik.handleChange}
+                    // {handleInputChange}
+                    value={formik.values.password}
+                    // {password}
+                    onBlur={formik.handleBlur}
                     id="password"
                     name="password"
                     type="text"
@@ -183,10 +182,11 @@ const RegistrationForm = () => {
                 <Label>
                   Підтвердити пароль<StarContainer4>*</StarContainer4>
                   <Input
-                    onChange=// {handleInputChange}
-                    {formik.handleChange}
-                    value=// {confrimPassword}
-                    {formik.values.confrimPassword}
+                    onChange={formik.handleChange}
+                    // {handleInputChange}
+                    value={formik.values.confrimPassword}
+                    // {confrimPassword}
+                    onBlur={formik.handleBlur}
                     id="confrimPassword"
                     name="confrimPassword"
                     type="text"
