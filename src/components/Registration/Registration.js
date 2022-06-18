@@ -82,7 +82,7 @@ const RegistrationForm = () => {
       name: '',
       email: '',
       password: '',
-      confrimPassword: '',
+      confirmPassword: '',
     },
     validationSchema: Yup.object({
       name: Yup.string()
@@ -93,9 +93,13 @@ const RegistrationForm = () => {
         .required('Email is required'),
       password: Yup.string()
         .min(6, 'Password must be at least 6 characters.')
+        .max(30, 'Password must be no more 30 characters.')
         .required('Password is required'),
+      confirmPassword: Yup.string()
+        .oneOf([Yup.ref('password'), null], 'Passwords must match')
+        .required('Confirm password is required'),
     }),
-    onSubmit: values => {
+    onSubmit: (values, { resetForm }) => {
       dispatch(
         operations.register({
           name: values.name,
@@ -103,6 +107,7 @@ const RegistrationForm = () => {
           password: values.password,
         })
       );
+      resetForm({ values: '' });
     },
   });
 
@@ -123,11 +128,16 @@ const RegistrationForm = () => {
             <div>
               <Label>
                 Ім’я <StarContainer>*</StarContainer>
+                {formik.touched.name && formik.errors.name ? (
+                  <div>{formik.errors.name}</div>
+                ) : null}
                 <Input
-                  onChange={ // {handleInputChange}
+                  onChange={
+                    // {handleInputChange}
                     formik.handleChange
                   }
-                  value={ // {name}
+                  value={
+                    // {name}
                     formik.values.name
                   }
                   onBlur={formik.handleBlur}
@@ -143,6 +153,9 @@ const RegistrationForm = () => {
               <div>
                 <Label>
                   Електронна адреса <StarContainer2>*</StarContainer2>
+                  {formik.touched.email && formik.errors.email ? (
+                    <div>{formik.errors.email}</div>
+                  ) : null}
                   <Input
                     onChange={formik.handleChange}
                     // {handleInputChange}
@@ -162,6 +175,9 @@ const RegistrationForm = () => {
               <div>
                 <Label>
                   Пароль<StarContainer3>*</StarContainer3>
+                  {formik.touched.password && formik.errors.password ? (
+                    <div>{formik.errors.password}</div>
+                  ) : null}
                   <Input
                     onChange={formik.handleChange}
                     // {handleInputChange}
@@ -181,14 +197,18 @@ const RegistrationForm = () => {
               <div>
                 <Label>
                   Підтвердити пароль<StarContainer4>*</StarContainer4>
+                  {formik.touched.confirmPassword &&
+                  formik.errors.confirmPassword ? (
+                    <div>{formik.errors.confirmPassword}</div>
+                  ) : null}
                   <Input
                     onChange={formik.handleChange}
                     // {handleInputChange}
-                    value={formik.values.confrimPassword}
+                    value={formik.values.confirmPassword}
                     // {confrimPassword}
                     onBlur={formik.handleBlur}
-                    id="confrimPassword"
-                    name="confrimPassword"
+                    id="confirmPassword"
+                    name="confirmPassword"
                     type="text"
                     placeholder="..."
                     required

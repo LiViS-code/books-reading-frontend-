@@ -74,13 +74,14 @@ const LoginForm = () => {
         .min(6, 'Password must be at least 6 characters.')
         .required('Password is required'),
     }),
-    onSubmit: values => {
+    onSubmit: (values, { resetForm }) => {
       dispatch(
         operations.logIn({
           email: values.email,
           password: values.password,
         })
       );
+      resetForm({ values: '' });
     },
   });
 
@@ -101,6 +102,9 @@ const LoginForm = () => {
             <div>
               <Label>
                 Електронна адреса <StarContainer>*</StarContainer>
+                {formik.touched.email && formik.errors.email ? (
+                  <div>{formik.errors.email}</div>
+                ) : null}
                 <Input
                   onChange={formik.handleChange}
                   // {handleInputChange}
@@ -119,6 +123,9 @@ const LoginForm = () => {
               <div>
                 <Label>
                   Пароль <StarContainer2>*</StarContainer2>
+                  {formik.touched.password && formik.errors.password ? (
+                    <div>{formik.errors.password}</div>
+                  ) : null}
                   <Input
                     onChange={formik.handleChange}
                     // {handleInputChange}
