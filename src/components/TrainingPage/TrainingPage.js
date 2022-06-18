@@ -16,6 +16,7 @@ import {
 import {
   addTraining,
   getTrainingData,
+  getUserInfo,
 } from '../../redux/books/books-operations';
 import operations from '../../redux/asyncThunks';
 import { useMediaQuery } from '../Header/hooks/useMediaQuery';
@@ -25,17 +26,22 @@ import Modal from '../Modal/Modal';
 export const TrainingPage = () => {
   const dispatch = useDispatch();
   const training = useSelector(getTraining);
-
+  let currentTraining = null;
+  if (training.length !== 0) {
+    currentTraining = training.find(({ end }) => new Date(end) > new Date());
+  }
+  console.log(2);
   useEffect(() => {
     dispatch(operations.allBooks());
     dispatch(getTrainingData());
-  }, [dispatch]);
+  }, []);
 
   const start = useSelector(getStartTraining);
   const end = useSelector(getEndTraining);
 
   const startTraining = () => {
     dispatch(addTraining({ start, end }));
+    dispatch(getUserInfo());
   };
 
   const [hidden, setIsHidden] = useState(true);
@@ -46,20 +52,20 @@ export const TrainingPage = () => {
 
   return (
     <>
-      <MyGoal />
+      <MyGoal currentTraining={currentTraining} />
       {isMatches && (
         <TimingContainer>
-          <Countdown />
+          <Countdown currentTraining={currentTraining} />
         </TimingContainer>
       )}
       {!hidden && (
         <Modal onClose={toggleHidden}>
           <TimingContainer style={{ width: '280px;', height: '100vw;' }}>
-            <Countdown />
+            <Countdown currentTraining={currentTraining} />
           </TimingContainer>
         </Modal>
       )}
-      {training.training[0].length === 0 && (
+      {training.length === 0 && (
         <>
           <Dropdown />
           <div style={{ maxWidth: '928px' }}>
@@ -68,13 +74,13 @@ export const TrainingPage = () => {
         </>
       )}
 
-      {training.training[0].length === 0 && (
+      {training.length === 0 && (
         <TrainingButton onClick={startTraining}>
           Почати тренування
         </TrainingButton>
       )}
 
-      {training.training.length !== 0 && <LineChart />}
+      {training.length !== 0 && <LineChart currentTraining={currentTraining} />}
 
       <ButtonAdd type="button" onClick={toggleHidden}>
         <svg width={16} height={16}>
@@ -82,7 +88,9 @@ export const TrainingPage = () => {
         </svg>
       </ButtonAdd>
 
-      {training.training.length !== 0 && <ResultSection />}
+      {training.length !== 0 && (
+        <ResultSection currentTraining={currentTraining} />
+      )}
     </>
   );
 };

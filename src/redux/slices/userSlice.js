@@ -10,6 +10,7 @@ import {
   resultsTraining,
   addTraining,
   getTrainingData,
+  getUserInfo,
 } from '../books/books-operations';
 
 const initialState = {
@@ -20,6 +21,8 @@ const initialState = {
   end: null,
   results: [],
   training: null,
+  trainingId: null,
+  userInfo: null,
 };
 
 export const userSlice = createSlice({
@@ -53,10 +56,13 @@ export const userSlice = createSlice({
       state.results = action.payload;
     },
     [addTraining.fulfilled](state, action) {
-      state.training = action.payload;
+      state.trainingId = action.payload.owner;
     },
     [getTrainingData.fulfilled](state, action) {
-      state.training = action.payload;
+      state.training = action.payload.training;
+    },
+    [getUserInfo.fulfilled](state, action) {
+      state.userInfo = action.payload;
     },
   },
 });

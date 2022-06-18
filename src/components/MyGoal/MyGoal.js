@@ -8,21 +8,22 @@ import {
   CounterLabelContainer,
   CounterLabel,
 } from './MyGoal.styled';
-import { getTraining } from '../../redux/books/books-selectors';
+import { getTraining, getTrainingId } from '../../redux/books/books-selectors';
 import { getTrainingData } from '../../redux/books/books-operations';
 
-const MyGoal = () => {
+const MyGoal = ({ currentTraining }) => {
   // const [days, setDays] = useState(0);
   // const [booksNumber, setBooksNumber] = useState(0);
   let days = 0;
   let booksNumber = 0;
-
+  console.log(3);
   const dispatch = useDispatch();
-  dispatch(getTrainingData);
+  // dispatch(getTrainingData);
   const training = useSelector(getTraining);
 
-  if (training.training.length !== 0) {
-    const { start, end, books } = training.training[0];
+  if (training.length !== 0) {
+    const { start, end, books } = currentTraining;
+    // console.log(new Date(), new Date(end), new Date() < new Date(end));
     const dayStart = new Date(start);
     const dayEnd = new Date(end);
     const daysLeft = Math.floor((dayEnd - dayStart) / 86400000);

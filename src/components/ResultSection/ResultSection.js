@@ -16,23 +16,20 @@ import {
   Button,
   Statistic,
 } from './ResultSection.styled';
-// import { getTraining } from '../../redux/books/books-selectors';
+import { getTraining, getTrainingId } from '../../redux/books/books-selectors';
 import {
   addResultToTraining,
   getTrainingData,
 } from '../../redux/books/books-operations';
-import { getTraining } from '../../redux/books/books-selectors';
 
-export default function ResultSection() {
+export default function ResultSection({ currentTraining }) {
   const dispatch = useDispatch();
   const [date, setDate] = useState(new Date());
   const [pages, setPages] = useState(null);
   // const [amount, SetAmount] = useState(null);
-  const training = useSelector(getTraining);
-  const trainingId = training.training[0]._id;
-  // console.log(training);
-  // const trainingId = training ? training.data._id : null;
-  // console.log(trainingId);
+  // const training = useSelector(getTraining);
+  const trainingId = currentTraining._id;
+
   const CustomInput = ({ value, onClick }) => (
     <DateButton onClick={onClick}>
       {value}

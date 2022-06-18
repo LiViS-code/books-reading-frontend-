@@ -15,29 +15,30 @@ import {
 } from './Calendar.styled';
 import calendar from '../../../image/svg/calendar.svg';
 import Polygon from '../../../image/svg/Polygon.svg';
-import { getTraining } from '../../../redux/books/books-selectors';
+import {
+  getTraining,
+  getTrainingId,
+} from '../../../redux/books/books-selectors';
 import {
   startTraining,
   endTraining,
 } from '../../../redux/books/books-operations';
 
-export const Countdown = () => {
+export const Countdown = ({ currentTraining }) => {
   const dispatch = useDispatch();
   const yearEnd = endOfYear(new Date());
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(null);
   const currentDate = new Date().getTime();
   const training = useSelector(getTraining);
-
+  console.log(4);
   useEffect(() => {
-    const { start, end } = training.training[0];
-    training.training.length !== 0
-      ? setEndDate(new Date(end))
-      : setEndDate(null);
-    training.training.length !== 0
-      ? setStartDate(new Date(start))
-      : setStartDate(null);
-  }, [training.training]);
+    if (training.length !== 0) {
+      const { start, end } = currentTraining;
+      setEndDate(new Date(end));
+      setStartDate(new Date(start));
+    }
+  }, []);
 
   const CustomInput = ({ value, onClick }) => (
     <DateButton onClick={onClick}>
