@@ -2,7 +2,13 @@ import styled from 'styled-components';
 
 import { theme } from '../../../constants/Theme';
 const {
-  colors: { borderColor, outlineColor, secondaryColor },
+  colors: {
+    borderColor,
+    outlineColor,
+    secondaryColor,
+    headingBackground,
+    activeColor,
+  },
 
   media: { tablet, desktop },
   spacing,
@@ -15,6 +21,7 @@ export const DatePickerWrapper = styled.div`
 
   @media (min-width: ${tablet}) {
     display: flex;
+
     justify-content: flex-start;
     margin: ${spacing(5)} 0 ${spacing(6)};
     width: 100%;
@@ -22,6 +29,16 @@ export const DatePickerWrapper = styled.div`
   @media (min-width: ${desktop}) {
     justify-content: center;
   }
+`;
+export const Heading = styled.h2`
+  color: ${activeColor};
+  background-color: ${headingBackground};
+  padding: ${spacing(4.3)} 0;
+  width: 100%;
+  text-align: center;
+  font-size: ${spacing(5)};
+  font-weight: 600;
+  line-height: ${spacing(6)};
 `;
 export const CalendarWrapper = styled.div`
   ${props => props.isHidden && `display: none;`};

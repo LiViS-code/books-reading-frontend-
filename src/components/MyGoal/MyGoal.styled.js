@@ -15,7 +15,7 @@ export const MyGoalContainer = styled.div`
     width: ${spacing(170)};
     height: ${spacing(26.25)};
     margin: 30px 0 40px 0;
-    padding: 22px 0px 23px 45px;
+    padding: 22px 0px 23px 23px;
     display: flex;
     align-items: center;
     justify-content: space-around;

@@ -23,6 +23,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import operations from '../../../redux/asyncThunks';
+import { Link, useLocation } from 'react-router-dom';
 
 // const initialValues = {
 //   email: '',
@@ -31,6 +32,7 @@ import operations from '../../../redux/asyncThunks';
 
 const LoginForm = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -123,7 +125,9 @@ const LoginForm = () => {
             </ButtonWrapper>
           </InputWrapper>
         </Form>
-        <Registration>Реєстрація</Registration>
+        <Link to="registration" state={location.state}>
+          <Registration> Реєстрація </Registration>
+        </Link>
       </FormContainer>
     </BackgroundContainer>
   );

@@ -1,4 +1,5 @@
 // import { ReactComponent as Polygon } from '../../image/svg/Polygon.svg';
+import { useDispatch } from 'react-redux';
 import Polygon from '../../image/svg/Polygon.svg';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -15,17 +16,34 @@ import {
   Button,
   Statistic,
 } from './ResultSection.styled';
+// import { getTraining } from '../../redux/books/books-selectors';
+import { addResultToTraining } from '../../redux/books/books-operations';
 
 export default function ResultSection() {
+  const dispatch = useDispatch();
   const [date, setDate] = useState(new Date());
+  const [pages, setPages] = useState(null);
+  // const [amount, SetAmount] = useState(null);
+  // const training = useSelector(getTraining);
+  // console.log(training);
+  // const trainingId = training ? training.data._id : null;
+  // console.log(trainingId);
 
-  const CustomInput = ({ value, onClick }, ref) => (
+  const CustomInput = ({ value, onClick }) => (
     <DateButton onClick={onClick}>
       {value}
       <Arrow src={Polygon} alt="polygon" className={'icon'} />
     </DateButton>
   );
+  // const handleChange = e => {
+  //   SetAmount(e.target.value);
+  //   console.log(amount);
+  // };
+  // const addResult = e => {
+  //   e.preventDefault();
 
+  //   dispatch();
+  // };
   return (
     <Section>
       <Title>Результати</Title>
@@ -42,13 +60,19 @@ export default function ResultSection() {
             />
           </div>
         </Label>
-
         <Label>
           <Text>Кількість сторінок</Text>
-          <Pages />
+          <Pages onChange={e => setPages(e.target.value)} />
         </Label>
-
-        <Button type="submit">Add Result</Button>
+        const trainingId = training.data._id;
+        <Button
+          type="submit"
+          onSubmit={() =>
+            dispatch(addResultToTraining({ id: 22, date: date, pages: pages }))
+          }
+        >
+          Додати результат
+        </Button>
       </AddResult>
       <Statistic>СТАТИСТИКА</Statistic>
     </Section>
