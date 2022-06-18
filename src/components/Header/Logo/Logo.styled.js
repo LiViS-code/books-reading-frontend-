@@ -13,7 +13,7 @@ export const LogoStyle = styled.div`
   font-size: 20px;
   line-height: 1.35;
   color: ${primaryColor};
-  margin-right: 68px;
+
   @media (min-width: ${tablet}) {
     //margin-right: 248px;
   }
