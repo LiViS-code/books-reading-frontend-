@@ -8,6 +8,7 @@ const {
   activeColor,
   backgroundColorForm,
   secondaryColor,
+  primaryColor,
 } = theme.colors;
 const { mainFont } = theme.fonts;
 const { spacing } = theme;
@@ -145,6 +146,8 @@ export const Input = styled.input`
   display: flex;
   max-width: 400px;
   background-color: ${backgroundColorForm};
+  color: ${primaryColor};
+  font: ${mainFont};
   box-shadow: inset 0px 1px 2px rgba(29, 29, 27, 0.15);
   flex-direction: column;
   box-sizing: border-box;
@@ -160,13 +163,14 @@ export const Input = styled.input`
     width: 100%;
   }
 
-  ::placeholder {
+  &::placeholder {
     color: ${borderColor};
   }
 
-  :focus {
+  &:hover,
+  &:active,
+  &:focus {
     background-color: #ffffff;
-
     border: none;
     outline: none;
   }
@@ -240,6 +244,12 @@ export const RegistrationActive = styled.div`
   font-size: ${spacing(3.25)};
   line-height: ${spacing(4)};
   margin-bottom: ${spacing(11)};
+
+  &:hover,
+  &:focus {
+    color: ${borderColor};
+  }
+
   @media screen and (min-width: ${tablet}) {
     margin-bottom: ${spacing(10)};
   }

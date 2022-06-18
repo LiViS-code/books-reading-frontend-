@@ -7,13 +7,14 @@ import PrivateRoute from './components/PrivateRoutes';
 import PublicRoute from './components/PublicRoutes';
 import { PrimaryButton } from './components/Buttons/PrimaryButton.styled';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import operations from './redux/asyncThunks';
 import { Link } from 'react-router-dom';
 import Header from './components/Header';
 import { Loader } from './components/Loader/Loader';
 import BooksReading from './components/BooksReading/Information/BooksReading';
 import { useMediaQuery } from './components/Header/hooks/useMediaQuery';
+import { getIsFetchCurrentUser } from './redux/selectors/auth-selectors';
 
 const AuthView = lazy(() => import('./views/AuthView/AuthView'));
 const RegistrationView = lazy(() =>
@@ -28,6 +29,7 @@ const TrainingView = lazy(() => import('./views/TrainingView/TrainingView'));
 
 function App() {
   const dispatch = useDispatch();
+  const isFetchCurrentUser = useSelector(getIsFetchCurrentUser);
 
   useEffect(() => {
     dispatch(operations.fetchCurrentUser());
@@ -46,68 +48,70 @@ function App() {
   };
 
   return (
-    <>
-      <GlobalStyle />
-      <Header />
-      <Suspense fallback={<Loader />}>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route
-              path="/"
-              element={
-                <PublicRoute restricted>
-                  {isMatches ? <BooksReading /> : <AuthView />}
-                </PublicRoute>
-              }
-            />
-            <Route
-              path="registration"
-              element={
-                <PublicRoute restricted>
-                  <RegistrationView />
-                </PublicRoute>
-              }
-            />
-            <Route
-              path="login"
-              element={
-                <PublicRoute restricted>
-                  <AuthView />
-                </PublicRoute>
-              }
-            />
-            <Route
-              path="library"
-              element={
-                <PrivateRoute>
-                  {' '}
-                  <LibraryView />{' '}
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="training"
-              element={
-                <PrivateRoute>
-                  {' '}
-                  <TrainingView />{' '}
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="statistics"
-              element={
-                <PrivateRoute>
-                  {' '}
-                  <StatisticsView />{' '}
-                </PrivateRoute>
-              }
-            />
-          </Route>
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Suspense>
-    </>
+    !isFetchCurrentUser && (
+      <>
+        <GlobalStyle />
+        <Header />
+        <Suspense fallback={<Loader />}>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route
+                path="/"
+                element={
+                  <PublicRoute restricted>
+                    {isMatches ? <BooksReading /> : <AuthView />}
+                  </PublicRoute>
+                }
+              />
+              <Route
+                path="login"
+                element={
+                  <PublicRoute restricted>
+                    <AuthView />
+                  </PublicRoute>
+                }
+              />
+              <Route
+                path="registration"
+                element={
+                  <PublicRoute restricted>
+                    <RegistrationView />
+                  </PublicRoute>
+                }
+              />
+              <Route
+                path="library"
+                element={
+                  <PrivateRoute>
+                    {' '}
+                    <LibraryView />{' '}
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="training"
+                element={
+                  <PrivateRoute>
+                    {' '}
+                    <TrainingView />{' '}
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="statistics"
+                element={
+                  <PrivateRoute>
+                    {' '}
+                    <StatisticsView />{' '}
+                  </PrivateRoute>
+                }
+              />
+            </Route>
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
+      </>
+    )
   );
 }
 
