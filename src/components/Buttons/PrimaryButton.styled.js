@@ -19,7 +19,7 @@ export const PrimaryButton = styled.button`
   &:focus {
     border: transparent;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
-    background-color: ${theme.colors.accentColor};
+    background-color: ${theme.colors.disabledColor};
     color: ${theme.colors.activeColor};
   }
   @media screen and (min-width: 1280px) {

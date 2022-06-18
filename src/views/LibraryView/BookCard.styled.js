@@ -2,7 +2,13 @@ import styled from 'styled-components';
 import { theme } from '../../constants/Theme';
 
 const {
-  colors: { primaryColor, secondaryColor, activeColor, disabledColor },
+  colors: {
+    accentColor,
+    primaryColor,
+    secondaryColor,
+    activeColor,
+    disabledColor,
+  },
   fonts: { mainFont },
   fontSizing: { mainFontSize },
   media: { tablet, desktop },
@@ -274,7 +280,16 @@ export const ButtonResume = styled.button`
     margin-left: 60px;
     margin-right: 0;
     width: 130px;
-  } ;
+  }
+
+  &:hover,
+  &:focus {
+    color: ${activeColor};
+    background: ${accentColor};
+    border: transparent;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    transition: box-shadow 250ms ease;
+  }
 `;
 
 export const ResumeSection = styled.div`
