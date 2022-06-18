@@ -123,7 +123,7 @@ const LoginForm = () => {
             </ButtonWrapper>
           </InputWrapper>
         </Form>
-        <Link to="registration" state={location.state}>
+        <Link to="/registration" state={location.state}>
           <Registration> Реєстрація </Registration>
         </Link>
       </FormContainer>

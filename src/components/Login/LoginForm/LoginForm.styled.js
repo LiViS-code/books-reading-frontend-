@@ -130,6 +130,8 @@ export const Input = styled.input`
   display: flex;
   max-width: 400px;
   background-color: ${backgroundColorForm};
+  color: ${primaryColor};
+  font: ${mainFont};
   box-shadow: inset 0px 1px 2px rgba(29, 29, 27, 0.15);
   flex-direction: column;
   box-sizing: border-box;
@@ -149,9 +151,8 @@ export const Input = styled.input`
     color: ${borderColor};
   }
 
-  :focus {
+  &:focus {
     background-color: #ffffff;
-
     border: none;
     outline: none;
   }
@@ -222,6 +223,6 @@ export const Registration = styled.div`
 
   &:hover,
   &:focus {
-    color: ${primaryColor};
+    color: ${borderColor};
   }
 `;
