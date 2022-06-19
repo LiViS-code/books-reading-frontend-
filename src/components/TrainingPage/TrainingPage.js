@@ -25,16 +25,13 @@ import Modal from '../Modal/Modal';
 
 export const TrainingPage = () => {
   const dispatch = useDispatch();
+  const [reload, setReload] = useState(false);
   const training = useSelector(getTraining);
-  let currentTraining = null;
-  if (training.length !== 0) {
-    currentTraining = training.find(({ end }) => new Date(end) > new Date());
-  }
 
   useEffect(() => {
     dispatch(operations.allBooks());
     dispatch(getTrainingData());
-  }, []);
+  }, [reload, dispatch]);
 
   const start = useSelector(getStartTraining);
   const end = useSelector(getEndTraining);
@@ -42,6 +39,7 @@ export const TrainingPage = () => {
   const startTraining = () => {
     dispatch(addTraining({ start, end }));
     dispatch(getUserInfo());
+    setReload(true);
   };
 
   const [hidden, setIsHidden] = useState(true);

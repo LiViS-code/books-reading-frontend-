@@ -16,7 +16,7 @@ import {
   DayNumber,
   TitleContainer,
 } from './LineChart.styled';
-import { getTraining, getTrainingId } from '../../redux/books/books-selectors';
+import { getTraining } from '../../redux/books/books-selectors';
 import { getAllBooks } from '../../redux/selectors/user-selectors';
 
 ChartJS.register(

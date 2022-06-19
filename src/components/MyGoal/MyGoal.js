@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {
   MyGoalContainer,
   GoalTitle,
@@ -8,12 +8,9 @@ import {
   CounterLabelContainer,
   CounterLabel,
 } from './MyGoal.styled';
-import { getTraining, getTrainingId } from '../../redux/books/books-selectors';
-import { getTrainingData } from '../../redux/books/books-operations';
+import { getTraining } from '../../redux/books/books-selectors';
 
 const MyGoal = () => {
-  const dispatch = useDispatch();
-
   let days = 0;
   let booksNumber = 0;
   const training = useSelector(getTraining);

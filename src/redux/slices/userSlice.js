@@ -8,7 +8,7 @@ import {
   startTraining,
   endTraining,
   resultsTraining,
-  addTraining,
+  // addTraining,
   getTrainingData,
   getUserInfo,
 } from '../books/books-operations';
@@ -55,9 +55,9 @@ export const userSlice = createSlice({
     [resultsTraining.fulfilled](state, action) {
       state.results = action.payload;
     },
-    [addTraining.fulfilled](state, action) {
-      state.trainingId = action.payload.owner;
-    },
+    // [addTraining.fulfilled](state, action) {
+    //   state.trainingId = action.payload.owner;
+    // },
     [getTrainingData.fulfilled](state, action) {
       state.training = action.payload.training;
     },
