@@ -3,7 +3,14 @@ import Line from '../../image/svg/line.svg';
 import LineLarge from '../../image/svg/line2.svg';
 import { theme } from '../../constants/Theme';
 const {
-  colors: { borderColor, outlineColor, primaryColor, backgroundColor },
+  colors: {
+    activeColor,
+    borderColor,
+    outlineColor,
+    primaryColor,
+    backgroundColor,
+    disabledColor,
+  },
   spacing,
 } = theme;
 
@@ -88,7 +95,7 @@ export const Section = styled.div`
   }
 `;
 
-export const AddResult = styled.div`
+export const AddResult = styled.form`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
@@ -148,17 +155,20 @@ export const Button = styled.button`
   font-family: Montserrat;
   padding: 0;
   margin: 28px 0 24px 0;
+  cursor: pointer;
 
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 250ms var(--timing-function);
+  transition: background-color 250ms;
 
-  :focus :hover {
+  &:focus,
+  &:hover {
+    color: ${activeColor};
+    background: ${disabledColor};
+    border: transparent;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
-    background-color: #ff6b08;
-    border-color: #ff6b08;
-    color: white;
+    transition: box-shadow 250ms ease;
   }
 
   @media screen and (min-width: 768px) {

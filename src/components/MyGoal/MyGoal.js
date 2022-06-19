@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {
   MyGoalContainer,
   GoalTitle,
@@ -9,20 +9,19 @@ import {
   CounterLabel,
 } from './MyGoal.styled';
 import { getTraining } from '../../redux/books/books-selectors';
-import { getTrainingData } from '../../redux/books/books-operations';
 
 const MyGoal = () => {
-  // const [days, setDays] = useState(0);
-  // const [booksNumber, setBooksNumber] = useState(0);
   let days = 0;
   let booksNumber = 0;
-
-  const dispatch = useDispatch();
-  dispatch(getTrainingData);
   const training = useSelector(getTraining);
+  let currentTraining = null;
 
-  if (training.training.length !== 0) {
-    const { start, end, books } = training.training[0];
+  if (training.length !== 0) {
+    currentTraining = training.find(({ end }) => new Date(end) > new Date());
+  }
+
+  if (training.length !== 0) {
+    const { start, end, books } = currentTraining;
     const dayStart = new Date(start);
     const dayEnd = new Date(end);
     const daysLeft = Math.floor((dayEnd - dayStart) / 86400000);

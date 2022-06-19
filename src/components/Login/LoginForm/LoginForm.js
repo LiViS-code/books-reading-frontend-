@@ -1,5 +1,5 @@
-// import { useFormik } from 'formik';
-// import addBookSchema from '../../models/addBookSchema';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 import {
   FormContainer,
   Form,
@@ -19,7 +19,7 @@ import {
 import google_icon from '../../../image/google_icon.png';
 
 import React from 'react';
-import { useState } from 'react';
+// import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import operations from '../../../redux/asyncThunks';
 import { Link, useLocation } from 'react-router-dom';
@@ -33,44 +33,57 @@ const LoginForm = () => {
   const dispatch = useDispatch();
   const location = useLocation();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  // const [email, setEmail] = useState('');
+  // const [password, setPassword] = useState('');
 
-  const handleInputChange = e => {
-    const { name, value } = e.currentTarget;
-    switch (name) {
-      case 'email':
-        setEmail(value);
-        break;
-      case 'password':
-        setPassword(value);
-        break;
-      default:
-        return;
-    }
-  };
+  // const handleInputChange = e => {
+  //   const { name, value } = e.currentTarget;
+  //   switch (name) {
+  //     case 'email':
+  //       setEmail(value);
+  //       break;
+  //     case 'password':
+  //       setPassword(value);
+  //       break;
+  //     default:
+  //       return;
+  //   }
+  // };
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    dispatch(operations.logIn({ email, password }));
-    reset();
-  };
+  // const handleSubmit = e => {
+  //   e.preventDefault();
+  //   dispatch(operations.logIn({ email, password }));
+  //   reset();
+  // };
 
-  const reset = () => {
-    setEmail('');
-    setPassword('');
-  };
+  // const reset = () => {
+  //   setEmail('');
+  //   setPassword('');
+  // };
 
-  // const formik = useFormik({
-  //   initialValues,
-  //   initialErrors: initialValues,
-  //   // validationSchema: addBookSchema,
-  //   validateOnBlur: true,
-  //   onSubmit: values => {console.log(values)
-  //     dispatch(operations.logIn(values.email, values.password ));
-  //     dispatch(operations.google());
-  //   },
-  // });
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    validationSchema: Yup.object({
+      email: Yup.string()
+        .email('Invalid email address')
+        .required('Email is required'),
+      password: Yup.string()
+        .min(6, 'Password must be at least 6 characters.')
+        .required('Password is required'),
+    }),
+    onSubmit: (values, { resetForm }) => {
+      dispatch(
+        operations.logIn({
+          email: values.email,
+          password: values.password,
+        })
+      );
+      resetForm({ values: '' });
+    },
+  });
 
   return (
     <BackgroundContainer>
@@ -82,20 +95,25 @@ const LoginForm = () => {
           Google<GoogleImage src={google_icon} alt="google icon"></GoogleImage>
         </GoogleButton>
         <Form
-          onSubmit={handleSubmit}
-          // {formik.handleSubmit}
+          onSubmit={formik.handleSubmit}
+          // {handleSubmit}
         >
           <InputWrapper>
             <div>
               <Label>
                 Електронна адреса <StarContainer>*</StarContainer>
+                {formik.touched.email && formik.errors.email ? (
+                  <div>{formik.errors.email}</div>
+                ) : null}
                 <Input
-                  onChange={handleInputChange}
-                  // {formik.handleChange}
-                  value={email}
-                  // {formik.values.email}
+                  onChange={formik.handleChange}
+                  // {handleInputChange}
+                  value={formik.values.email}
+                  // {email}
+                  onBlur={formik.handleBlur}
+                  id="email"
                   name="email"
-                  type="text"
+                  type="email"
                   placeholder="your@email.com"
                   required
                 />
@@ -105,11 +123,16 @@ const LoginForm = () => {
               <div>
                 <Label>
                   Пароль <StarContainer2>*</StarContainer2>
+                  {formik.touched.password && formik.errors.password ? (
+                    <div>{formik.errors.password}</div>
+                  ) : null}
                   <Input
-                    onChange={handleInputChange}
-                    // {formik.handleChange}
-                    value={password}
-                    // {formik.values.password}
+                    onChange={formik.handleChange}
+                    // {handleInputChange}
+                    value={formik.values.password}
+                    // {password}
+                    onBlur={formik.handleBlur}
+                    id="password"
                     name="password"
                     type="text"
                     placeholder="Пароль"
@@ -119,11 +142,11 @@ const LoginForm = () => {
               </div>
             </InputWrapper>
             <ButtonWrapper>
-              <LoginButton type="submit">Додати</LoginButton>
+              <LoginButton type="submit">Увійти</LoginButton>
             </ButtonWrapper>
           </InputWrapper>
         </Form>
-        <Link to="registration" state={location.state}>
+        <Link to="/registration" state={location.state}>
           <Registration> Реєстрація </Registration>
         </Link>
       </FormContainer>

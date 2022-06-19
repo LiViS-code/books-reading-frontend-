@@ -6,8 +6,10 @@ const {
   accentColor,
   borderColor,
   activeColor,
+  primaryColor,
   backgroundColorForm,
   secondaryColor,
+  disabledColor,
 } = theme.colors;
 const { mainFont } = theme.fonts;
 const { spacing } = theme;
@@ -29,7 +31,7 @@ export const SectionContainer = styled.div`
 export const BackgroundContainer = styled.div`
   background: linear-gradient(0deg, rgba(9, 30, 63, 0.8), rgba(9, 30, 63, 0.8)),
     url(${img});
-  width: 280px;
+  width: 320px;
   background-size: 100%;
   @media screen and (min-width: ${tablet}) {
     height: ${spacing(140)};
@@ -43,8 +45,8 @@ export const BackgroundContainer = styled.div`
 `;
 
 export const FormContainer = styled.div`
-  /* padding-left: ${spacing(5)}; */
-  /* padding-right: ${spacing(5)}; */
+  padding-left: ${spacing(5)};
+  padding-right: ${spacing(5)};
   padding-top: ${spacing(8)};
   padding-bottom: ${spacing(8)};
   margin-right: auto;
@@ -129,6 +131,8 @@ export const Input = styled.input`
   display: flex;
   max-width: 400px;
   background-color: ${backgroundColorForm};
+  color: ${primaryColor};
+  font: ${mainFont};
   box-shadow: inset 0px 1px 2px rgba(29, 29, 27, 0.15);
   flex-direction: column;
   box-sizing: border-box;
@@ -148,9 +152,8 @@ export const Input = styled.input`
     color: ${borderColor};
   }
 
-  :focus {
+  &:focus {
     background-color: #ffffff;
-
     border: none;
     outline: none;
   }
@@ -196,14 +199,14 @@ export const LoginButton = styled.button`
   cursor: pointer;
   &:hover,
   &:focus {
+    color: ${activeColor};
+    background: ${disabledColor};
     border: transparent;
-    background-color: #ff6b08;
-    color: #ffffff;
   }
 
   @media screen and (min-width: ${tablet}) {
     margin-bottom: ${spacing(5)};
-  }
+  } ;
 `;
 
 export const Registration = styled.div`
@@ -218,4 +221,9 @@ export const Registration = styled.div`
   margin-right: auto;
   text-align: center;
   cursor: pointer;
+
+  &:hover,
+  &:focus {
+    color: ${borderColor};
+  }
 `;

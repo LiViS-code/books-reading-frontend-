@@ -1,7 +1,13 @@
 import styled from '@emotion/styled';
 import { theme } from '../../../constants/Theme';
 const {
-  colors: { accentColor, activeColor, outlineColor, primaryColor },
+  colors: {
+    accentColor,
+    activeColor,
+    outlineColor,
+    primaryColor,
+    disabledColor,
+  },
   fonts: { mainFont },
   fontSizing: { preTitleFontSize, mainFontSize },
   media: { tablet },
@@ -94,8 +100,8 @@ export const Back = styled.button`
   &:hover,
   &:focus {
     color: ${activeColor};
-    background: ${accentColor};
-    border: 1px solid ${accentColor};
+    background: ${disabledColor};
+    border: transparent;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
     transition: box-shadow 250ms ease;
   }
@@ -123,9 +129,9 @@ export const NewTraining = styled.button`
 
   &:hover,
   &:focus {
-    color: ${primaryColor};
-    border: 1px solid ${primaryColor};
-    background: ${activeColor};
+    color: ${activeColor};
+    background: ${disabledColor};
+    border: transparent;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
     transition: box-shadow 250ms ease;
   }

@@ -1,5 +1,5 @@
 import { TrainingPage } from '../../components/TrainingPage';
-import { DesktopView } from '../../components/TrainingPage/DesktopViev';
+import { DesktopView } from '../../components/TrainingPage/DesktopView';
 
 import { useMediaQuery } from '../../components/Header/hooks/useMediaQuery';
 
