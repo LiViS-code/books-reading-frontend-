@@ -16,7 +16,6 @@ import {
   DayNumber,
   TitleContainer,
 } from './LineChart.styled';
-// import { getDaysLeft } from '../../redux/books/books-selectors';
 import { getTraining } from '../../redux/books/books-selectors';
 import { getAllBooks } from '../../redux/selectors/user-selectors';
 
@@ -32,16 +31,17 @@ ChartJS.register(
 
 export default function LineChart() {
   const training = useSelector(getTraining);
-  const IdBooksInTraining = training.training[0].books;
 
-  const { start, end } = training.training[0];
-  const dayStart = new Date(start);
-  const dayEnd = new Date(end);
+  const currentTraining = training.find(
+    ({ end }) => new Date(end) > new Date()
+  );
+  const dayStart = new Date(currentTraining.start);
+  const dayEnd = new Date(currentTraining.end);
   const daysLeft = Math.floor((dayEnd - dayStart) / 86400000);
 
   const books = useSelector(getAllBooks);
   const trainingBooks = books.filter(book =>
-    IdBooksInTraining.find(id => book._id === id)
+    currentTraining.books.find(id => book._id === id)
   );
 
   let totalPages = 0;
@@ -52,11 +52,10 @@ export default function LineChart() {
   for (let i = 1; i < daysLeft; i++) {
     planDays.push(i);
   }
-  // const planData = planDays.map(el => ({"day": el, "pages": pagesForDay}));
 
   const planPages = Array(daysLeft).fill(pagesForDay);
 
-  const results = training.training[0].result;
+  const results = currentTraining.result;
 
   const options = {
     borderWidth: '2',
@@ -86,13 +85,13 @@ export default function LineChart() {
       },
     ],
   };
-  const days = 4;
+  const today = Math.ceil((new Date() - dayStart) / 86400000);
 
   return (
     <ChartContainer>
       <TitleContainer>
         <TitleChart>Кількість сторінок / день </TitleChart>
-        <DayNumber>{days}</DayNumber>
+        <DayNumber>{today}</DayNumber>
       </TitleContainer>
 
       <Line data={data} options={options}></Line>

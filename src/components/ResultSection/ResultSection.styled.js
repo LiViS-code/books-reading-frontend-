@@ -9,6 +9,7 @@ const {
     outlineColor,
     primaryColor,
     backgroundColor,
+    disabledColor,
   },
   spacing,
 } = theme;
@@ -94,7 +95,7 @@ export const Section = styled.div`
   }
 `;
 
-export const AddResult = styled.div`
+export const AddResult = styled.form`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
@@ -163,9 +164,9 @@ export const Button = styled.button`
 
   &:focus,
   &:hover {
-    color: ${primaryColor};
-    border: 1px solid ${primaryColor};
-    background: ${activeColor};
+    color: ${activeColor};
+    background: ${disabledColor};
+    border: transparent;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
     transition: box-shadow 250ms ease;
   }

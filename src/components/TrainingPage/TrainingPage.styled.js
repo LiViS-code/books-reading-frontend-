@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { theme } from '../../constants/Theme';
 const {
-  colors: { activeColor, accentColor, primaryColor },
+  colors: { activeColor, accentColor, disabledColor },
   media: { tablet, desktop },
   fonts: { mainFont },
   fontSizing: { mainFontSize },
@@ -43,13 +43,13 @@ export const TrainingButton = styled.button`
     width: ${spacing(50)};
     height: ${spacing(10)};
   }
-
   &:hover,
   &:focus {
-    color: ${primaryColor};
-    border: 1px solid ${primaryColor};
-    background: ${activeColor};
+    color: ${activeColor};
+    background: ${disabledColor};
+    border: transparent;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    transition: box-shadow 250ms ease;
   }
 `;
 export const TrainingBox = styled.div`
