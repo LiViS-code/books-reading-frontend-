@@ -8,7 +8,7 @@ export const TrainingView = () => {
   return (
     <>
       {!isMatches && <TrainingPage />}
-      {isMatches && <DesktopView />}
+      {/* {isMatches && <DesktopView />} */}
     </>
   );
 };
