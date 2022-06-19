@@ -40,8 +40,13 @@ export const TitleContainer = styled.div`
 `;
 
 export const TitleChart = styled.p`
-  font-size: 15px;
+  font-size: 12px;
   text-transform: uppercase;
+  margin-left: 23px;
+
+  @media screen and (min-width: ${tablet}) {
+    margin-left: 49px;
+  }
 `;
 
 export const DayNumber = styled.div`

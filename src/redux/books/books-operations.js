@@ -133,3 +133,12 @@ export const getTrainingData = createAsyncThunk('training/get', async () => {
     return console.log(error);
   }
 });
+
+export const getUserInfo = createAsyncThunk('api/users/info', async () => {
+  try {
+    const { data } = await axios.get(`api/users/info`);
+    return data;
+  } catch (error) {
+    return console.log(error);
+  }
+});
