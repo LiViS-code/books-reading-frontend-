@@ -80,9 +80,9 @@ export default function LibraryView() {
         <div id="going_to_read">
           <Title>Маю намір прочитати</Title>
           <Attributes />
-          {goingToRead.map(el => (
-            <BookCard book={el} key={el.title} />
-          ))}
+          {goingToRead.map(el => {
+            return <BookCard book={el} key={el.title} />;
+          })}
         </div>
       )}
 
