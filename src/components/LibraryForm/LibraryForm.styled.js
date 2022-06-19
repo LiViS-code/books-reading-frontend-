@@ -45,6 +45,7 @@ export const Input = styled.input`
   margin-top: 8px;
   margin-bottom: 20px;
   background-color: ${theme.colors.backgroundColor};
+  color: ${theme.colors.secondaryColor};
   @media screen and (max-width: 768px) {
     width: 100%;
   }
