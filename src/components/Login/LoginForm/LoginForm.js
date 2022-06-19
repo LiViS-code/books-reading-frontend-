@@ -8,7 +8,6 @@ import {
   InputWrapper,
   Registration,
   // GoogleButton,
-  GoogleImage,
   ButtonWrapper,
   LoginButton,
   StarContainer,
@@ -17,7 +16,6 @@ import {
   // SectionContainer
 } from './LoginForm.styled';
 import GoogleAuth from '../../GoogleAuth/GoogleAuth';
-import google_icon from '../../../image/google_icon.png';
 
 import React from 'react';
 // import { useState } from 'react';
