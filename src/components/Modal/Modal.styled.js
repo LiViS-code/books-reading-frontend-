@@ -25,8 +25,32 @@ export const Modals = styled.div`
   background: ${activeColor};
   box-shadow: 10px 10px 20px rgba(9, 30, 63, 0.2);
 `;
+export const WhiteContainer = styled.div`
+  width: 100vw;
+  height: 100vh;
+  background-color: ${activeColor};
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+`;
+export const Back = styled.img`
+  /* display: inline-block; */
+  fill: #ff6b08;
+`;
+export const ButtonBack = styled.button`
+  position: sticky;
+  bottom: 0;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 0px;
+  margin: 24px auto 0 20px;
+  padding: 18px;
+  background-color: transparent;
+  cursor: pointer;
+`;
+// export const Content = styled.div
 
-// export const Content = styled.div`
 // padding-top: 20px;
 //   padding-left: 20px;
 //   padding-right: 20px;

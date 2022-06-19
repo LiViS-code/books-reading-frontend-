@@ -10,8 +10,14 @@ import {
   ButtonAdd,
   BookCard,
 } from './index';
+import {
+  WhiteContainer,
+  Back,
+  ButtonBack,
+} from '../../components/Modal/Modal.styled';
 // import data from './data.json';
 import sprite from './symbol-defs.svg';
+import back from '../../image/svg/back.svg';
 import operations from '../../redux/asyncThunks';
 import { getAllBooks } from '../../redux/selectors/user-selectors';
 // import userSelectors from '../../redux/selectors/user-selectors';
@@ -54,7 +60,12 @@ export default function LibraryView() {
       {bigMedia && <LibraryForm />}
       {!hidden && (
         <Modal onClose={toggleHidden}>
-          <LibraryForm style={{ width: '280px' }} />
+          <WhiteContainer>
+            <ButtonBack onClick={toggleHidden}>
+              <Back src={back} alt="back" />
+            </ButtonBack>
+            <LibraryForm style={{ width: '280px' }} />
+          </WhiteContainer>
         </Modal>
       )}
       {!books && <LibraryModal />}
