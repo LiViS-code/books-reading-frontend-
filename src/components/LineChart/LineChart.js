@@ -16,7 +16,6 @@ import {
   DayNumber,
   TitleContainer,
 } from './LineChart.styled';
-// import { getDaysLeft } from '../../redux/books/books-selectors';
 import { getTraining, getTrainingId } from '../../redux/books/books-selectors';
 import { getAllBooks } from '../../redux/selectors/user-selectors';
 
@@ -30,20 +29,19 @@ ChartJS.register(
   Legend
 );
 
-export default function LineChart({ currentTraining }) {
-  // const training = useSelector(getTraining);
-  // const trainingId = useSelector(getTrainingId);
+export default function LineChart() {
+  const training = useSelector(getTraining);
 
-  // const currentTraining = training.find(({end}) => new Date(end) > new Date());
-
-  const { start, end, books: booksIdInTraining } = currentTraining;
-  const dayStart = new Date(start);
-  const dayEnd = new Date(end);
+  const currentTraining = training.find(
+    ({ end }) => new Date(end) > new Date()
+  );
+  const dayStart = new Date(currentTraining.start);
+  const dayEnd = new Date(currentTraining.end);
   const daysLeft = Math.floor((dayEnd - dayStart) / 86400000);
 
   const books = useSelector(getAllBooks);
   const trainingBooks = books.filter(book =>
-    booksIdInTraining.find(id => book._id === id)
+    currentTraining.books.find(id => book._id === id)
   );
 
   let totalPages = 0;
@@ -54,7 +52,6 @@ export default function LineChart({ currentTraining }) {
   for (let i = 1; i < daysLeft; i++) {
     planDays.push(i);
   }
-  // const planData = planDays.map(el => ({"day": el, "pages": pagesForDay}));
 
   const planPages = Array(daysLeft).fill(pagesForDay);
 

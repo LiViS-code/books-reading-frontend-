@@ -21,13 +21,19 @@ import {
   addResultToTraining,
   getTrainingData,
 } from '../../redux/books/books-operations';
+import ResultData from './ResultData';
 
-export default function ResultSection({ currentTraining }) {
+export default function ResultSection() {
   const dispatch = useDispatch();
   const [date, setDate] = useState(new Date());
   const [pages, setPages] = useState(null);
   // const [amount, SetAmount] = useState(null);
-  // const training = useSelector(getTraining);
+  const training = useSelector(getTraining);
+  let currentTraining = null;
+  if (training.length !== 0) {
+    currentTraining = training.find(({ end }) => new Date(end) > new Date());
+  }
+
   const trainingId = currentTraining._id;
 
   const CustomInput = ({ value, onClick }) => (
@@ -65,13 +71,13 @@ export default function ResultSection({ currentTraining }) {
           <Text>Кількість сторінок</Text>
           <Pages onChange={e => setPages(e.target.value)} />
         </Label>
-        {/* const trainingId = training.data._id; */}
 
         <Button
           type="submit"
-          onClick={() => {
+          onClick={e => {
             if (!pages) {
               alert('Введіть кількість прочитаних сторінок');
+              e.preventDefault();
             } else {
               dispatch(
                 addResultToTraining({
@@ -88,6 +94,7 @@ export default function ResultSection({ currentTraining }) {
         </Button>
       </AddResult>
       <Statistic>СТАТИСТИКА</Statistic>
+      <ResultData />
     </Section>
   );
 }

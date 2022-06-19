@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Countdown } from '../Datepickers';
+import { Countdown, CountdownTraining } from '../Datepickers';
 import { TimingContainer, TrainingButton } from './TrainingPage.styled';
 import { ButtonAdd } from '../../views/LibraryView';
 import MyGoal from '../MyGoal';
@@ -30,7 +30,7 @@ export const TrainingPage = () => {
   if (training.length !== 0) {
     currentTraining = training.find(({ end }) => new Date(end) > new Date());
   }
-  console.log(2);
+
   useEffect(() => {
     dispatch(operations.allBooks());
     dispatch(getTrainingData());
@@ -52,16 +52,16 @@ export const TrainingPage = () => {
 
   return (
     <>
-      <MyGoal currentTraining={currentTraining} />
+      <MyGoal />
       {isMatches && (
         <TimingContainer>
-          <Countdown currentTraining={currentTraining} />
+          {training.length === 0 ? <Countdown /> : <CountdownTraining />}
         </TimingContainer>
       )}
       {!hidden && (
         <Modal onClose={toggleHidden}>
           <TimingContainer style={{ width: '280px;', height: '100vw;' }}>
-            <Countdown currentTraining={currentTraining} />
+            {training.length === 0 ? <Countdown /> : <CountdownTraining />}
           </TimingContainer>
         </Modal>
       )}
@@ -80,7 +80,7 @@ export const TrainingPage = () => {
         </TrainingButton>
       )}
 
-      {training.length !== 0 && <LineChart currentTraining={currentTraining} />}
+      {training.length !== 0 && <LineChart />}
 
       <ButtonAdd type="button" onClick={toggleHidden}>
         <svg width={16} height={16}>
@@ -88,9 +88,7 @@ export const TrainingPage = () => {
         </svg>
       </ButtonAdd>
 
-      {training.length !== 0 && (
-        <ResultSection currentTraining={currentTraining} />
-      )}
+      {training.length !== 0 && <ResultSection />}
     </>
   );
 };
