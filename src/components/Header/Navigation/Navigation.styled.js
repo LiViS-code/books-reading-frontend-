@@ -3,7 +3,7 @@ import { theme } from '../../../constants/Theme';
 import { NavLink } from 'react-router-dom';
 
 const {
-  colors: { primaryColor, backgroundColorForm },
+  colors: { primaryColor, backgroundColorForm, accentColor },
   fonts: { mainFont },
   media: { tablet },
 } = theme;
@@ -39,5 +39,6 @@ export const Link = styled(NavLink)`
   &:hover,
   &:focus {
     background-color: ${backgroundColorForm};
+    fill: ${accentColor};
   }
 `;

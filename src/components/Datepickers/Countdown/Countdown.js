@@ -1,15 +1,12 @@
-import endOfYear from 'date-fns/endOfYear';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { Timer } from '../Timer/Timer';
 import {
   DatePickerWrapper,
   DateButton,
   Icon,
-  TimerWrapper,
-  TimeBlock,
   Arrow,
   Heading,
 } from './Calendar.styled';
@@ -22,15 +19,10 @@ import {
 
 export const Countdown = () => {
   const dispatch = useDispatch();
-  const yearEnd = endOfYear(new Date());
+  // const yearEnd = endOfYear(new Date());
   const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState('');
-  const currentDate = new Date().getTime();
-
-  useEffect(() => {
-    dispatch(startTraining(startDate));
-    dispatch(endTraining(endDate));
-  });
+  const [endDate, setEndDate] = useState(null);
+  //   const training = useSelector(getTraining);
 
   const CustomInput = ({ value, onClick }) => (
     <DateButton onClick={onClick}>
@@ -39,48 +31,40 @@ export const Countdown = () => {
       <Arrow src={Polygon} alt="polygon" />
     </DateButton>
   );
+
   return (
     <>
-      {endDate && (
-        <>
-          <TimerWrapper>
-            <TimeBlock>
-              <>До закінчення року залишилось</>
-              <Timer deadline={yearEnd} startdate={currentDate} />
-            </TimeBlock>
-            <TimeBlock>
-              <>До досягнення мети залишилось</>
-              <Timer deadline={endDate} startdate={startDate} />
-            </TimeBlock>
-          </TimerWrapper>
-        </>
-      )}
-      {!endDate && (
-        <>
-          <Heading>Моє тренування</Heading>
-          <DatePickerWrapper>
-            <div style={{ maxWidth: '280px' }}>
-              <DatePicker
-                selected={startDate}
-                onChange={date => setStartDate(date)}
-                includeDates={[new Date()]}
-                customInput={<CustomInput />}
-                value={'Початок'}
-                width="250px"
-              />
-            </div>
-            <div style={{ maxWidth: '280px' }}>
-              <DatePicker
-                selected={endDate}
-                onChange={date => setEndDate(date)}
-                minDate={new Date()}
-                customInput={<CustomInput />}
-                value={'Завершення'}
-              />
-            </div>
-          </DatePickerWrapper>
-        </>
-      )}
+      <>
+        <Heading>Моє тренування</Heading>
+        <DatePickerWrapper>
+          <div style={{ maxWidth: '280px' }}>
+            <DatePicker
+              selected={startDate}
+              onChange={date => {
+                setStartDate(date);
+                console.log(date);
+                dispatch(startTraining(date));
+              }}
+              includeDates={[new Date()]}
+              customInput={<CustomInput />}
+              value={'Початок'}
+              width="250px"
+            />
+          </div>
+          <div style={{ maxWidth: '280px' }}>
+            <DatePicker
+              selected={endDate}
+              onChange={date => {
+                setEndDate(date);
+                dispatch(endTraining(date));
+              }}
+              minDate={new Date()}
+              customInput={<CustomInput />}
+              value={'Завершення'}
+            />
+          </div>
+        </DatePickerWrapper>
+      </>
     </>
   );
 };

@@ -1,7 +1,13 @@
 import styled from 'styled-components';
 import { theme } from '../../../constants/Theme';
 const {
-  colors: { secondaryColor, accentColor, borderColor, outlineColor },
+  colors: {
+    secondaryColor,
+    accentColor,
+    borderColor,
+    outlineColor,
+    backgroundColor,
+  },
   media: { tablet, desktop },
 } = theme;
 
@@ -15,7 +21,8 @@ export const HeaderList = styled.div`
     display: flex;
     padding-top: 12px;
     padding-bottom: 12px;
-    border-top: 1px solid #f6f7fb;
+    border-top: 1px solid;
+    border-color: ${backgroundColor};
   }
 `;
 export const HeaderListItem = styled.p`
@@ -35,7 +42,7 @@ export const ListBooks = styled.ul`
     align-items: center;
     width: 280px;
     margin: 0 auto;
-    border-top: 1px solid #f6f7fb;
+    border-top: 1px solid ${backgroundColor};
     @media screen and (min-width: ${tablet}) {
       width: 704px;
     }
@@ -52,13 +59,13 @@ export const ItemBooks = styled.li`
   width: 280px;
   padding-top: 20px;
   padding-bottom: 20px;
-  border-bottom: 1px solid #e0e5eb;
+  border-bottom: 1px solid;
+  border-color: ${backgroundColor};
   & .icon {
     position: absolute;
     left: 0;
   }
   & .iconDelete {
-    position: absolute;
     right: 0;
     margin-top: 0;
     fill: ${outlineColor};
@@ -98,7 +105,9 @@ export const BookItem = styled.li`
     width: 280px;
     padding-top: 20px;
     padding-bottom: 20px;
-    border-bottom: 1px solid #e0e5eb;
+    border-bottom: 1px solid;
+    border-color: ${backgroundColor};
+
     position: absolute;
     left: 0;
   }
@@ -193,7 +202,8 @@ export const EmptyItem = styled.li`
   width: 280px;
   padding-top: 32px;
   padding-bottom: 32px;
-  border-bottom: 1px solid #e0e5eb;
+  border-bottom: 1px solid;
+  border-color: ${backgroundColor};
   & .icon {
     position: absolute;
     left: 0;
@@ -239,4 +249,21 @@ export const Placeholder = styled.span`
     font-size: 14px;
     line-height: 1.21;
   }
+`;
+export const IconButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 24px;
+  padding: 7px;
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: transparent;
+  cursor: pointer;
+`;
+
+export const DeleteIcon = styled.img`
+  display: inline-block;
 `;

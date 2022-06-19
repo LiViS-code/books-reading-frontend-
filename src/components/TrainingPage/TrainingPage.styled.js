@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 import { theme } from '../../constants/Theme';
 const {
-  colors: { activeColor, accentColor },
+  colors: { activeColor, accentColor, disabledColor },
   media: { tablet, desktop },
+  fonts: { mainFont },
+  fontSizing: { mainFontSize },
   spacing,
 } = theme;
 
@@ -27,10 +29,28 @@ export const TrainingButton = styled.button`
   border: none;
   margin: ${spacing(8)} auto ${spacing(8)} auto;
   cursor: pointer;
+
+  font-family: ${mainFont};
+  font-style: normal;
+  font-weight: 500;
+  font-size: ${mainFontSize};
+  line-height: 17px;
+  color: ${activeColor};
+  text-align: center;
+  cursor: pointer;
+
   @media (min-width: ${tablet}) {
     width: ${spacing(50)};
-    height: ${spacing(15)};
-  } ;
+    height: ${spacing(10)};
+  }
+  &:hover,
+  &:focus {
+    color: ${activeColor};
+    background: ${disabledColor};
+    border: transparent;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    transition: box-shadow 250ms ease;
+  }
 `;
 export const TrainingBox = styled.div`
   display: flex;

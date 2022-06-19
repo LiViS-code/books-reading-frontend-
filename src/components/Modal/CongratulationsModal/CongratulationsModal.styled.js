@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { theme } from '../../../constants/Theme';
 const {
-  colors: { accentColor, activeColor, primaryColor },
+  colors: { accentColor, activeColor, primaryColor, disabledColor },
   fonts: { mainFont },
   fontSizing: { preTitleFontSize, mainFontSize },
   media: { tablet },
@@ -85,9 +85,9 @@ export const Done = styled.button`
 
   &:hover,
   &:focus {
-    color: ${primaryColor};
-    border: 1px solid ${primaryColor};
-    background: ${activeColor};
+    color: ${activeColor};
+    border: transparent;
+    background: ${disabledColor};
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
     transition: box-shadow 250ms ease;
   }

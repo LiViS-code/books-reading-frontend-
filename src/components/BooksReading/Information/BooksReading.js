@@ -58,13 +58,13 @@ export default function BooksReading({ loggined }) {
             </Link>
           ) : (
             <>
-              <button className={styles.sign}>
-                <Link className={styles.link} to="login">
+              <button className={styles.login}>
+                <Link className={styles.login_link} to="login">
                   Увійти
                 </Link>
               </button>
-              <button className={styles.sign}>
-                <Link className={styles.link} to="register">
+              <button className={styles.registration}>
+                <Link className={styles.registration_link} to="registration">
                   Реєстрація
                 </Link>
               </button>

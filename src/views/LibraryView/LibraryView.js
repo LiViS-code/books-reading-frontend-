@@ -19,6 +19,7 @@ import LibraryForm from '../../components/LibraryForm/LibraryForm';
 import LibraryModal from '../../components/LibraryModal';
 import { useMediaQuery } from '../../components/Header/hooks/useMediaQuery';
 import Modal from '../../components/Modal/Modal';
+import { getTrainingData } from '../../redux/books/books-operations';
 
 export default function LibraryView() {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ export default function LibraryView() {
 
   useEffect(() => {
     dispatch(operations.allBooks());
+    dispatch(getTrainingData());
   }, [dispatch]);
 
   const alreadyRed = books
@@ -43,12 +45,13 @@ export default function LibraryView() {
     setIsHidden(state => !state);
   };
   const isMatches = useMediaQuery('(max-width: 768px)');
-
+  const bigMedia = useMediaQuery('(min-width: 768px)');
   return (
     <Library>
       {!books && isMatches && (
         <LibraryForm style={{ width: '280px;', padding: '20px;' }} />
       )}
+      {bigMedia && <LibraryForm />}
       {!hidden && (
         <Modal onClose={toggleHidden}>
           <LibraryForm style={{ width: '280px' }} />
