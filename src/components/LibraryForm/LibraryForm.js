@@ -98,6 +98,8 @@ const LibraryForm = () => {
                   name="year"
                   type="text"
                   placeholder="..."
+                  pattern="^([12]\d)?(\d\d)$"
+                  title="Invalid year"
                   required
                 />
               </Label>
