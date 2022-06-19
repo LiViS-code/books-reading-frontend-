@@ -135,6 +135,7 @@ export const Pages = styled.input`
   outline: transparent;
   border: 1px solid ${outlineColor};
   padding: ${spacing(3)};
+  color: ${borderColor};
 
   *:focus &:hover {
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
