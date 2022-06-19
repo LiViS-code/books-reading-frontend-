@@ -65,10 +65,11 @@ export const FormContainer = styled.div`
   @media screen and (max-width: ${spacing(320)}) {
   }
 `;
-export const GoogleButton = styled.button`
+export const GoogleButton = styled.a`
   position: relative;
   margin-right: auto;
   margin-left: auto;
+  text-decoration: none;
   margin-bottom: ${spacing(7)};
   display: flex;
   justify-content: center;
