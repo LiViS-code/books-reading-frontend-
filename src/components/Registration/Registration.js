@@ -117,7 +117,16 @@ const RegistrationForm = () => {
         // onClick={dispatch(operations.google())}
         // type="submit"
         >
-          Google<GoogleImage src={google_icon} alt="google icon"></GoogleImage>
+          {' '}
+          <a
+            href="https://book-reader-team.herokuapp.com/api/auth/google"
+            rel="noreferrer"
+            target="_blank"
+          >
+            {' '}
+            Google
+          </a>
+          <GoogleImage src={google_icon} alt="google icon"></GoogleImage>
         </GoogleButton>
         <Form
           onSubmit={formik.handleSubmit}
