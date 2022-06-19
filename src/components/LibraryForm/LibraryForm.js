@@ -1,5 +1,6 @@
-import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 import {
   FormContainer,
   Form,
@@ -16,60 +17,66 @@ import { addBook } from '../../redux/books/books-operations';
 
 const LibraryForm = () => {
   const dispatch = useDispatch();
-
-  const [title, setTitle] = useState('');
-  const [author, setAuthor] = useState('');
-  const [year, setYear] = useState('');
-  const [pages, setPages] = useState('');
-
-  const handleChange = e => {
-    switch (e.target.name) {
-      case 'title':
-        setTitle(e.target.value);
-        break;
-      case 'author':
-        setAuthor(e.target.value);
-        break;
-      case 'year':
-        setYear(e.target.value);
-        break;
-      case 'pages':
-        setPages(e.target.value);
-        break;
-      default:
-        return;
-    }
-  };
-
-  const reset = () => {
-    setTitle('');
-    setAuthor('');
-    setYear('');
-    setPages('');
-  };
-
-  const handleSubmit = e => {
-    e.preventDefault();
-
-    dispatch(addBook({ title, author, year, pages }));
-
-    reset();
-  };
-
+  const formik = useFormik({
+    initialValues: {
+      title: '',
+      author: '',
+      year: '',
+      pages: '',
+    },
+    validationSchema: Yup.object({
+      title: Yup.string()
+        .max(50, 'Book title should be less than 50')
+        .matches(/^[^\s-]/, 'Name should not start from space or dash')
+        .required('Book title is required'),
+      author: Yup.string()
+        .max(50, 'Author name should be less than 50')
+        .matches(
+          /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я])?[a-zA-Zа-яА-Я]*)*$/,
+          'Author name must contain letters'
+        )
+        .required('Author is required'),
+      year: Yup.number()
+        .typeError('Year should be a number')
+        .positive('Year should be positive')
+        .required('Year is required')
+        .max(2022, `Year should be less than currentYear`)
+        .min(1000, 'Year should not be less than 1000'),
+      pages: Yup.number()
+        .typeError('Pages should be a number')
+        .positive('Pages should be positive')
+        .max(9999, 'Must be no more than 4 characters')
+        .required('Pages is required'),
+    }),
+    onSubmit: (values, { resetForm }) => {
+      dispatch(
+        addBook({
+          title: values.title,
+          author: values.author,
+          year: values.year,
+          pages: values.pages,
+        })
+      );
+      resetForm({ values: '' });
+    },
+  });
   return (
     <FormContainer>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={formik.handleSubmit}>
         <InputWrapper>
           <div>
             <Label>
               Назва книги
+              {formik.touched.title && formik.errors.title ? (
+                <div>{formik.errors.title}</div>
+              ) : null}
               <Input
-                onChange={handleChange}
-                value={title}
+                onChange={formik.handleChange}
+                value={formik.values.title}
+                onBlur={formik.handleBlur}
                 name="title"
-                type="text"
+                id="title"
                 placeholder="..."
-                required
               />
             </Label>
           </div>
@@ -77,41 +84,46 @@ const LibraryForm = () => {
             <div>
               <Label>
                 Автор книги
+                {formik.touched.author && formik.errors.author ? (
+                  <div>{formik.errors.author}</div>
+                ) : null}
                 <Input
-                  onChange={handleChange}
-                  value={author}
+                  onChange={formik.handleChange}
+                  value={formik.values.author}
+                  onBlur={formik.handleBlur}
                   name="author"
-                  type="text"
-                  pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-                  title="Author name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+                  id="author"
                   placeholder="..."
-                  required
                 />
               </Label>
             </div>
             <NumberDiv>
               <Label>
                 Рік випуску
+                {formik.touched.year && formik.errors.year ? (
+                  <div>{formik.errors.year}</div>
+                ) : null}
                 <Input
-                  onChange={handleChange}
-                  value={year}
+                  onChange={formik.handleChange}
+                  value={formik.values.year}
+                  onBlur={formik.handleBlur}
                   name="year"
-                  type="text"
+                  id="year"
                   placeholder="..."
-                  pattern="^([12]\d)?(\d\d)$"
-                  title="Invalid year"
-                  required
                 />
               </Label>
               <Label>
                 Кількість сторінок
+                {formik.touched.pages && formik.errors.pages ? (
+                  <div>{formik.errors.pages}</div>
+                ) : null}
                 <Input
-                  onChange={handleChange}
-                  value={pages}
+                  onChange={formik.handleChange}
+                  value={formik.values.pages}
+                  onBlur={formik.handleBlur}
                   name="pages"
-                  type="number"
+                  id="pages"
                   placeholder="..."
-                  required
                 />
               </Label>
             </NumberDiv>
