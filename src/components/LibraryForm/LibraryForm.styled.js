@@ -39,6 +39,7 @@ export const Input = styled.input`
   height: 42px;
   border: 1px solid #a6abb9;
   padding: 12px 12px 13px 12px;
+  color: black;
   margin-top: 8px;
   margin-bottom: 20px;
   background-color: ${theme.colors.backgroundColor};
