@@ -51,11 +51,14 @@ const logIn = createAsyncThunk('auth/login', async credentials => {
   }
 });
 
-const loginG = createAction('auth/google', ({ name, email, token }) => {
-  return {
-    payload: { token, user: { name, email } },
-  };
-});
+const loginG = createAction(
+  'auth/google',
+  ({ name, email, verificationToken }) => {
+    return {
+      payload: { verificationToken, user: { name, email } },
+    };
+  }
+);
 
 const logOut = createAsyncThunk('auth/logout', async () => {
   try {
