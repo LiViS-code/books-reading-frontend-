@@ -8,6 +8,7 @@ const {
     accentColor,
     activeColor,
     backgroundColor,
+    disabledColor,
   },
   fonts: { mainFont },
   fontSizing: { mainFontSize, preTitleFontSize, titleFontSize },
@@ -87,9 +88,9 @@ export const ButtonTraining = styled.button`
 
   &:focus,
   &:hover {
-    color: ${primaryColor};
-    border: 1px solid ${primaryColor};
-    background: ${activeColor};
+    color: ${activeColor};
+    background: ${disabledColor};
+    border: transparent;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
     transition: box-shadow 250ms ease;
 
@@ -125,10 +126,20 @@ export const ButtonAdd = styled.button`
   margin-right: auto;
   padding: 18px;
   background-color: ${accentColor};
+  cursor: pointer;
 
   @media screen and (min-width: ${tablet}) {
     display: none;
-  } ;
+  }
+
+  &:hover,
+  &:focus {
+    color: ${activeColor};
+    background: ${disabledColor};
+    border: transparent;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    transition: box-shadow 250ms ease;
+  }
 `;
 
 export const AttributeBook = styled.p`

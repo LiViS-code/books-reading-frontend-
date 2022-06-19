@@ -9,6 +9,7 @@ const {
   backgroundColorForm,
   secondaryColor,
   primaryColor,
+  disabledColor,
 } = theme.colors;
 const { mainFont } = theme.fonts;
 const { spacing } = theme;
@@ -213,9 +214,9 @@ export const LoginButton = styled.button`
   cursor: pointer;
   &:hover,
   &:focus {
+    color: ${activeColor};
+    background: ${disabledColor};
     border: transparent;
-    background-color: #ff6b08;
-    color: #ffffff;
   }
 
   @media screen and (min-width: ${tablet}) {

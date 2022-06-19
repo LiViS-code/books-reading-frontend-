@@ -20,8 +20,8 @@ export const AccentButton = styled.button`
 
   &:hover,
   &:focus {
-    background-color: transparent;
-    border: 1px solid ${theme.colors.primaryColor};
+    background-color: ${theme.colors.disabledColor};
+    border: transparent;
     box-shadow: none;
   }
 
