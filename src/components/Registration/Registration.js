@@ -25,7 +25,6 @@ import {
 } from '../Registration/Registration.styled';
 import google_icon from '../../image/google_icon.png';
 import { useDispatch } from 'react-redux';
-// import { useState } from 'react';
 import operations from '../../redux/asyncThunks';
 import { Link, useLocation } from 'react-router-dom';
 

@@ -93,7 +93,7 @@ export const ButtonTraining = styled.button`
     border: transparent;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
     transition: box-shadow 250ms ease;
-
+  }
   @media screen and (min-width: ${tablet}) {
     margin-top: 40px;
   }
@@ -108,11 +108,6 @@ export const ButtonName = styled.p`
   font-weight: 600;
   line-height: 1.22;
   color: ${activeColor};
-
-  &:focus,
-  &:hover {
-    color: ${primaryColor};
-  }
 `;
 
 export const ButtonAdd = styled.button`
