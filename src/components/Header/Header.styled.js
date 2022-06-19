@@ -5,8 +5,8 @@ const {
 } = theme;
 
 export const Div = styled.div`
-  /* width: 280px; */
-  width: 100%;
+  /* width: 320px; */
+  /* width: 100%; */
   display: flex;
   background-color: white;
   padding: 16px 20px;
@@ -35,5 +35,5 @@ export const Avatar = styled.div`
 `;
 export const Container = styled.div`
   box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
-  width: 100%;
+  /* width: 100%; */
 `;
