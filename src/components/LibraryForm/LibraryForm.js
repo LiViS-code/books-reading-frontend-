@@ -129,7 +129,12 @@ const LibraryForm = () => {
             </NumberDiv>
           </InputContainer>
           <ButtonWrapper>
-            <PrimaryButton type="submit">Додати</PrimaryButton>
+            <PrimaryButton
+              type="submit"
+              onClick={() => window.location.reload(false)}
+            >
+              Додати
+            </PrimaryButton>
           </ButtonWrapper>
         </InputWrapper>
       </Form>
