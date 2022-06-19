@@ -46,6 +46,7 @@ export const TrainingPage = () => {
   const toggleHidden = () => {
     setIsHidden(state => !state);
   };
+
   const isMatches = useMediaQuery('(min-width: 768px)');
 
   return (

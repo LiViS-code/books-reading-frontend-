@@ -9,7 +9,7 @@ export default function Navigation() {
       <Link to="library">
         <img src={iconlibrary} alt="icon library" />
       </Link>
-      <Link to="training">
+      <Link to="training" style={{ backgroundColor: '#F5F7FA;' }}>
         <img src={iconhome} alt="icon home" />
       </Link>
     </Nav>

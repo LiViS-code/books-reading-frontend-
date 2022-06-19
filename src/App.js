@@ -10,7 +10,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import operations from './redux/asyncThunks';
 import { Link } from 'react-router-dom';
-import Header from './components/Header';
+// import Header from './components/Header';
 import { Loader } from './components/Loader/Loader';
 import BooksReading from './components/BooksReading/Information/BooksReading';
 import { useMediaQuery } from './components/Header/hooks/useMediaQuery';
@@ -51,7 +51,7 @@ function App() {
     !isFetchCurrentUser && (
       <>
         <GlobalStyle />
-        <Header />
+        {/* <Header /> */}
         <Suspense fallback={<Loader />}>
           <Routes>
             <Route path="/" element={<Layout />}>
