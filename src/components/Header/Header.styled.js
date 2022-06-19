@@ -5,8 +5,7 @@ const {
 } = theme;
 
 export const Div = styled.div`
-  /* width: 320px; */
-  /* width: 100%; */
+  /* width: 280px; */
   display: flex;
   background-color: white;
   padding: 16px 20px;
@@ -15,11 +14,11 @@ export const Div = styled.div`
   @media (min-width: ${tablet}) {
     padding: 21px 32px;
     justify-content: space-between;
-    width: 704px;
+    /* width: 704px; */
   }
   @media (min-width: ${desktop}) {
     padding: 16px;
-    width: 1248px;
+    /* width: 1248px; */
   }
 `;
 
