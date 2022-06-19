@@ -2,10 +2,7 @@ import styled from '@emotion/styled';
 import { theme } from '../../constants/Theme';
 
 const {
-  colors: { primaryColor, secondaryColor, activeColor, disabledColor },
-  fonts: { mainFont },
-  fontSizing: { mainFontSize },
-  media: { tablet, desktop },
+  media: { tablet },
 } = theme;
 
 export const Result = styled.div`

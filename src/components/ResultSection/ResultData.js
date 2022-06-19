@@ -1,9 +1,8 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { getTraining } from '../../redux/books/books-selectors';
 import { Result, Day, Hour, Page, PageWord } from './ResultData.styled';
 
 export default function ResultData() {
-  const dispatch = useDispatch();
   const training = useSelector(getTraining);
   const currentTraining = training.find(
     ({ end }) => new Date(end) > new Date()
