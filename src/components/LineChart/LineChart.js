@@ -1,4 +1,5 @@
-import { useSelector } from 'react-redux';
+import { React } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Line } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -18,6 +19,7 @@ import {
 } from './LineChart.styled';
 import { getTraining } from '../../redux/books/books-selectors';
 import { getAllBooks } from '../../redux/selectors/user-selectors';
+import { getTrainingData } from '../../redux/books/books-operations';
 
 ChartJS.register(
   CategoryScale,
@@ -30,7 +32,9 @@ ChartJS.register(
 );
 
 export default function LineChart() {
+  const dispatch = useDispatch();
   const training = useSelector(getTraining);
+  dispatch(getTrainingData);
 
   const currentTraining = training.find(
     ({ end }) => new Date(end) > new Date()
@@ -47,6 +51,11 @@ export default function LineChart() {
   let totalPages = 0;
   trainingBooks.map(el => (totalPages += el.pages));
   const pagesForDay = totalPages / daysLeft;
+
+  let resultPagesAmount = null;
+  if (currentTraining.result.lenght !== 0) {
+    currentTraining.result.map(el => (resultPagesAmount += Number(el.page)));
+  }
 
   const planDays = [];
   for (let i = 1; i < daysLeft; i++) {
@@ -88,13 +97,15 @@ export default function LineChart() {
   const today = Math.ceil((new Date() - dayStart) / 86400000);
 
   return (
-    <ChartContainer>
-      <TitleContainer>
-        <TitleChart>Кількість сторінок / день </TitleChart>
-        <DayNumber>{today}</DayNumber>
-      </TitleContainer>
+    <>
+      <ChartContainer>
+        <TitleContainer>
+          <TitleChart>Кількість сторінок / день </TitleChart>
+          <DayNumber>{today}</DayNumber>
+        </TitleContainer>
 
-      <Line data={data} options={options}></Line>
-    </ChartContainer>
+        <Line data={data} options={options}></Line>
+      </ChartContainer>
+    </>
   );
 }
