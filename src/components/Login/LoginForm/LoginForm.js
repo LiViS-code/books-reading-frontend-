@@ -22,7 +22,7 @@ import { useEffect } from 'react';
 // import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import operations from '../../../redux/asyncThunks';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 // const initialValues = {
 //   email: '',
@@ -72,7 +72,7 @@ const LoginForm = () => {
     if (token && email && name) {
       dispatch(operations.googleLogin({ token, email, name }));
     }
-  }, [token, email, name]);
+  }, []);
 
   const formik = useFormik({
     initialValues: {
