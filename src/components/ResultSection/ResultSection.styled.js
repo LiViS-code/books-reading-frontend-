@@ -132,6 +132,7 @@ export const Pages = styled.input`
   font-size: 14px;
   line-height: 1.21;
   background-color: #f6f7fb;
+  color: #242a37;
   outline: transparent;
   border: 1px solid ${outlineColor};
   padding: ${spacing(3)};
