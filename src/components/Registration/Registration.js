@@ -6,10 +6,9 @@ import {
   Input,
   Label,
   InputWrapper,
-  GoogleButton,
-  GoogleImage,
   ButtonWrapper,
 } from '../Login/LoginForm/LoginForm.styled';
+import GoogleAuth from '../GoogleAuth/GoogleAuth';
 
 import {
   StarContainer,
@@ -23,7 +22,6 @@ import {
   BackgroundContainer,
   FormContainer,
 } from '../Registration/Registration.styled';
-import google_icon from '../../image/google_icon.png';
 import { useDispatch } from 'react-redux';
 import operations from '../../redux/asyncThunks';
 import { Link, useLocation } from 'react-router-dom';
@@ -113,21 +111,7 @@ const RegistrationForm = () => {
   return (
     <BackgroundContainer>
       <FormContainer>
-        <GoogleButton
-        // onClick={dispatch(operations.google())}
-        // type="submit"
-        >
-          {' '}
-          <a
-            href="https://book-reader-team.herokuapp.com/api/auth/google"
-            rel="noreferrer"
-            target="_blank"
-          >
-            {' '}
-            Google
-          </a>
-          <GoogleImage src={google_icon} alt="google icon"></GoogleImage>
-        </GoogleButton>
+        <GoogleAuth></GoogleAuth>
         <Form
           onSubmit={formik.handleSubmit}
           // onSubmit={handleSubmit}
