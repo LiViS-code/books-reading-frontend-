@@ -62,20 +62,17 @@ const LoginForm = () => {
   //   setEmail('');
   //   setPassword('');
   // };
-  function parse() {
-    let {
-      token = null,
-      email = null,
-      name = null,
-    } = queryString.parse(location.search);
+  let {
+    token = null,
+    email = null,
+    name = null,
+  } = queryString.parse(location.search);
 
-    if (token && email && name) {
-      dispatch(operations.googleLogin());
-    }
-  }
   useEffect(() => {
-    parse();
-  }, [parse]);
+    if (token && email && name) {
+      dispatch(operations.googleLogin({ token, email, name }));
+    }
+  });
 
   const formik = useFormik({
     initialValues: {
