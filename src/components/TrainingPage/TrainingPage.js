@@ -1,7 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { Countdown, CountdownTraining } from '../Datepickers';
-import { TimingContainer, TrainingButton } from './TrainingPage.styled';
+import {
+  TimingContainer,
+  TrainingButton,
+  NewTrainingPage,
+} from './TrainingPage.styled';
 import { ButtonAdd } from '../../views/LibraryView';
 import MyGoal from '../MyGoal';
 import LineChart from '../LineChart/LineChart';
@@ -16,13 +21,14 @@ import {
 import {
   addTraining,
   getTrainingData,
-  getUserInfo,
+  startNewTraining,
 } from '../../redux/books/books-operations';
 import operations from '../../redux/asyncThunks';
 import { useMediaQuery } from '../Header/hooks/useMediaQuery';
 import sprite from '../../views/LibraryView/symbol-defs.svg';
 import back from '../../image/svg/back.svg';
 import Modal from '../Modal/Modal';
+import { NewTraining } from '../Modal/WellDoneModal/WellDoneModal.styled';
 import {
   WhiteContainer,
   Back,
@@ -31,23 +37,25 @@ import {
 
 export const TrainingPage = () => {
   const dispatch = useDispatch();
-  const [reload, setReload] = useState(false);
+  const navigate = useNavigate();
   const training = useSelector(getTraining);
 
   useEffect(() => {
     dispatch(operations.allBooks());
     dispatch(getTrainingData());
-  }, [reload, dispatch]);
+  }, [dispatch, navigate]);
 
   const start = useSelector(getStartTraining);
   const end = useSelector(getEndTraining);
 
   const startTraining = () => {
     dispatch(addTraining({ start, end }));
-    dispatch(getUserInfo());
-    setReload(true);
+    dispatch(getTrainingData());
   };
 
+  const newTraining = () => {
+    dispatch(startNewTraining());
+  };
   const [hidden, setIsHidden] = useState(true);
   const toggleHidden = () => {
     setIsHidden(state => !state);
@@ -85,7 +93,7 @@ export const TrainingPage = () => {
       )}
 
       {training.length === 0 && (
-        <TrainingButton onClick={startTraining}>
+        <TrainingButton type="button" onClick={startTraining}>
           Почати тренування
         </TrainingButton>
       )}
@@ -99,6 +107,19 @@ export const TrainingPage = () => {
       </ButtonAdd>
 
       {training.length !== 0 && <ResultSection />}
+
+      {training.length !== 0 && (
+        <NewTrainingPage>
+          <NewTraining
+            type="submit"
+            onClick={() => {
+              newTraining();
+            }}
+          >
+            Нове тренування
+          </NewTraining>
+        </NewTrainingPage>
+      )}
     </>
   );
 };
