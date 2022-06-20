@@ -25,7 +25,6 @@ import {
 } from '../Registration/Registration.styled';
 import google_icon from '../../image/google_icon.png';
 import { useDispatch } from 'react-redux';
-// import { useState } from 'react';
 import operations from '../../redux/asyncThunks';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -118,7 +117,16 @@ const RegistrationForm = () => {
         // onClick={dispatch(operations.google())}
         // type="submit"
         >
-          Google<GoogleImage src={google_icon} alt="google icon"></GoogleImage>
+          {' '}
+          <a
+            href="https://book-reader-team.herokuapp.com/api/auth/google"
+            rel="noreferrer"
+            target="_blank"
+          >
+            {' '}
+            Google
+          </a>
+          <GoogleImage src={google_icon} alt="google icon"></GoogleImage>
         </GoogleButton>
         <Form
           onSubmit={formik.handleSubmit}

@@ -132,10 +132,10 @@ export const Pages = styled.input`
   font-size: 14px;
   line-height: 1.21;
   background-color: #f6f7fb;
-  color: #242a37;
   outline: transparent;
   border: 1px solid ${outlineColor};
   padding: ${spacing(3)};
+  color: ${borderColor};
 
   *:focus &:hover {
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);

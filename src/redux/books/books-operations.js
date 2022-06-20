@@ -12,27 +12,15 @@ const token = {
   },
 };
 
-export const addBook = createAsyncThunk(
-  'books/addBook',
-  async (values, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const persistedToken = state.auth.token;
-    token.set(persistedToken);
-    const book = {
-      title: values.title,
-      author: values.author,
-      year: values.year,
-      pages: values.pages,
-    };
-    try {
-      const { data } = await axios.post('/api/books', book);
-      console.log(data);
-      return data;
-    } catch (error) {
-      console.log(error);
-    }
+export const addBook = createAsyncThunk('books/addBook', async credentials => {
+  try {
+    const { data } = await axios.post('/api/books', credentials);
+    token.set(data.user.token);
+    return data;
+  } catch (error) {
+    console.log(error);
   }
-);
+});
 
 export const setTrainingBooks = createAsyncThunk('books/set', async list => {
   return list;
@@ -137,25 +125,6 @@ export const getTrainingData = createAsyncThunk('training/get', async () => {
 export const getUserInfo = createAsyncThunk('api/users/info', async () => {
   try {
     const { data } = await axios.get(`api/users/info`);
-    return data;
-  } catch (error) {
-    return console.log(error);
-  }
-});
-
-export const startNewTraining = createAsyncThunk('training/new', async data => {
-  try {
-    return data;
-  } catch (error) {
-    return console.log(error);
-  }
-});
-
-export const changeBookStatus = createAsyncThunk('books/status', async id => {
-  try {
-    const { data } = await axios.patch(`api/books/${id}/wish`, {
-      wish: 'Already read',
-    });
     return data;
   } catch (error) {
     return console.log(error);

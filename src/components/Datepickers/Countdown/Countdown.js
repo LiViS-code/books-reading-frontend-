@@ -42,6 +42,7 @@ export const Countdown = () => {
               selected={startDate}
               onChange={date => {
                 setStartDate(date);
+                console.log(date);
                 dispatch(startTraining(date));
               }}
               includeDates={[new Date()]}

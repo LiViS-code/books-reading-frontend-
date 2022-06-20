@@ -125,45 +125,13 @@ export default function LineChart() {
   const today = Math.ceil((new Date() - dayStart) / 86400000);
 
   return (
-    <>
-      <ChartContainer>
-        <TitleContainer>
-          <TitleChart>Кількість сторінок / день </TitleChart>
-          <DayNumber>{today}</DayNumber>
-        </TitleContainer>
+    <ChartContainer>
+      <TitleContainer>
+        <TitleChart>Кількість сторінок / день </TitleChart>
+        <DayNumber>{today}</DayNumber>
+      </TitleContainer>
 
-        <Line data={data} options={options}></Line>
-      </ChartContainer>
-
-      {finishTrainingSuccess && (
-        <Modal>
-          <WellDoneModal
-            toggleWellDoneModal={setFinishTrainingSuccess}
-            text={'Молодець!!! Усі книги прочитано! Тренування пройшло вдало!'}
-          />
-          {conf && <Confetti width={width} height={height} />}
-        </Modal>
-      )}
-
-      {oneBookRed && (
-        <Modal>
-          <CongratulationsModal
-            toggleCongratulationsModal={setOneBookRed}
-            id={bookId}
-          />
-        </Modal>
-      )}
-
-      {failTraining && (
-        <Modal>
-          <WellDoneModal
-            toggleWellDoneModal={setFailTraining}
-            text={
-              'Ти молодчина, але потрібно швидше! Наступного разу тобі все вдасться'
-            }
-          />
-        </Modal>
-      )}
-    </>
+      <Line data={data} options={options}></Line>
+    </ChartContainer>
   );
 }
