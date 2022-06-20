@@ -28,28 +28,28 @@ import { useMediaQuery } from '../Header/hooks/useMediaQuery';
 import sprite from '../../views/LibraryView/symbol-defs.svg';
 import Modal from '../Modal/Modal';
 import { NewTraining } from '../Modal/WellDoneModal/WellDoneModal.styled';
-import Confetti from 'react-confetti';
+// import Confetti from 'react-confetti';
 import WellDoneModal from '../Modal/WellDoneModal/WellDoneModal';
-import CongratulationsModal from '../Modal/CongratulationsModal/CongratulationsModal';
-import useWindowSize from 'react-use/lib/useWindowSize';
+// import CongratulationsModal from '../Modal/CongratulationsModal/CongratulationsModal';
+// import useWindowSize from 'react-use/lib/useWindowSize';
 
 export const TrainingPage = () => {
   const dispatch = useDispatch();
   const training = useSelector(getTraining);
-  const [oneBookRed, setOneBookRed] = useState(false);
+  // const [oneBookRed, setOneBookRed] = useState(false);
   const [finishTrainingSuccess, setFinishTrainingSuccess] = useState(false);
-  const [conf, setConf] = useState(false);
+  // const [conf, setConf] = useState(false);
   const [failTraining, setFailTraining] = useState(false);
-  const [bookId, setBookId] = useState(null);
+  // const [bookId, setBookId] = useState(null);
   const books = useSelector(getAllBooks);
-  const { width, height } = useWindowSize();
+  // const { width, height } = useWindowSize();
   const start = useSelector(getStartTraining);
   const end = useSelector(getEndTraining);
 
   useEffect(() => {
     dispatch(operations.allBooks());
     dispatch(getTrainingData());
-  }, []);
+  }, [dispatch]);
 
   if (training.lenght !== 0) {
     const currentTraining = training.find(
@@ -155,18 +155,18 @@ export const TrainingPage = () => {
             toggleWellDoneModal={setFinishTrainingSuccess}
             text={'Молодець!!! Усі книги прочитано! Тренування пройшло вдало!'}
           />
-          {conf && <Confetti width={width} height={height} />}
+          {/* {conf && <Confetti width={width} height={height} />} */}
         </Modal>
       )}
 
-      {oneBookRed && (
+      {/* {oneBookRed && (
         <Modal>
           <CongratulationsModal
             toggleCongratulationsModal={setOneBookRed}
             id={bookId}
           />
         </Modal>
-      )}
+      )} */}
 
       {failTraining && (
         <Modal>
