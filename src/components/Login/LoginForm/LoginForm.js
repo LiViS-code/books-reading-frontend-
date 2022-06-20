@@ -72,7 +72,7 @@ const LoginForm = () => {
     if (token && email && name) {
       dispatch(operations.googleLogin({ token, email, name }));
     }
-  }, []);
+  }, [token, email, name]);
 
   const formik = useFormik({
     initialValues: {
