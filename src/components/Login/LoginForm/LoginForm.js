@@ -70,7 +70,7 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (token && email && name) {
-      dispatch(operations.googleLogin({ token, email, name }));
+      dispatch(operations.googleLogin());
     }
   }, [dispatch]);
 
