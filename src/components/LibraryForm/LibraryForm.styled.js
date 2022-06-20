@@ -8,7 +8,7 @@ export const FormContainer = styled.div`
   margin-top: 32px;
   @media (max-width: ${theme.media.tablet}) {
     width: 280px;
-    padding: 0 20px 20px 20px;
+    /* padding: 0 20px 20px 20px; */
   }
   @media screen and (min-width: 1280px) {
     margin-top: 40px;
@@ -21,6 +21,9 @@ export const Form = styled.form`
   flex-direction: row;
   justify-content: center;
   width: 100%;
+  @media screen and (min-width: 768px) {
+    padding: 0 32px 40px 32px;
+  }
 `;
 
 export const InputWrapper = styled.div`
@@ -39,9 +42,11 @@ export const Input = styled.input`
   height: 42px;
   border: 1px solid #a6abb9;
   padding: 12px 12px 13px 12px;
+  color: black;
   margin-top: 8px;
   margin-bottom: 20px;
   background-color: ${theme.colors.backgroundColor};
+  color: ${theme.colors.secondaryColor};
   @media screen and (max-width: 768px) {
     width: 100%;
   }
@@ -52,6 +57,7 @@ export const Input = styled.input`
       switch (props.name) {
         case 'title':
           return '704px';
+
         case 'name':
           return '336px';
         case 'year':
