@@ -1,3 +1,4 @@
+import { React, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Line } from 'react-chartjs-2';
 import {
@@ -18,6 +19,11 @@ import {
 } from './LineChart.styled';
 import { getTraining } from '../../redux/books/books-selectors';
 import { getAllBooks } from '../../redux/selectors/user-selectors';
+import WellDoneModal from '../Modal/WellDoneModal/WellDoneModal';
+import CongratulationsModal from '../Modal/CongratulationsModal/CongratulationsModal';
+import Modal from '../Modal/Modal';
+import useWindowSize from 'react-use/lib/useWindowSize';
+import Confetti from 'react-confetti';
 
 ChartJS.register(
   CategoryScale,
@@ -30,6 +36,12 @@ ChartJS.register(
 );
 
 export default function LineChart() {
+  // const dispatch = useDispatch();
+  const [oneBookRed, setOneBookRed] = useState(false);
+  const [bookId, setBookId] = useState(null);
+  const [finishTrainingSuccess, setFinishTrainingSuccess] = useState(false);
+  const [conf, setConf] = useState(false);
+  const [failTraining, setFailTraining] = useState(false);
   const training = useSelector(getTraining);
 
   const currentTraining = training.find(
@@ -47,6 +59,26 @@ export default function LineChart() {
   let totalPages = 0;
   trainingBooks.map(el => (totalPages += el.pages));
   const pagesForDay = totalPages / daysLeft;
+
+  let resultPagesAmount = 0;
+  currentTraining.result.map(el => (resultPagesAmount += Number(el.page)));
+
+  const { width, height } = useWindowSize();
+
+  useEffect(() => {
+    totalPages <= resultPagesAmount && setFinishTrainingSuccess(true);
+    setConf(true);
+  }, [totalPages, resultPagesAmount]);
+
+  trainingBooks.map(book => {
+    if (resultPagesAmount >= book.pages) {
+      book.wish !== 'Already read' && setOneBookRed(true);
+      book.wish !== 'Already read' && setBookId(book._id);
+    }
+
+    new Date(dayEnd) <= new Date() && setFailTraining(true);
+    return dayEnd;
+  });
 
   const planDays = [];
   for (let i = 1; i < daysLeft; i++) {
@@ -88,13 +120,45 @@ export default function LineChart() {
   const today = Math.ceil((new Date() - dayStart) / 86400000);
 
   return (
-    <ChartContainer>
-      <TitleContainer>
-        <TitleChart>Кількість сторінок / день </TitleChart>
-        <DayNumber>{today}</DayNumber>
-      </TitleContainer>
+    <>
+      <ChartContainer>
+        <TitleContainer>
+          <TitleChart>Кількість сторінок / день </TitleChart>
+          <DayNumber>{today}</DayNumber>
+        </TitleContainer>
 
-      <Line data={data} options={options}></Line>
-    </ChartContainer>
+        <Line data={data} options={options}></Line>
+      </ChartContainer>
+
+      {finishTrainingSuccess && (
+        <Modal>
+          <WellDoneModal
+            toggleWellDoneModal={setFinishTrainingSuccess}
+            text={'Молодець!!! Усі книги прочитано! Тренування пройшло вдало!'}
+          />
+          {conf && <Confetti width={width} height={height} />}
+        </Modal>
+      )}
+
+      {oneBookRed && (
+        <Modal>
+          <CongratulationsModal
+            toggleCongratulationsModal={setOneBookRed}
+            id={bookId}
+          />
+        </Modal>
+      )}
+
+      {failTraining && (
+        <Modal>
+          <WellDoneModal
+            toggleWellDoneModal={setFailTraining}
+            text={
+              'Ти молодчина, але потрібно швидше! Наступного разу тобі все вдасться'
+            }
+          />
+        </Modal>
+      )}
+    </>
   );
 }
