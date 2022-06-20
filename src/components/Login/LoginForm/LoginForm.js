@@ -16,12 +16,13 @@ import {
   // SectionContainer
 } from './LoginForm.styled';
 import GoogleAuth from '../../GoogleAuth/GoogleAuth';
-
+import queryString from 'query-string';
 import React from 'react';
+import { useEffect } from 'react';
 // import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import operations from '../../../redux/asyncThunks';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 // const initialValues = {
 //   email: '',
@@ -31,6 +32,8 @@ import { Link, useLocation } from 'react-router-dom';
 const LoginForm = () => {
   const dispatch = useDispatch();
   const location = useLocation();
+
+  sessionStorage.clear();
 
   // const [email, setEmail] = useState('');
   // const [password, setPassword] = useState('');
@@ -59,6 +62,17 @@ const LoginForm = () => {
   //   setEmail('');
   //   setPassword('');
   // };
+  let {
+    token = null,
+    email = null,
+    name = null,
+  } = queryString.parse(location.search);
+
+  useEffect(() => {
+    if (token && email && name) {
+      dispatch(operations.googleLogin({ token, email, name }));
+    }
+  }, []);
 
   const formik = useFormik({
     initialValues: {

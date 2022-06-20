@@ -51,11 +51,11 @@ const logIn = createAsyncThunk('auth/login', async credentials => {
   }
 });
 
-const loginG = createAction(
-  'auth/google',
-  ({ name, email, verificationToken }) => {
+const googleLogin = createAction(
+  'auth/googleLogin',
+  ({ name, email, token }) => {
     return {
-      payload: { verificationToken, user: { name, email } },
+      payload: { token, user: { name, email } },
     };
   }
 );
@@ -158,7 +158,7 @@ const operations = {
   register,
   logOut,
   logIn,
-  loginG,
+  googleLogin,
   fetchCurrentUser,
   resume,
   fetchResume,
