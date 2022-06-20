@@ -26,8 +26,14 @@ import {
 import operations from '../../redux/asyncThunks';
 import { useMediaQuery } from '../Header/hooks/useMediaQuery';
 import sprite from '../../views/LibraryView/symbol-defs.svg';
+import back from '../../image/svg/back.svg';
 import Modal from '../Modal/Modal';
 import { NewTraining } from '../Modal/WellDoneModal/WellDoneModal.styled';
+import {
+  WhiteContainer,
+  Back,
+  ButtonBack,
+} from '../../components/Modal/Modal.styled';
 
 export const TrainingPage = () => {
   const dispatch = useDispatch();
@@ -54,6 +60,7 @@ export const TrainingPage = () => {
   const toggleHidden = () => {
     setIsHidden(state => !state);
   };
+
   const isMatches = useMediaQuery('(min-width: 768px)');
 
   return (
@@ -66,9 +73,14 @@ export const TrainingPage = () => {
       )}
       {!hidden && (
         <Modal onClose={toggleHidden}>
-          <TimingContainer style={{ width: '280px;', height: '100vw;' }}>
-            {training.length === 0 ? <Countdown /> : <CountdownTraining />}
-          </TimingContainer>
+          <WhiteContainer>
+            <ButtonBack onClick={toggleHidden}>
+              <Back src={back} alt="back" />
+            </ButtonBack>
+            <TimingContainer style={{ width: '280px;', height: '100vw;' }}>
+              {training.length === 0 ? <Countdown /> : <CountdownTraining />}
+            </TimingContainer>
+          </WhiteContainer>
         </Modal>
       )}
       {training.length === 0 && (
