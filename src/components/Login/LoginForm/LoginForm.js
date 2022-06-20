@@ -75,7 +75,7 @@ const LoginForm = () => {
   }
   useEffect(() => {
     parse();
-  }, []);
+  }, [parse]);
 
   const formik = useFormik({
     initialValues: {
