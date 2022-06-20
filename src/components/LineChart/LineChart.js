@@ -1,5 +1,5 @@
 import { React, useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Line } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -24,6 +24,7 @@ import CongratulationsModal from '../Modal/CongratulationsModal/CongratulationsM
 import Modal from '../Modal/Modal';
 import useWindowSize from 'react-use/lib/useWindowSize';
 import Confetti from 'react-confetti';
+import { getTrainingData } from '../../redux/books/books-operations';
 
 ChartJS.register(
   CategoryScale,
@@ -36,13 +37,14 @@ ChartJS.register(
 );
 
 export default function LineChart() {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [oneBookRed, setOneBookRed] = useState(false);
   const [bookId, setBookId] = useState(null);
   const [finishTrainingSuccess, setFinishTrainingSuccess] = useState(false);
   const [conf, setConf] = useState(false);
   const [failTraining, setFailTraining] = useState(false);
   const training = useSelector(getTraining);
+  dispatch(getTrainingData);
 
   const currentTraining = training.find(
     ({ end }) => new Date(end) > new Date()
@@ -60,25 +62,28 @@ export default function LineChart() {
   trainingBooks.map(el => (totalPages += el.pages));
   const pagesForDay = totalPages / daysLeft;
 
-  let resultPagesAmount = 0;
-  currentTraining.result.map(el => (resultPagesAmount += Number(el.page)));
+  let resultPagesAmount = null;
+  if (currentTraining.result.lenght !== 0) {
+    currentTraining.result.map(el => (resultPagesAmount += Number(el.page)));
+  }
 
   const { width, height } = useWindowSize();
 
   useEffect(() => {
-    totalPages <= resultPagesAmount && setFinishTrainingSuccess(true);
+    resultPagesAmount &&
+      totalPages <= resultPagesAmount &&
+      setFinishTrainingSuccess(true);
     setConf(true);
+    trainingBooks.map(book => {
+      if (resultPagesAmount >= book.pages) {
+        book.wish !== 'Already read' && setOneBookRed(true);
+        book.wish !== 'Already read' && setBookId(book._id);
+      }
+
+      new Date(dayEnd) <= new Date() && setFailTraining(true);
+      return dayEnd;
+    }, []);
   }, [totalPages, resultPagesAmount]);
-
-  trainingBooks.map(book => {
-    if (resultPagesAmount >= book.pages) {
-      book.wish !== 'Already read' && setOneBookRed(true);
-      book.wish !== 'Already read' && setBookId(book._id);
-    }
-
-    new Date(dayEnd) <= new Date() && setFailTraining(true);
-    return dayEnd;
-  });
 
   const planDays = [];
   for (let i = 1; i < daysLeft; i++) {

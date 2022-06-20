@@ -10,7 +10,10 @@ import {
   Buttons,
 } from './WellDoneModal.styled';
 import images from '../../../image/svg/symbol-defs.svg';
-import { startNewTraining } from '../../../redux/books/books-operations';
+import {
+  getTrainingData,
+  startNewTraining,
+} from '../../../redux/books/books-operations';
 const WellDoneModal = ({ toggleWellDoneModal, text }) => {
   const dispatch = useDispatch();
 

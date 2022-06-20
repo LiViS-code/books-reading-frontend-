@@ -31,13 +31,12 @@ import { NewTraining } from '../Modal/WellDoneModal/WellDoneModal.styled';
 
 export const TrainingPage = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const training = useSelector(getTraining);
 
   useEffect(() => {
     dispatch(operations.allBooks());
     dispatch(getTrainingData());
-  }, [dispatch, navigate]);
+  }, [dispatch]);
 
   const start = useSelector(getStartTraining);
   const end = useSelector(getEndTraining);
