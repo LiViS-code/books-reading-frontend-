@@ -130,22 +130,3 @@ export const getUserInfo = createAsyncThunk('api/users/info', async () => {
     return console.log(error);
   }
 });
-
-export const startNewTraining = createAsyncThunk('training/new', async data => {
-  try {
-    return data;
-  } catch (error) {
-    return console.log(error);
-  }
-});
-
-export const changeBookStatus = createAsyncThunk('books/status', async id => {
-  try {
-    const { data } = await axios.patch(`api/books/${id}/wish`, {
-      wish: 'Already read',
-    });
-    return data;
-  } catch (error) {
-    return console.log(error);
-  }
-});
