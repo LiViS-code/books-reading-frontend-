@@ -68,7 +68,7 @@ const LibraryForm = () => {
             <Label>
               Назва книги
               {formik.touched.title && formik.errors.title ? (
-                <div>{formik.errors.title}</div>
+                <div style={{ color: '#FF6B08' }}>{formik.errors.title}</div>
               ) : null}
               <Input
                 onChange={formik.handleChange}
@@ -85,7 +85,7 @@ const LibraryForm = () => {
               <Label>
                 Автор книги
                 {formik.touched.author && formik.errors.author ? (
-                  <div>{formik.errors.author}</div>
+                  <div style={{ color: '#FF6B08' }}>{formik.errors.author}</div>
                 ) : null}
                 <Input
                   onChange={formik.handleChange}
@@ -101,7 +101,7 @@ const LibraryForm = () => {
               <Label>
                 Рік випуску
                 {formik.touched.year && formik.errors.year ? (
-                  <div>{formik.errors.year}</div>
+                  <div style={{ color: '#FF6B08' }}>{formik.errors.year}</div>
                 ) : null}
                 <Input
                   onChange={formik.handleChange}
@@ -115,7 +115,7 @@ const LibraryForm = () => {
               <Label>
                 Кількість сторінок
                 {formik.touched.pages && formik.errors.pages ? (
-                  <div>{formik.errors.pages}</div>
+                  <div style={{ color: '#FF6B08' }}>{formik.errors.pages}</div>
                 ) : null}
                 <Input
                   onChange={formik.handleChange}
@@ -130,8 +130,8 @@ const LibraryForm = () => {
           </InputContainer>
           <ButtonWrapper>
             <PrimaryButton
-              type="submit"
-              onClick={() => window.location.reload(false)}
+              type="button"
+              // onClick={() => window.location.reload(false)}
             >
               Додати
             </PrimaryButton>
