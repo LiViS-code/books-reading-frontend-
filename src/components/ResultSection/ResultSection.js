@@ -16,21 +16,29 @@ import { getTraining } from '../../redux/books/books-selectors';
 import {
   addResultToTraining,
   getTrainingData,
+  trainingResult,
+  addTrainingResult,
 } from '../../redux/books/books-operations';
 import ResultData from './ResultData';
 
 export default function ResultSection() {
+  const [pages, setPages] = useState(null);
+  const training = useSelector(getTraining);
   const dispatch = useDispatch();
   // const [date, setDate] = useState(new Date());
-  const [pages, setPages] = useState(null);
   // const [amount, SetAmount] = useState(null);
-  const training = useSelector(getTraining);
   let currentTraining = null;
-  if (training.length !== 0) {
-    currentTraining = training.find(({ end }) => new Date(end) > new Date());
-  }
 
-  const trainingId = currentTraining._id;
+  if (training.length !== 0) {
+    let latestStart = training[0].start;
+    training.map(({ start }) => {
+      if (latestStart < start) {
+        latestStart = start;
+      }
+    });
+    currentTraining = training.find(({ start }) => start === latestStart);
+    console.log(currentTraining.result);
+  }
 
   // const CustomInput = ({ value, onClick }) => (
   //   <DateButton onClick={onClick}>
@@ -79,10 +87,9 @@ export default function ResultSection() {
                 addResultToTraining({
                   date: new Date(),
                   page: pages,
-                  id: trainingId,
+                  id: currentTraining._id,
                 })
               );
-              dispatch(getTrainingData);
             }
           }}
         >

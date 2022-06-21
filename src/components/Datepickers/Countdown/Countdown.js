@@ -18,11 +18,13 @@ import {
 } from '../../../redux/books/books-operations';
 
 export const Countdown = () => {
-  const dispatch = useDispatch();
-  // const yearEnd = endOfYear(new Date());
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(null);
+  const [valueStart, setValueStart] = useState('Початок');
+  const [valueEnd, setValueEnd] = useState('Завершення');
+  // const yearEnd = endOfYear(new Date());
   //   const training = useSelector(getTraining);
+  const dispatch = useDispatch();
 
   const CustomInput = ({ value, onClick }) => (
     <DateButton onClick={onClick}>
@@ -42,11 +44,12 @@ export const Countdown = () => {
               selected={startDate}
               onChange={date => {
                 setStartDate(date);
+                setValueStart(date);
                 dispatch(startTraining(date));
               }}
               includeDates={[new Date()]}
               customInput={<CustomInput />}
-              value={'Початок'}
+              value={valueStart}
               width="250px"
             />
           </div>
@@ -55,11 +58,12 @@ export const Countdown = () => {
               selected={endDate}
               onChange={date => {
                 setEndDate(date);
+                setValueEnd(date);
                 dispatch(endTraining(date));
               }}
               minDate={new Date()}
               customInput={<CustomInput />}
-              value={'Завершення'}
+              value={valueEnd}
             />
           </div>
         </DatePickerWrapper>

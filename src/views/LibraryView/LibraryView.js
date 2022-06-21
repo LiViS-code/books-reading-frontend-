@@ -10,25 +10,24 @@ import {
   ButtonAdd,
   BookCard,
 } from './index';
-// import data from './data.json';
 import sprite from './symbol-defs.svg';
 import operations from '../../redux/asyncThunks';
 import { getAllBooks } from '../../redux/selectors/user-selectors';
-// import userSelectors from '../../redux/selectors/user-selectors';
 import LibraryForm from '../../components/LibraryForm/LibraryForm';
 import LibraryModal from '../../components/LibraryModal';
 import { useMediaQuery } from '../../components/Header/hooks/useMediaQuery';
 import Modal from '../../components/Modal/Modal';
-import { getTrainingData } from '../../redux/books/books-operations';
 
 export default function LibraryView() {
   const dispatch = useDispatch();
-  const books = useSelector(getAllBooks);
   const [hidden, setIsHidden] = useState(true);
+
+  const books = useSelector(getAllBooks);
+  const isMatches = useMediaQuery('(max-width: 768px)');
+  const bigMedia = useMediaQuery('(min-width: 768px)');
 
   useEffect(() => {
     dispatch(operations.allBooks());
-    dispatch(getTrainingData());
   }, [dispatch]);
 
   const alreadyRed = books
@@ -44,20 +43,23 @@ export default function LibraryView() {
   const toggleHidden = () => {
     setIsHidden(state => !state);
   };
-  const isMatches = useMediaQuery('(max-width: 768px)');
-  const bigMedia = useMediaQuery('(min-width: 768px)');
+
   return (
     <Library>
       {!books && isMatches && (
         <LibraryForm style={{ width: '280px;', padding: '20px;' }} />
       )}
+
       {bigMedia && <LibraryForm />}
+
       {!hidden && (
         <Modal onClose={toggleHidden}>
           <LibraryForm style={{ width: '280px' }} />
         </Modal>
       )}
+
       {!books && <LibraryModal />}
+
       {alreadyRed.length !== 0 && (
         <div id="already_red">
           <Title>Прочитано</Title>
@@ -67,6 +69,7 @@ export default function LibraryView() {
           ))}
         </div>
       )}
+
       {readingNow.length !== 0 && (
         <div id="reading_now">
           <Title>Читаю</Title>
@@ -76,6 +79,7 @@ export default function LibraryView() {
           ))}
         </div>
       )}
+
       {goingToRead.length !== 0 && (
         <div id="going_to_read">
           <Title>Маю намір прочитати</Title>
@@ -97,11 +101,6 @@ export default function LibraryView() {
           <use href={`${sprite}#plus`} />
         </svg>
       </ButtonAdd>
-
-      {/* <LineChart></LineChart> */}
     </Library>
   );
 }
-
-// LibraryView();
-// fetchBooksAPI();

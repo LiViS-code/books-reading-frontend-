@@ -161,3 +161,22 @@ export const changeBookStatus = createAsyncThunk('books/status', async id => {
     return console.log(error);
   }
 });
+
+export const trainingResult = createAsyncThunk('books/status', async arr => {
+  try {
+    return arr;
+  } catch (error) {
+    return console.log(error);
+  }
+});
+
+export const addTrainingResult = createAsyncThunk(
+  'books/status',
+  async data => {
+    try {
+      return data;
+    } catch (error) {
+      return console.log(error);
+    }
+  }
+);

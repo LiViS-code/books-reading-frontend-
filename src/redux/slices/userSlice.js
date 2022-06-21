@@ -13,6 +13,8 @@ import {
   getUserInfo,
   startNewTraining,
   changeBookStatus,
+  trainingResult,
+  addTrainingResult,
 } from '../books/books-operations';
 
 const initialState = {
@@ -22,7 +24,7 @@ const initialState = {
   start: null,
   end: null,
   results: [],
-  training: null,
+  training: [],
   trainingId: null,
   userInfo: null,
 };

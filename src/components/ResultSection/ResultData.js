@@ -1,12 +1,20 @@
 import { useSelector } from 'react-redux';
+import { nanoid } from 'nanoid';
 import { getTraining } from '../../redux/books/books-selectors';
 import { Result, Day, Hour, Page, PageWord } from './ResultData.styled';
 
 export default function ResultData() {
   const training = useSelector(getTraining);
-  const currentTraining = training.find(
-    ({ end }) => new Date(end) > new Date()
-  );
+  let currentTraining = null;
+  if (training.length !== 0) {
+    let latestStart = training[0].start;
+    training.map(({ start }) => {
+      if (latestStart < start) {
+        latestStart = start;
+      }
+    });
+    currentTraining = training.find(({ start }) => start === latestStart);
+  }
 
   return (
     <>
@@ -20,7 +28,7 @@ export default function ResultData() {
         const sec = d.getSeconds();
 
         return (
-          <Result>
+          <Result key={nanoid()}>
             <Day>
               {day}.{month}.{year}
             </Day>

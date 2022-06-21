@@ -28,73 +28,67 @@ import { useMediaQuery } from '../Header/hooks/useMediaQuery';
 import sprite from '../../views/LibraryView/symbol-defs.svg';
 import Modal from '../Modal/Modal';
 import { NewTraining } from '../Modal/WellDoneModal/WellDoneModal.styled';
-// import Confetti from 'react-confetti';
+import Confetti from 'react-confetti';
 import WellDoneModal from '../Modal/WellDoneModal/WellDoneModal';
 // import CongratulationsModal from '../Modal/CongratulationsModal/CongratulationsModal';
-// import useWindowSize from 'react-use/lib/useWindowSize';
+import useWindowSize from 'react-use/lib/useWindowSize';
 
 export const TrainingPage = () => {
-  const dispatch = useDispatch();
-  const training = useSelector(getTraining);
-  // const [oneBookRed, setOneBookRed] = useState(false);
+  const [hidden, setIsHidden] = useState(true);
   const [finishTrainingSuccess, setFinishTrainingSuccess] = useState(false);
-  // const [conf, setConf] = useState(false);
   const [failTraining, setFailTraining] = useState(false);
-  // const [bookId, setBookId] = useState(null);
+  // const [oneBookRed, setOneBookRed] = useState(false);
+  // const [conf, setConf] = useState(false);
+
+  const isMatches = useMediaQuery('(min-width: 768px)');
+  const dispatch = useDispatch();
   const books = useSelector(getAllBooks);
-  // const { width, height } = useWindowSize();
+  const training = useSelector(getTraining);
   const start = useSelector(getStartTraining);
   const end = useSelector(getEndTraining);
+  const { width, height } = useWindowSize();
 
   useEffect(() => {
-    dispatch(operations.allBooks());
     dispatch(getTrainingData());
-  }, [dispatch]);
-
-  if (training.lenght !== 0) {
-    const currentTraining = training.find(
-      ({ end }) => new Date(end) > new Date()
-    );
-    // const dayStart = new Date(currentTraining.start);
-    const dayEnd = new Date(currentTraining.end);
-    // const daysLeft = Math.floor((dayEnd - dayStart) / 86400000);
-    const trainingBooks = books.filter(book =>
-      currentTraining.books.find(id => book._id === id)
-    );
-    let totalPages = 0;
-    trainingBooks.map(el => (totalPages += el.pages));
-
-    let resultPagesAmount = null;
-    if (currentTraining.result.lenght !== 0) {
-      currentTraining.result.map(el => (resultPagesAmount += Number(el.page)));
+    let currentTraining = null;
+    if (training.length !== 0) {
+      let latestStart = training[0].start;
+      training.map(({ start }) => {
+        if (latestStart < start) {
+          latestStart = start;
+        }
+      });
+      currentTraining = training.find(({ start }) => start === latestStart);
+      // To check fininshed trainig of not
+      let totalPages = 0;
+      books.map(({ _id, pages }) => {
+        if (currentTraining.books.includes(_id)) {
+          totalPages += pages;
+        }
+      });
+      let pagesRed = 0;
+      currentTraining.result.map(({ page }) => (pagesRed += Number(page)));
+      const success = pagesRed >= totalPages;
+      if (new Date(currentTraining.end) > new Date()) {
+        success && setFinishTrainingSuccess(true);
+      }
     }
+  }, []);
 
-    // if(resultPagesAmount) {
-    //   totalPages <= resultPagesAmount && setFinishTrainingSuccess(true);
-    //   totalPages <= resultPagesAmount && setConf(true);
-    //   trainingBooks.map(book => {
-    //     if (resultPagesAmount >= book.pages) {
-    //       book.wish !== 'Already read' && setOneBookRed(true);
-    //       book.wish !== 'Already read' && setBookId(book._id);
-    //     };
-    //   });
-    // };
-    new Date(dayEnd) <= new Date() && setFailTraining(true);
-  }
+  // To find current training in training array
+
+  const toggleHidden = () => {
+    setIsHidden(state => !state);
+  };
 
   const startTraining = () => {
     dispatch(addTraining({ start, end }));
-    dispatch(getTrainingData());
+    // dispatch(getTrainingData());
   };
 
   const newTraining = () => {
     dispatch(startNewTraining());
   };
-  const [hidden, setIsHidden] = useState(true);
-  const toggleHidden = () => {
-    setIsHidden(state => !state);
-  };
-  const isMatches = useMediaQuery('(min-width: 768px)');
 
   return (
     <>
@@ -155,7 +149,7 @@ export const TrainingPage = () => {
             toggleWellDoneModal={setFinishTrainingSuccess}
             text={'Молодець!!! Усі книги прочитано! Тренування пройшло вдало!'}
           />
-          {/* {conf && <Confetti width={width} height={height} />} */}
+          <Confetti width={width} height={height} />
         </Modal>
       )}
 

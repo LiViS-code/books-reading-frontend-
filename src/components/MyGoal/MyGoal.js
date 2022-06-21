@@ -17,17 +17,16 @@ const MyGoal = () => {
   let currentTraining = null;
 
   if (training.length !== 0) {
-    currentTraining = training.find(({ end }) => new Date(end) > new Date());
-  }
-
-  if (training.length !== 0) {
+    let latestStart = training[0].start;
+    training.map(({ start }) => {
+      if (latestStart < start) {
+        latestStart = start;
+      }
+    });
+    currentTraining = training.find(({ start }) => start === latestStart);
     const { start, end, books } = currentTraining;
-    const dayStart = new Date(start);
-    const dayEnd = new Date(end);
-    const daysLeft = Math.floor((dayEnd - dayStart) / 86400000);
-    const bookAmount = books.length;
-    days = daysLeft;
-    booksNumber = bookAmount;
+    days = Math.floor((new Date(end) - new Date(start)) / 86400000);
+    booksNumber = books.length;
   }
 
   return (
