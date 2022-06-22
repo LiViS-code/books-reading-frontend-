@@ -45,7 +45,7 @@ export const TrainingPage = () => {
 
   useEffect(() => {
     dispatch(getTrainingData());
-  }, []);
+  }, [dispatch]);
 
   const toggleHidden = () => {
     setIsHidden(state => !state);

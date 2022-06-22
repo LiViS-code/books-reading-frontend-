@@ -111,7 +111,7 @@ export default function ResultSection() {
 
   useEffect(() => {
     checkResults();
-  }, [dispatch]);
+  }, [dispatch, checkResults]);
 
   // const CustomInput = ({ value, onClick }) => (
   //   <DateButton onClick={onClick}>
