@@ -17,6 +17,7 @@ import { getTraining } from '../../redux/books/books-selectors';
 import {
   addResultToTraining,
   changeBookStatus,
+  getTrainingData,
 } from '../../redux/books/books-operations';
 import ResultData from './ResultData';
 import Modal from '../Modal/Modal';
@@ -53,9 +54,10 @@ export default function ResultSection() {
 
   useEffect(() => {
     checkResults();
-  }, []);
+  }, [dispatch]);
 
   const checkResults = () => {
+    dispatch(getTrainingData);
     //Find books of currentTraining by id
     const trainBooks = [];
     books.filter(b => {
@@ -68,7 +70,6 @@ export default function ResultSection() {
     //Find amount of pages in current training
     let trainPages = 0;
     trainBooks.map(({ pages }) => (trainPages += pages));
-    console.log(trainPages);
 
     //Find amount of alredy red pages
     let pagesRed = 0;
@@ -87,8 +88,9 @@ export default function ResultSection() {
 
     trainBooks.map(b => {
       if (b.pages < pagesRed) {
-        b.wish !== 'Already read' && dispatch(changeBookStatus(b._id));
-        b.wish !== 'Already read' && setOneBookRed(true);
+        if (b.wish !== 'Already read') {
+          dispatch(changeBookStatus(b._id));
+        }
       }
       return trainBooks;
     });
@@ -137,6 +139,7 @@ export default function ResultSection() {
               alert('Введіть кількість прочитаних сторінок');
               e.preventDefault();
             } else {
+              // setOneBookRed(true);
               dispatch(
                 addResultToTraining({
                   date: new Date(),
