@@ -31,7 +31,7 @@ export const DesktopView = () => {
               <TrainLib />
               <TrainingButton
                 type="submit"
-                onSubmit={dispatch(getTrainingData())}
+                onSubmit={() => dispatch(getTrainingData())}
               >
                 Почати тренування
               </TrainingButton>

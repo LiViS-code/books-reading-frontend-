@@ -52,28 +52,41 @@ export default function ResultSection() {
     currentTraining = training.find(({ start }) => start === latestStart);
   }
 
-  useEffect(() => {
-    checkResults();
-  }, [dispatch]);
-
   const checkResults = () => {
     dispatch(getTrainingData);
+    console.log(training);
+    console.log(currentTraining);
     //Find books of currentTraining by id
-    const trainBooks = [];
+    const trainBooksAll = [];
     books.filter(b => {
       if (currentTraining.books.includes(b._id)) {
-        trainBooks.push(b);
+        trainBooksAll.push(b);
       }
-      return trainBooks;
+      return trainBooksAll;
     });
+
+    //Find only books with status "Reading now"
+    const trainBooks = trainBooksAll.filter(
+      ({ wish }) => wish === 'Reading now'
+    );
+
+    //Books already red during this training
+    const booksRed = trainBooksAll.filter(({ wish }) => wish === 'Already red');
 
     //Find amount of pages in current training
     let trainPages = 0;
-    trainBooks.map(({ pages }) => (trainPages += pages));
+    trainBooksAll.map(({ pages }) => (trainPages += Number(pages)));
 
-    //Find amount of alredy red pages
+    //Find amount of alredy red pages from results
     let pagesRed = 0;
     currentTraining.result.map(({ page }) => (pagesRed += Number(page)));
+
+    //Find amount of alredy red pages by books
+    let pagesRedBooks = 0;
+    booksRed.map(({ pages }) => (pagesRedBooks += Number(pages)));
+
+    //Pages for checking one more red book
+    const p = pagesRed - pagesRedBooks;
 
     //Deadline result check
     const success = pagesRed >= trainPages;
@@ -87,7 +100,7 @@ export default function ResultSection() {
     }
 
     trainBooks.map(b => {
-      if (b.pages < pagesRed) {
+      if (b.pages < p) {
         if (b.wish !== 'Already read') {
           dispatch(changeBookStatus(b._id));
         }
@@ -95,6 +108,10 @@ export default function ResultSection() {
       return trainBooks;
     });
   };
+
+  useEffect(() => {
+    checkResults();
+  }, [dispatch]);
 
   // const CustomInput = ({ value, onClick }) => (
   //   <DateButton onClick={onClick}>
@@ -164,6 +181,7 @@ export default function ResultSection() {
           <Confetti width={width} height={height} />
         </Modal>
       )}
+
       {failTraining && (
         <Modal>
           <WellDoneModal
@@ -174,6 +192,7 @@ export default function ResultSection() {
           />
         </Modal>
       )}
+
       {oneBookRed && (
         <Modal>
           <CongratulationsModal

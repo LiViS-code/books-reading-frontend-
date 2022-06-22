@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Countdown, CountdownTraining } from '../Datepickers';
-import { TimingContainer, TrainingButton } from './TrainingPage.styled';
+import {
+  TimingContainer,
+  TrainingButton,
+  NewTrainingPage,
+} from './TrainingPage.styled';
 import { ButtonAdd } from '../../views/LibraryView';
 import MyGoal from '../MyGoal';
 import LineChart from '../LineChart/LineChart';
@@ -27,6 +31,7 @@ import {
   Back,
   ButtonBack,
 } from '../../components/Modal/Modal.styled';
+import { NewTraining } from '../Modal/WellDoneModal/WellDoneModal.styled';
 
 export const TrainingPage = () => {
   const [hidden, setIsHidden] = useState(true);
@@ -40,20 +45,7 @@ export const TrainingPage = () => {
 
   useEffect(() => {
     dispatch(getTrainingData());
-    // let currentTraining = null;
-    if (training.length !== 0) {
-      let latestStart = training[0].start;
-      training.map(({ start }) => {
-        if (latestStart < start) {
-          latestStart = start;
-        }
-        return latestStart;
-      });
-      // currentTraining = training.find(({ start }) => start === latestStart);
-    }
   }, []);
-
-  // To find current training in training array
 
   const toggleHidden = () => {
     setIsHidden(state => !state);
@@ -63,9 +55,9 @@ export const TrainingPage = () => {
     dispatch(addTraining({ start, end }));
   };
 
-  // const newTraining = () => {
-  //   dispatch(startNewTraining());
-  // };
+  const newTraining = () => {
+    dispatch(startNewTraining());
+  };
 
   return (
     <>
@@ -111,6 +103,19 @@ export const TrainingPage = () => {
       </ButtonAdd>
 
       {training.length !== 0 && <ResultSection />}
+
+      {training.length !== 0 && (
+        <NewTrainingPage>
+          <NewTraining
+            type="submit"
+            onClick={() => {
+              newTraining();
+            }}
+          >
+            Нове тренування
+          </NewTraining>
+        </NewTrainingPage>
+      )}
     </>
   );
 };

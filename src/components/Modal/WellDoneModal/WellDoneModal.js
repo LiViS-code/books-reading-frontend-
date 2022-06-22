@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import {
   Back,
   NewTraining,
@@ -9,19 +10,33 @@ import {
   Buttons,
 } from './WellDoneModal.styled';
 import images from '../../../image/svg/symbol-defs.svg';
+import { startNewTraining } from '../../../redux/books/books-operations';
 
-const WellDoneModal = ({ toggleWellDoneModal }) => {
+const WellDoneModal = ({ toggleWellDoneModal, text }) => {
+  const dispatch = useDispatch();
+  const newTraining = () => {
+    dispatch(startNewTraining());
+  };
+
   return (
     <WellDoneContent>
       <Svg>
-        <Icon src={`${images}#icon-good`} alt="trumb up" width="44"></Icon>
+        <Icon width={50} height={45}>
+          <use href={`${images}#icon-good`} alt="trumb up"></use>
+        </Icon>
       </Svg>
-      <Text>
-        Ти молодчина, але потрібно швидше! Наступного разу тобі все вдасться
-      </Text>
+      <Text>{text}</Text>
       <Buttons>
-        <NewTraining type="submit">Новє тренування</NewTraining>
-        <Back onClick={toggleWellDoneModal} type="button">
+        <NewTraining
+          type="submit"
+          onClick={() => {
+            newTraining();
+            toggleWellDoneModal(false);
+          }}
+        >
+          Нове тренування
+        </NewTraining>
+        <Back onClick={() => toggleWellDoneModal(false)} type="button">
           Назад
         </Back>
       </Buttons>

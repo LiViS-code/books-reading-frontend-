@@ -11,6 +11,8 @@ import {
   // addTraining,
   getTrainingData,
   getUserInfo,
+  startNewTraining,
+  changeBookStatus,
 } from '../books/books-operations';
 
 const initialState = {
@@ -63,6 +65,12 @@ export const userSlice = createSlice({
     },
     [getUserInfo.fulfilled](state, action) {
       state.userInfo = action.payload;
+    },
+    [startNewTraining.fulfilled](state, action) {
+      state.training = [];
+    },
+    [changeBookStatus.fulfilled](state, { payload }) {
+      state.training = state.training.filter(el => el._id !== payload._id);
     },
   },
 });
