@@ -31,7 +31,7 @@ export const SectionContainer = styled.div`
 export const BackgroundContainer = styled.div`
   background: linear-gradient(0deg, rgba(9, 30, 63, 0.8), rgba(9, 30, 63, 0.8)),
     url(${img});
-  width: 280px;
+  width: 320px;
   background-size: 100%;
   @media screen and (min-width: ${tablet}) {
     height: ${spacing(140)};
@@ -45,8 +45,8 @@ export const BackgroundContainer = styled.div`
 `;
 
 export const FormContainer = styled.div`
-  /* padding-left: ${spacing(5)}; */
-  /* padding-right: ${spacing(5)}; */
+  padding-left: ${spacing(5)};
+  padding-right: ${spacing(5)};
   padding-top: ${spacing(8)};
   padding-bottom: ${spacing(8)};
   margin-right: auto;
@@ -65,10 +65,11 @@ export const FormContainer = styled.div`
   @media screen and (max-width: ${spacing(320)}) {
   }
 `;
-export const GoogleButton = styled.button`
+export const GoogleButton = styled.a`
   position: relative;
   margin-right: auto;
   margin-left: auto;
+  text-decoration: none;
   margin-bottom: ${spacing(7)};
   display: flex;
   justify-content: center;

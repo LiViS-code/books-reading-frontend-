@@ -5,8 +5,7 @@
 import axios from 'axios';
 
 const fetch = axios.create({
-  baseURL:
-    'mongodb+srv://Vasiliy:TWP42fBmEWVikfu@cluster0.5oqg2.mongodb.net/db-books-reading?retryWrites=true&w=majority',
+  baseURL: 'https://book-reader-team.herokuapp.com/api',
 });
 
 export async function fetchBooksAPI() {

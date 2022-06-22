@@ -107,15 +107,13 @@ export default function LineChart() {
   const today = Math.ceil((new Date() - dayStart) / 86400000);
 
   return (
-    <>
-      <ChartContainer>
-        <TitleContainer>
-          <TitleChart>Кількість сторінок / день </TitleChart>
-          <DayNumber>{today}</DayNumber>
-        </TitleContainer>
+    <ChartContainer>
+      <TitleContainer>
+        <TitleChart>Кількість сторінок / день </TitleChart>
+        <DayNumber>{today}</DayNumber>
+      </TitleContainer>
 
-        <Line data={data} options={options}></Line>
-      </ChartContainer>
-    </>
+      <Line data={data} options={options}></Line>
+    </ChartContainer>
   );
 }

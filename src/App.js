@@ -9,12 +9,13 @@ import { PrimaryButton } from './components/Buttons/PrimaryButton.styled';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import operations from './redux/asyncThunks';
-import { Link } from 'react-router-dom';
-import Header from './components/Header';
+import { Link, Navigate } from 'react-router-dom';
+// import Header from './components/Header';
 import { Loader } from './components/Loader/Loader';
 import BooksReading from './components/BooksReading/Information/BooksReading';
 import { useMediaQuery } from './components/Header/hooks/useMediaQuery';
 import { getIsFetchCurrentUser } from './redux/selectors/auth-selectors';
+import { getIsRegistered } from './redux/selectors/auth-selectors';
 
 const AuthView = lazy(() => import('./views/AuthView/AuthView'));
 const RegistrationView = lazy(() =>
@@ -30,6 +31,7 @@ const TrainingView = lazy(() => import('./views/TrainingView/TrainingView'));
 function App() {
   const dispatch = useDispatch();
   const isFetchCurrentUser = useSelector(getIsFetchCurrentUser);
+  const isRegistered = useSelector(getIsRegistered);
 
   useEffect(() => {
     dispatch(operations.fetchCurrentUser());
@@ -51,7 +53,7 @@ function App() {
     !isFetchCurrentUser && (
       <>
         <GlobalStyle />
-        <Header />
+        {/* <Header /> */}
         <Suspense fallback={<Loader />}>
           <Routes>
             <Route path="/" element={<Layout />}>
@@ -75,7 +77,11 @@ function App() {
                 path="registration"
                 element={
                   <PublicRoute restricted>
-                    <RegistrationView />
+                    {isRegistered ? (
+                      <Navigate to="/login" />
+                    ) : (
+                      <RegistrationView />
+                    )}
                   </PublicRoute>
                 }
               />

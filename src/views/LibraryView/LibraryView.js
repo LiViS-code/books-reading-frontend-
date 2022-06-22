@@ -11,13 +11,18 @@ import {
   BookCard,
 } from './index';
 import sprite from './symbol-defs.svg';
+import back from '../../image/svg/back.svg';
 import operations from '../../redux/asyncThunks';
 import { getAllBooks } from '../../redux/selectors/user-selectors';
 import LibraryForm from '../../components/LibraryForm/LibraryForm';
 import LibraryModal from '../../components/LibraryModal';
 import { useMediaQuery } from '../../components/Header/hooks/useMediaQuery';
 import Modal from '../../components/Modal/Modal';
-
+import {
+  WhiteContainer,
+  ButtonBack,
+  Back,
+} from '../../components/Modal/Modal.styled';
 export default function LibraryView() {
   const dispatch = useDispatch();
   const [hidden, setIsHidden] = useState(true);
@@ -54,7 +59,12 @@ export default function LibraryView() {
 
       {!hidden && (
         <Modal onClose={toggleHidden}>
-          <LibraryForm style={{ width: '280px' }} />
+          <WhiteContainer>
+            <ButtonBack onClick={toggleHidden}>
+              <Back src={back} alt="back" />
+            </ButtonBack>
+            <LibraryForm style={{ width: '280px' }} />
+          </WhiteContainer>
         </Modal>
       )}
 
@@ -84,9 +94,9 @@ export default function LibraryView() {
         <div id="going_to_read">
           <Title>Маю намір прочитати</Title>
           <Attributes />
-          {goingToRead.map(el => (
-            <BookCard book={el} key={el.title} />
-          ))}
+          {goingToRead.map(el => {
+            return <BookCard book={el} key={el.title} />;
+          })}
         </div>
       )}
 

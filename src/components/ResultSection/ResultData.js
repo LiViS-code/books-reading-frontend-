@@ -37,7 +37,7 @@ export default function ResultData() {
               {hour}:{minute}:{sec}
             </Hour>
             <Page>
-              <div>{page}</div>
+              {page}
               <PageWord>стор.</PageWord>
             </Page>
           </Result>

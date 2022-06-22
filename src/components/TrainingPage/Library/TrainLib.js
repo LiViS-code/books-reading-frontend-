@@ -78,6 +78,7 @@ export const TrainLib = () => {
                   src={deleteIcon}
                   alt="delete"
                   style={{ fill: '#A6ABB9' }}
+                  className={'iconDelete'}
                 />
               </IconButton>
             </ItemBooks>

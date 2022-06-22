@@ -1,11 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Countdown, CountdownTraining } from '../Datepickers';
-import {
-  TimingContainer,
-  TrainingButton,
-  NewTrainingPage,
-} from './TrainingPage.styled';
+import { TimingContainer, TrainingButton } from './TrainingPage.styled';
 import { ButtonAdd } from '../../views/LibraryView';
 import MyGoal from '../MyGoal';
 import LineChart from '../LineChart/LineChart';
@@ -24,8 +20,13 @@ import {
 } from '../../redux/books/books-operations';
 import { useMediaQuery } from '../Header/hooks/useMediaQuery';
 import sprite from '../../views/LibraryView/symbol-defs.svg';
+import back from '../../image/svg/back.svg';
 import Modal from '../Modal/Modal';
-import { NewTraining } from '../Modal/WellDoneModal/WellDoneModal.styled';
+import {
+  WhiteContainer,
+  Back,
+  ButtonBack,
+} from '../../components/Modal/Modal.styled';
 
 export const TrainingPage = () => {
   const [hidden, setIsHidden] = useState(true);
@@ -62,9 +63,9 @@ export const TrainingPage = () => {
     dispatch(addTraining({ start, end }));
   };
 
-  const newTraining = () => {
-    dispatch(startNewTraining());
-  };
+  // const newTraining = () => {
+  //   dispatch(startNewTraining());
+  // };
 
   return (
     <>
@@ -76,9 +77,14 @@ export const TrainingPage = () => {
       )}
       {!hidden && (
         <Modal onClose={toggleHidden}>
-          <TimingContainer style={{ width: '280px;', height: '100vw;' }}>
-            {training.length === 0 ? <Countdown /> : <CountdownTraining />}
-          </TimingContainer>
+          <WhiteContainer>
+            <ButtonBack onClick={toggleHidden}>
+              <Back src={back} alt="back" />
+            </ButtonBack>
+            <TimingContainer style={{ width: '280px;', height: '100vw;' }}>
+              {training.length === 0 ? <Countdown /> : <CountdownTraining />}
+            </TimingContainer>
+          </WhiteContainer>
         </Modal>
       )}
       {training.length === 0 && (
@@ -105,19 +111,6 @@ export const TrainingPage = () => {
       </ButtonAdd>
 
       {training.length !== 0 && <ResultSection />}
-
-      {training.length !== 0 && (
-        <NewTrainingPage>
-          <NewTraining
-            type="submit"
-            onClick={() => {
-              newTraining();
-            }}
-          >
-            Нове тренування
-          </NewTraining>
-        </NewTrainingPage>
-      )}
     </>
   );
 };
