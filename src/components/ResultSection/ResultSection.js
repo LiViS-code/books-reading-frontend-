@@ -1,4 +1,5 @@
 // import { ReactComponent as Polygon } from '../../image/svg/Polygon.svg';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useState } from 'react';
@@ -15,30 +16,83 @@ import {
 import { getTraining } from '../../redux/books/books-selectors';
 import {
   addResultToTraining,
-  getTrainingData,
-  trainingResult,
-  addTrainingResult,
+  changeBookStatus,
 } from '../../redux/books/books-operations';
 import ResultData from './ResultData';
+import Modal from '../Modal/Modal';
+import WellDoneModal from '../Modal/WellDoneModal/WellDoneModal';
+import Confetti from 'react-confetti';
+import useWindowSize from 'react-use/lib/useWindowSize';
+import { getAllBooks } from '../../redux/selectors/user-selectors';
+import CongratulationsModal from '../Modal/CongratulationsModal/CongratulationsModal';
 
 export default function ResultSection() {
   const [pages, setPages] = useState(null);
+  const [finishTrainingSuccess, setFinishTrainingSuccess] = useState(false);
+  const [failTraining, setFailTraining] = useState(false);
+  const [oneBookRed, setOneBookRed] = useState(false);
+  const { width, height } = useWindowSize();
   const training = useSelector(getTraining);
+  const books = useSelector(getAllBooks);
   const dispatch = useDispatch();
   // const [date, setDate] = useState(new Date());
   // const [amount, SetAmount] = useState(null);
-  let currentTraining = null;
 
+  //Find current training
+  let currentTraining = null;
   if (training.length !== 0) {
     let latestStart = training[0].start;
     training.map(({ start }) => {
       if (latestStart < start) {
         latestStart = start;
       }
+      return latestStart;
     });
     currentTraining = training.find(({ start }) => start === latestStart);
-    console.log(currentTraining.result);
   }
+
+  useEffect(() => {
+    checkResults();
+  }, []);
+
+  const checkResults = () => {
+    //Find books of currentTraining by id
+    const trainBooks = [];
+    books.filter(b => {
+      if (currentTraining.books.includes(b._id)) {
+        trainBooks.push(b);
+      }
+      return trainBooks;
+    });
+
+    //Find amount of pages in current training
+    let trainPages = 0;
+    trainBooks.map(({ pages }) => (trainPages += pages));
+    console.log(trainPages);
+
+    //Find amount of alredy red pages
+    let pagesRed = 0;
+    currentTraining.result.map(({ page }) => (pagesRed += Number(page)));
+
+    //Deadline result check
+    const success = pagesRed >= trainPages;
+    if (new Date(currentTraining.end) < new Date()) {
+      !success && setFailTraining(true);
+    }
+
+    //Success result check
+    if (success) {
+      setFinishTrainingSuccess(true);
+    }
+
+    trainBooks.map(b => {
+      if (b.pages < pagesRed) {
+        b.wish !== 'Already read' && dispatch(changeBookStatus(b._id));
+        b.wish !== 'Already read' && setOneBookRed(true);
+      }
+      return trainBooks;
+    });
+  };
 
   // const CustomInput = ({ value, onClick }) => (
   //   <DateButton onClick={onClick}>
@@ -98,6 +152,33 @@ export default function ResultSection() {
       </AddResult>
       <Statistic>СТАТИСТИКА</Statistic>
       <ResultData />
+      {finishTrainingSuccess && (
+        <Modal>
+          <WellDoneModal
+            toggleWellDoneModal={setFinishTrainingSuccess}
+            text={'Молодець!!! Усі книги прочитано! Тренування пройшло вдало!'}
+          />
+          <Confetti width={width} height={height} />
+        </Modal>
+      )}
+      {failTraining && (
+        <Modal>
+          <WellDoneModal
+            toggleWellDoneModal={setFailTraining}
+            text={
+              'Ти молодчина, але потрібно швидше! Наступного разу тобі все вдасться'
+            }
+          />
+        </Modal>
+      )}
+      {oneBookRed && (
+        <Modal>
+          <CongratulationsModal
+            toggleCongratulationsModal={setOneBookRed}
+            // id={bookId}
+          />
+        </Modal>
+      )}
     </Section>
   );
 }

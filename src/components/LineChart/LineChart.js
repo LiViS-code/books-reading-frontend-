@@ -36,9 +36,19 @@ export default function LineChart() {
   const training = useSelector(getTraining);
   dispatch(getTrainingData);
 
-  const currentTraining = training.find(
-    ({ end }) => new Date(end) > new Date()
-  );
+  //Find current training
+  let currentTraining = null;
+  if (training.length !== 0) {
+    let latestStart = training[0].start;
+    training.map(({ start }) => {
+      if (latestStart < start) {
+        latestStart = start;
+      }
+      return latestStart;
+    });
+    currentTraining = training.find(({ start }) => start === latestStart);
+  }
+
   const dayStart = new Date(currentTraining.start);
   const dayEnd = new Date(currentTraining.end);
   const daysLeft = Math.floor((dayEnd - dayStart) / 86400000);

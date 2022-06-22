@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Countdown, CountdownTraining } from '../Datepickers';
 import {
   TimingContainer,
@@ -13,10 +13,11 @@ import { TrainLib } from './Library/TrainLib';
 import ResultSection from '../ResultSection';
 import { Dropdown } from './Select/Select';
 import { getTraining } from '../../redux/books/books-selectors';
+import { getTrainingData } from '../../redux/books/books-operations';
 
 export const DesktopView = () => {
   const training = useSelector(getTraining);
-
+  const dispatch = useDispatch();
   return (
     <>
       <TrainingBox>
@@ -28,7 +29,12 @@ export const DesktopView = () => {
             <>
               <Dropdown />
               <TrainLib />
-              <TrainingButton>Почати тренування</TrainingButton>
+              <TrainingButton
+                type="submit"
+                onSubmit={dispatch(getTrainingData())}
+              >
+                Почати тренування
+              </TrainingButton>
             </>
           )}
           <LineChart />

@@ -22,6 +22,7 @@ const MyGoal = () => {
       if (latestStart < start) {
         latestStart = start;
       }
+      return latestStart;
     });
     currentTraining = training.find(({ start }) => start === latestStart);
     const { start, end, books } = currentTraining;

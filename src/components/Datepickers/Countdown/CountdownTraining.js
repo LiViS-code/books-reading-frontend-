@@ -7,15 +7,27 @@ import { getTraining } from '../../../redux/books/books-selectors';
 
 export const CountdownTraining = () => {
   const training = useSelector(getTraining);
-  const currentTraining = training.find(
-    ({ end }) => new Date(end) > new Date()
-  );
+
+  // const currentTraining = training.find(
+  //   ({ end }) => new Date(end) > new Date()
+  // );
+  let currentTraining = null;
+  if (training.length !== 0) {
+    let latestStart = training[0].start;
+    training.map(({ start }) => {
+      if (latestStart < start) {
+        latestStart = start;
+      }
+      return latestStart;
+    });
+    currentTraining = training.find(({ start }) => start === latestStart);
+  }
+
   const yearEnd = endOfYear(new Date());
 
   const { start, end } = currentTraining;
   const startDate = new Date(start);
   const endDate = new Date(end);
-
   const currentDate = new Date().getTime();
 
   return (

@@ -17,61 +17,38 @@ import {
   getEndTraining,
   getTraining,
 } from '../../redux/books/books-selectors';
-import { getAllBooks } from '../../redux/selectors/user-selectors';
 import {
   addTraining,
   getTrainingData,
   startNewTraining,
 } from '../../redux/books/books-operations';
-import operations from '../../redux/asyncThunks';
 import { useMediaQuery } from '../Header/hooks/useMediaQuery';
 import sprite from '../../views/LibraryView/symbol-defs.svg';
 import Modal from '../Modal/Modal';
 import { NewTraining } from '../Modal/WellDoneModal/WellDoneModal.styled';
-import Confetti from 'react-confetti';
-import WellDoneModal from '../Modal/WellDoneModal/WellDoneModal';
-// import CongratulationsModal from '../Modal/CongratulationsModal/CongratulationsModal';
-import useWindowSize from 'react-use/lib/useWindowSize';
 
 export const TrainingPage = () => {
   const [hidden, setIsHidden] = useState(true);
-  const [finishTrainingSuccess, setFinishTrainingSuccess] = useState(false);
-  const [failTraining, setFailTraining] = useState(false);
-  // const [oneBookRed, setOneBookRed] = useState(false);
   // const [conf, setConf] = useState(false);
 
   const isMatches = useMediaQuery('(min-width: 768px)');
   const dispatch = useDispatch();
-  const books = useSelector(getAllBooks);
   const training = useSelector(getTraining);
   const start = useSelector(getStartTraining);
   const end = useSelector(getEndTraining);
-  const { width, height } = useWindowSize();
 
   useEffect(() => {
     dispatch(getTrainingData());
-    let currentTraining = null;
+    // let currentTraining = null;
     if (training.length !== 0) {
       let latestStart = training[0].start;
       training.map(({ start }) => {
         if (latestStart < start) {
           latestStart = start;
         }
+        return latestStart;
       });
-      currentTraining = training.find(({ start }) => start === latestStart);
-      // To check fininshed trainig of not
-      let totalPages = 0;
-      books.map(({ _id, pages }) => {
-        if (currentTraining.books.includes(_id)) {
-          totalPages += pages;
-        }
-      });
-      let pagesRed = 0;
-      currentTraining.result.map(({ page }) => (pagesRed += Number(page)));
-      const success = pagesRed >= totalPages;
-      if (new Date(currentTraining.end) > new Date()) {
-        success && setFinishTrainingSuccess(true);
-      }
+      // currentTraining = training.find(({ start }) => start === latestStart);
     }
   }, []);
 
@@ -83,7 +60,6 @@ export const TrainingPage = () => {
 
   const startTraining = () => {
     dispatch(addTraining({ start, end }));
-    // dispatch(getTrainingData());
   };
 
   const newTraining = () => {
@@ -115,7 +91,7 @@ export const TrainingPage = () => {
       )}
 
       {training.length === 0 && (
-        <TrainingButton type="button" onClick={startTraining}>
+        <TrainingButton type="button" onClick={() => startTraining()}>
           Почати тренування
         </TrainingButton>
       )}
@@ -141,36 +117,6 @@ export const TrainingPage = () => {
             Нове тренування
           </NewTraining>
         </NewTrainingPage>
-      )}
-
-      {finishTrainingSuccess && (
-        <Modal>
-          <WellDoneModal
-            toggleWellDoneModal={setFinishTrainingSuccess}
-            text={'Молодець!!! Усі книги прочитано! Тренування пройшло вдало!'}
-          />
-          <Confetti width={width} height={height} />
-        </Modal>
-      )}
-
-      {/* {oneBookRed && (
-        <Modal>
-          <CongratulationsModal
-            toggleCongratulationsModal={setOneBookRed}
-            id={bookId}
-          />
-        </Modal>
-      )} */}
-
-      {failTraining && (
-        <Modal>
-          <WellDoneModal
-            toggleWellDoneModal={setFailTraining}
-            text={
-              'Ти молодчина, але потрібно швидше! Наступного разу тобі все вдасться'
-            }
-          />
-        </Modal>
       )}
     </>
   );

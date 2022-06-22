@@ -12,7 +12,7 @@ export const Timer = ({ deadline, startdate }) => {
   const [currentTime, setCurrentTime] = useState(new Date(startdate));
 
   const diffInSeconds = differenceInSeconds(deadline, currentTime);
-
+  // console.log(deadline, currentTime, diffInSeconds);
   const getCoundown = () => {
     if (diffInSeconds <= 1) {
       return {
@@ -43,7 +43,7 @@ export const Timer = ({ deadline, startdate }) => {
 
   useEffect(() => {
     setInterval(() => {
-      const now = new Date().getTime();
+      const now = new Date();
       setCurrentTime(now);
     }, 1000);
 
