@@ -21,6 +21,11 @@ const AuthView = lazy(() => import('./views/AuthView/AuthView'));
 const RegistrationView = lazy(() =>
   import('./views/RegistrationView/RegistrationView')
 );
+// const GoogleRedirectView = lazy(() =>
+//   import(
+//     './views/GoogleRedirectView/GoogleRedirectView' /* webpackChunkName: "google-redirect-page" */
+//   ),
+// );
 const LibraryView = lazy(() => import('./views/LibraryView/LibraryView'));
 const StatisticsView = lazy(() =>
   import('./views/StatisticsView/StatisticsView')
@@ -85,6 +90,14 @@ function App() {
                   </PublicRoute>
                 }
               />
+              {/* <Route 
+                path="google-redirect"
+                element={
+                 <PublicRoute>
+                   <GoogleRedirectView />
+                   </PublicRoute>
+                } 
+              /> */}
               <Route
                 path="library"
                 element={

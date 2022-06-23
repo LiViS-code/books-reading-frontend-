@@ -12,6 +12,14 @@ const initialState = {
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
+  reducer: {
+    [operations.googleLogin]: (state, { payload }) => ({
+      ...state,
+      isLoggedIn: true,
+      user: payload.user,
+      token: payload.token,
+    }),
+  },
   extraReducers: {
     // [operations.register.fulfilled](state, action) {
     //   state.user = action.payload.user;
@@ -39,12 +47,12 @@ export const authSlice = createSlice({
       state.token = action.payload.user.token;
       state.isLoggedIn = true;
     },
-    [operations.googleLogin]: (state, { payload }) => ({
-      ...state,
-      user: payload.user,
-      token: payload.token,
-      isLoggedIn: true,
-    }),
+    // [operations.googleLogin]: (state, { payload }) => ({
+    //   ...state,
+    //   isLoggedIn: true,
+    //   user: payload.user,
+    //   token: payload.token,
+    // }),
     [operations.logOut.fulfilled](state) {
       state.user = { name: null, email: null };
       state.token = null;
@@ -61,6 +69,20 @@ export const authSlice = createSlice({
     [operations.fetchCurrentUser.rejected](state) {
       state.isFetchCurrentUser = false;
     },
+    // [operations.fetchGoogleUser.pending](state) {
+    //   state.isFetchCurrentUser = true;
+    // },
+    // [operations.fetchGoogleUser.fulfilled](state, { payload }) {
+    //   state.name = payload.data.userName;
+    //   console.log(state);
+    //   state.isLoggedIn = true;
+    //   state.email = payload.data.userEmail;
+    //   state.token = payload.data.token;
+    //   state.isFetchCurrentUser = false;
+    // },
+    // [operations.fetchGoogleUser.rejected](state) {
+    //   state.isFetchCurrentUser = false;
+    // },
   },
 });
 

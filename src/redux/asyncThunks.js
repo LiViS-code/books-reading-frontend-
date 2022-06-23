@@ -51,14 +51,11 @@ const logIn = createAsyncThunk('auth/login', async credentials => {
   }
 });
 
-const googleLogin = createAction(
-  'auth/googleLogin',
-  ({ name, email, token }) => {
-    return {
-      payload: { token, user: { name, email } },
-    };
-  }
-);
+const googleLogin = createAction('auth/google', ({ name, email, token }) => {
+  return {
+    payload: { token, user: { name, email } },
+  };
+});
 
 const logOut = createAsyncThunk('auth/logout', async () => {
   try {
@@ -102,6 +99,20 @@ const fetchCurrentUser = createAsyncThunk(
     }
   }
 );
+
+// const fetchGoogleUser = createAsyncThunk(
+//   'auth/fetchGoogleUser',
+//   async (googleToken, { rejectWithValue }) => {
+//     token.set(googleToken);
+//     console.log(googleToken);
+//     try {
+//       const { data } = await axios.get('/api/users/current');
+//       return data;
+//     } catch (error) {
+//       return rejectWithValue(error.message);
+//     }
+//   },
+// );
 
 const resume = createAsyncThunk(
   '/books/resume',
@@ -158,6 +169,7 @@ const operations = {
   logOut,
   logIn,
   googleLogin,
+  // fetchGoogleUser,
   fetchCurrentUser,
   resume,
   fetchResume,
