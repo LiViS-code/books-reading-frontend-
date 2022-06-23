@@ -7,7 +7,7 @@
 //   const location = useLocation();
 //   const navigate = useNavigate;
 //   const dispatch = useDispatch();
-//   const googleURLToken = new URLSearchParams(location.search).get('token');
+//   const googleURLToken = new URLSearchParams(location.search).get('access_token');
 
 //   useEffect(() => {
 //     console.log(googleURLToken);
