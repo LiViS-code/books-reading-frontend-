@@ -73,7 +73,7 @@ export const Svg = styled.div`
   }
 `;
 
-export const Icon = styled.img`
+export const Icon = styled.svg`
   width: ${spacing(13.5)};
   height: ${spacing(13.5)};
 `;

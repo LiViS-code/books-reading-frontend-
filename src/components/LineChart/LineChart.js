@@ -32,16 +32,16 @@ ChartJS.register(
 export default function LineChart() {
   const training = useSelector(getTraining);
 
-  const currentTraining = training.find(
-    ({ end }) => new Date(end) > new Date()
-  );
-  const dayStart = new Date(currentTraining.start);
-  const dayEnd = new Date(currentTraining.end);
+  // const currentTraining = training.find(
+  //   ({ end }) => new Date(end) > new Date()
+  // );
+  const dayStart = new Date(training.start);
+  const dayEnd = new Date(training.end);
   const daysLeft = Math.floor((dayEnd - dayStart) / 86400000);
 
   const books = useSelector(getAllBooks);
   const trainingBooks = books.filter(book =>
-    currentTraining.books.find(id => book._id === id)
+    training.books.find(id => book._id === id)
   );
 
   let totalPages = 0;
@@ -55,7 +55,7 @@ export default function LineChart() {
 
   const planPages = Array(daysLeft).fill(pagesForDay);
 
-  const results = currentTraining.result;
+  const results = training.result;
 
   const options = {
     borderWidth: '2',

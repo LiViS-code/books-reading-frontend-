@@ -7,12 +7,8 @@ import { getTraining } from '../../../redux/books/books-selectors';
 
 export const CountdownTraining = () => {
   const training = useSelector(getTraining);
-  const currentTraining = training.find(
-    ({ end }) => new Date(end) > new Date()
-  );
   const yearEnd = endOfYear(new Date());
-
-  const { start, end } = currentTraining;
+  const { start, end } = training;
   const startDate = new Date(start);
   const endDate = new Date(end);
 

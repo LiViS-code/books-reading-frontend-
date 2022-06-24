@@ -22,6 +22,9 @@ export const Countdown = () => {
   // const yearEnd = endOfYear(new Date());
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(null);
+  const [selectedDateStart, setSelectedDateStart] = useState('Початок');
+  const [selectedDateEnd, setSelectedDateEnd] = useState('Завершення');
+
   //   const training = useSelector(getTraining);
 
   const CustomInput = ({ value, onClick }) => (
@@ -44,10 +47,11 @@ export const Countdown = () => {
                 setStartDate(date);
                 console.log(date);
                 dispatch(startTraining(date));
+                dispatch(setSelectedDateStart(date));
               }}
               includeDates={[new Date()]}
               customInput={<CustomInput />}
-              value={'Початок'}
+              value={selectedDateStart}
               width="250px"
             />
           </div>
@@ -57,10 +61,11 @@ export const Countdown = () => {
               onChange={date => {
                 setEndDate(date);
                 dispatch(endTraining(date));
+                dispatch(setSelectedDateEnd(date));
               }}
               minDate={new Date()}
               customInput={<CustomInput />}
-              value={'Завершення'}
+              value={selectedDateEnd}
             />
           </div>
         </DatePickerWrapper>

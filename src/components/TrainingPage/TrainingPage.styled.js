@@ -71,3 +71,10 @@ export const Sidebar = styled.div`
 export const Box = styled.div`
   /* display: flex; */
 `;
+
+export const NewTrainingPage = styled.div`
+  width: 152px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 30px;
+`;
