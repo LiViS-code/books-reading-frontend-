@@ -13,15 +13,9 @@ export const authSlice = createSlice({
   name: 'auth',
   initialState,
   extraReducers: {
-    // [operations.register.fulfilled](state, action) {
-    //   state.user = action.payload.user;
-    //   state.token = action.payload.user.verificationToken;
-    //   state.isLoggedIn = true;
-    // },
     [operations.register.fulfilled](state, action) {
       state.user = action.payload.user;
       state.token = action.payload.user.verificationToken;
-      // state.email = action.payload.user.email;
       state.isRegistered = true;
     },
     [operations.register.pending](state) {
@@ -41,9 +35,9 @@ export const authSlice = createSlice({
     },
     [operations.googleLogin]: (state, { payload }) => ({
       ...state,
+      isLoggedIn: true,
       user: payload.user,
       token: payload.token,
-      isLoggedIn: true,
     }),
     [operations.logOut.fulfilled](state) {
       state.user = { name: null, email: null };
