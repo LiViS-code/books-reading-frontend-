@@ -9,23 +9,19 @@ import { PrimaryButton } from './components/Buttons/PrimaryButton.styled';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import operations from './redux/asyncThunks';
-import { Link, Navigate } from 'react-router-dom';
-// import Header from './components/Header';
+import { Link, Navigate, useLocation } from 'react-router-dom';
 import { Loader } from './components/Loader/Loader';
 import BooksReading from './components/BooksReading/Information/BooksReading';
 import { useMediaQuery } from './components/Header/hooks/useMediaQuery';
 import { getIsFetchCurrentUser } from './redux/selectors/auth-selectors';
 import { getIsRegistered } from './redux/selectors/auth-selectors';
 
+import queryString from 'query-string';
+
 const AuthView = lazy(() => import('./views/AuthView/AuthView'));
 const RegistrationView = lazy(() =>
   import('./views/RegistrationView/RegistrationView')
 );
-// const GoogleRedirectView = lazy(() =>
-//   import(
-//     './views/GoogleRedirectView/GoogleRedirectView' /* webpackChunkName: "google-redirect-page" */
-//   ),
-// );
 const LibraryView = lazy(() => import('./views/LibraryView/LibraryView'));
 const StatisticsView = lazy(() =>
   import('./views/StatisticsView/StatisticsView')
@@ -37,6 +33,20 @@ function App() {
   const dispatch = useDispatch();
   const isFetchCurrentUser = useSelector(getIsFetchCurrentUser);
   const isRegistered = useSelector(getIsRegistered);
+
+  const location = useLocation();
+
+  let {
+    token = null,
+    email = null,
+    name = null,
+  } = queryString.parse(location.search);
+
+  useEffect(() => {
+    if (token && email && name) {
+      dispatch(operations.googleLogin({ token, email, name }));
+    }
+  }, [dispatch, token, email, name]);
 
   useEffect(() => {
     dispatch(operations.fetchCurrentUser());
@@ -58,7 +68,6 @@ function App() {
     !isFetchCurrentUser && (
       <>
         <GlobalStyle />
-        {/* <Header /> */}
         <Suspense fallback={<Loader />}>
           <Routes>
             <Route path="/" element={<Layout />}>
@@ -90,14 +99,6 @@ function App() {
                   </PublicRoute>
                 }
               />
-              {/* <Route 
-                path="google-redirect"
-                element={
-                 <PublicRoute>
-                   <GoogleRedirectView />
-                   </PublicRoute>
-                } 
-              /> */}
               <Route
                 path="library"
                 element={

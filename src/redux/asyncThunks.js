@@ -4,10 +4,9 @@ import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import Stack from '@mui/material/Stack';
 import { createAction } from '@reduxjs/toolkit';
-// import { http } from './api/http-common';
 
-// axios.defaults.baseURL = `${http.baseURL}`;
 axios.defaults.baseURL = 'https://book-reader-team.herokuapp.com/';
+
 const token = {
   set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -100,20 +99,6 @@ const fetchCurrentUser = createAsyncThunk(
   }
 );
 
-// const fetchGoogleUser = createAsyncThunk(
-//   'auth/fetchGoogleUser',
-//   async (googleToken, { rejectWithValue }) => {
-//     token.set(googleToken);
-//     console.log(googleToken);
-//     try {
-//       const { data } = await axios.get('/api/users/current');
-//       return data;
-//     } catch (error) {
-//       return rejectWithValue(error.message);
-//     }
-//   },
-// );
-
 const resume = createAsyncThunk(
   '/books/resume',
   async ({ bookId, text, rating }, thunkAPI) => {
@@ -169,7 +154,6 @@ const operations = {
   logOut,
   logIn,
   googleLogin,
-  // fetchGoogleUser,
   fetchCurrentUser,
   resume,
   fetchResume,

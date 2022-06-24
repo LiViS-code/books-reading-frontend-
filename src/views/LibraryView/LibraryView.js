@@ -27,26 +27,15 @@ import { useMediaQuery } from '../../components/Header/hooks/useMediaQuery';
 import Modal from '../../components/Modal/Modal';
 import { getTrainingData } from '../../redux/books/books-operations';
 
-import { useLocation, useNavigate } from 'react-router-dom';
-import { getIsLoggedIn } from '../../redux/selectors/auth-selectors';
-
 export default function LibraryView() {
   const dispatch = useDispatch();
   const books = useSelector(getAllBooks);
   const [hidden, setIsHidden] = useState(true);
 
-  const navigate = useNavigate();
-  const location = useLocation();
-  const isLoggedIn = useSelector(getIsLoggedIn);
-
   useEffect(() => {
     dispatch(operations.allBooks());
     dispatch(getTrainingData());
   }, [dispatch]);
-
-  useEffect(() => {
-    !isLoggedIn && navigate((location.pathname = '/login'));
-  });
 
   const alreadyRed = books
     ? books.filter(book => book.wish === 'Already read')

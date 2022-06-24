@@ -7,19 +7,14 @@ import {
   Label,
   InputWrapper,
   Registration,
-  // GoogleButton,
   ButtonWrapper,
   LoginButton,
   StarContainer,
   StarContainer2,
   BackgroundContainer,
-  // SectionContainer
 } from './LoginForm.styled';
 import GoogleAuth from '../../GoogleAuth/GoogleAuth';
-import queryString from 'query-string';
 import React from 'react';
-import { useEffect } from 'react';
-// import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import operations from '../../../redux/asyncThunks';
 import { Link, useLocation } from 'react-router-dom';
@@ -28,19 +23,7 @@ const LoginForm = () => {
   const dispatch = useDispatch();
   const location = useLocation();
 
-  // sessionStorage.clear();
-
-  let {
-    token = null,
-    email = null,
-    name = null,
-  } = queryString.parse(location.search);
-
-  useEffect(() => {
-    if (token && email && name) {
-      dispatch(operations.googleLogin({ token, email, name }));
-    }
-  }, [dispatch, token, email, name]);
+  sessionStorage.clear();
 
   const formik = useFormik({
     initialValues: {
@@ -123,20 +106,3 @@ const LoginForm = () => {
   );
 };
 export default LoginForm;
-
-// const navigate = useNavigate();
-
-// const googleURLToken = new URLSearchParams(location.search).get('access_token');
-
-// useEffect(() => {
-//   console.log(googleURLToken);
-//   dispatch(operations.fetchGoogleUser(googleURLToken));
-//   navigate.push('/library');
-// }, [dispatch,googleURLToken,navigate]);
-
-/* <GoogleButton
-          // onClick={dispatch(operations.google())}
-          type="submit"
-        >
-          Google<GoogleImage src={google_icon} alt="google icon"></GoogleImage>
-        </GoogleButton> */

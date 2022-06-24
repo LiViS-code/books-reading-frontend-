@@ -1,5 +1,5 @@
 // import React, { useEffect } from 'react';
-// import { useNavigate, useLocation } from 'react-router-dom';
+// import { useNavigate, useLocation} from 'react-router-dom';
 // import { useDispatch } from 'react-redux';
 // import operations  from '../../redux/asyncThunks';
 
@@ -7,13 +7,14 @@
 //   const location = useLocation();
 //   const navigate = useNavigate;
 //   const dispatch = useDispatch();
-//   const googleURLToken = new URLSearchParams(location.search).get('access_token');
+
+//   const googleURLToken = new URLSearchParams(location.search);
 
 //   useEffect(() => {
-//     console.log(googleURLToken);
-//     dispatch(operations.fetchGoogleUser(googleURLToken));
-//     navigate.push('/library');
-//   }, [dispatch,googleURLToken,navigate]);
+//     console.log(location.search);
+//     dispatch(operations.googleLogin(googleURLToken));
+//     navigate('/login');
+//   }, [dispatch, location, navigate]);
 
 //   return (
 //     <div >
