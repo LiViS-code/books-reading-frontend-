@@ -8,11 +8,12 @@ import {
   startTraining,
   endTraining,
   resultsTraining,
-  // addTraining,
+  addTraining,
   getTrainingData,
   getUserInfo,
   startNewTraining,
   changeBookStatus,
+  addResultToTraining,
 } from '../books/books-operations';
 
 const initialState = {
@@ -57,11 +58,11 @@ export const userSlice = createSlice({
     [resultsTraining.fulfilled](state, action) {
       state.results = action.payload;
     },
-    // [addTraining.fulfilled](state, action) {
-    //   state.trainingId = action.payload.owner;
-    // },
+    [addTraining.fulfilled](state, action) {
+      state.training = action.payload.data;
+    },
     [getTrainingData.fulfilled](state, action) {
-      state.training = action.payload.training;
+      state.training = action.payload;
     },
     [getUserInfo.fulfilled](state, action) {
       state.userInfo = action.payload;
@@ -69,8 +70,12 @@ export const userSlice = createSlice({
     [startNewTraining.fulfilled](state, action) {
       state.training = [];
     },
-    [changeBookStatus.fulfilled](state, { payload }) {
-      state.training = state.training.filter(el => el._id !== payload._id);
+    // [changeBookStatus.fulfilled](state, { payload }) {
+    //   state.training = state.training.filter(el => el._id !== payload._id);
+    // },
+    [addResultToTraining.fulfilled](state, { payload }) {
+      console.log(payload);
+      state.training = payload.data;
     },
   },
 });

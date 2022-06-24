@@ -15,7 +15,7 @@ const CongratulationsModal = ({ toggleCongratulationsModal }) => {
         <Icon src={goodIcon} alt="trumb up" width="44"></Icon>
       </Svg>
       <Text>Вітаю! Ще одна книга прочитана.</Text>
-      <Done onClick={toggleCongratulationsModal} type="button">
+      <Done onClick={toggleCongratulationsModal(false)} type="button">
         Готово
       </Done>
     </CongratulationsContent>

@@ -26,6 +26,7 @@ import Confetti from 'react-confetti';
 import useWindowSize from 'react-use/lib/useWindowSize';
 import { getAllBooks } from '../../redux/selectors/user-selectors';
 import CongratulationsModal from '../Modal/CongratulationsModal/CongratulationsModal';
+import operations from '../../redux/asyncThunks';
 
 export default function ResultSection() {
   const [pages, setPages] = useState(null);
@@ -38,80 +39,73 @@ export default function ResultSection() {
   const dispatch = useDispatch();
   // const [date, setDate] = useState(new Date());
   // const [amount, SetAmount] = useState(null);
+  console.log(training);
 
-  //Find current training
-  let currentTraining = null;
-  if (training.length !== 0) {
-    let latestStart = training[0].start;
-    training.map(({ start }) => {
-      if (latestStart < start) {
-        latestStart = start;
-      }
-      return latestStart;
-    });
-    currentTraining = training.find(({ start }) => start === latestStart);
-  }
-
-  const checkResults = () => {
-    dispatch(getTrainingData);
+  useEffect(() => {
+    //Find books of currentTraining by
+    console.log(books);
+    console.log(1);
     console.log(training);
-    console.log(currentTraining);
-    //Find books of currentTraining by id
     const trainBooksAll = [];
     books.filter(b => {
-      if (currentTraining.books.includes(b._id)) {
+      if (training.books.includes(b._id)) {
         trainBooksAll.push(b);
       }
       return trainBooksAll;
     });
-
+    console.log(trainBooksAll);
     //Find only books with status "Reading now"
     const trainBooks = trainBooksAll.filter(
       ({ wish }) => wish === 'Reading now'
     );
-
+    console.log(trainBooks);
     //Books already red during this training
-    const booksRed = trainBooksAll.filter(({ wish }) => wish === 'Already red');
+    const booksRed = trainBooksAll.filter(
+      ({ wish }) => wish === 'Already read'
+    );
+    console.log(booksRed);
 
     //Find amount of pages in current training
     let trainPages = 0;
     trainBooksAll.map(({ pages }) => (trainPages += Number(pages)));
-
+    console.log(trainPages);
     //Find amount of alredy red pages from results
     let pagesRed = 0;
-    currentTraining.result.map(({ page }) => (pagesRed += Number(page)));
-
-    //Find amount of alredy red pages by books
+    training.result.map(({ page }) => (pagesRed += Number(page)));
+    console.log(pagesRed);
+    //Find amount of pages in already red books
     let pagesRedBooks = 0;
     booksRed.map(({ pages }) => (pagesRedBooks += Number(pages)));
-
+    console.log(pagesRedBooks);
     //Pages for checking one more red book
     const p = pagesRed - pagesRedBooks;
 
-    //Deadline result check
+    // Deadline result check
     const success = pagesRed >= trainPages;
-    if (new Date(currentTraining.end) < new Date()) {
+    if (new Date(training.end) < new Date()) {
       !success && setFailTraining(true);
     }
 
-    //Success result check
+    // Success result check
     if (success) {
       setFinishTrainingSuccess(true);
     }
+    console.log(trainBooks, pagesRed, pagesRedBooks, p);
 
     trainBooks.map(b => {
-      if (b.pages < p) {
+      if (b.pages <= p) {
+        console.log(22);
         if (b.wish !== 'Already read') {
+          setOneBookRed(true);
           dispatch(changeBookStatus(b._id));
         }
       }
       return trainBooks;
     });
-  };
-
-  useEffect(() => {
-    checkResults();
-  }, [dispatch, checkResults]);
+  }, [training]);
+  // useEffect(() => {
+  //   checkResults();
+  // }, [dispatch, checkResults]);
 
   // const CustomInput = ({ value, onClick }) => (
   //   <DateButton onClick={onClick}>
@@ -150,20 +144,24 @@ export default function ResultSection() {
         </Label>
 
         <Button
-          type="submit"
+          type="button"
           onClick={e => {
             if (!pages) {
               alert('Введіть кількість прочитаних сторінок');
               e.preventDefault();
             } else {
-              // setOneBookRed(true);
               dispatch(
                 addResultToTraining({
                   date: new Date(),
                   page: pages,
-                  id: currentTraining._id,
+                  id: training._id,
                 })
               );
+              dispatch(operations.allBooks());
+
+              // checkResults({date: new Date(),
+              //   page: pages});
+              console.log(5);
             }
           }}
         >

@@ -36,26 +36,13 @@ export default function LineChart() {
   const training = useSelector(getTraining);
   dispatch(getTrainingData);
 
-  //Find current training
-  let currentTraining = null;
-  if (training.length !== 0) {
-    let latestStart = training[0].start;
-    training.map(({ start }) => {
-      if (latestStart < start) {
-        latestStart = start;
-      }
-      return latestStart;
-    });
-    currentTraining = training.find(({ start }) => start === latestStart);
-  }
-
-  const dayStart = new Date(currentTraining.start);
-  const dayEnd = new Date(currentTraining.end);
+  const dayStart = new Date(training.start);
+  const dayEnd = new Date(training.end);
   const daysLeft = Math.floor((dayEnd - dayStart) / 86400000);
 
   const books = useSelector(getAllBooks);
   const trainingBooks = books.filter(book =>
-    currentTraining.books.find(id => book._id === id)
+    training.books.find(id => book._id === id)
   );
 
   let totalPages = 0;
@@ -63,8 +50,8 @@ export default function LineChart() {
   const pagesForDay = totalPages / daysLeft;
 
   let resultPagesAmount = null;
-  if (currentTraining.result.lenght !== 0) {
-    currentTraining.result.map(el => (resultPagesAmount += Number(el.page)));
+  if (training.result.lenght !== 0) {
+    training.result.map(el => (resultPagesAmount += Number(el.page)));
   }
 
   const planDays = [];
@@ -74,7 +61,7 @@ export default function LineChart() {
 
   const planPages = Array(daysLeft).fill(pagesForDay);
 
-  const results = currentTraining.result;
+  const results = training.result;
 
   const options = {
     borderWidth: '2',

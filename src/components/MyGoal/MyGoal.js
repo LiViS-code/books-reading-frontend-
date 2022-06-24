@@ -14,18 +14,9 @@ const MyGoal = () => {
   let days = 0;
   let booksNumber = 0;
   const training = useSelector(getTraining);
-  let currentTraining = null;
 
   if (training.length !== 0) {
-    let latestStart = training[0].start;
-    training.map(({ start }) => {
-      if (latestStart < start) {
-        latestStart = start;
-      }
-      return latestStart;
-    });
-    currentTraining = training.find(({ start }) => start === latestStart);
-    const { start, end, books } = currentTraining;
+    const { start, end, books } = training;
     days = Math.floor((new Date(end) - new Date(start)) / 86400000);
     booksNumber = books.length;
   }

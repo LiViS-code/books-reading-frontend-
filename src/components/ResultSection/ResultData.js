@@ -6,20 +6,9 @@ import { Result, Day, Hour, Page, PageWord } from './ResultData.styled';
 export default function ResultData() {
   const training = useSelector(getTraining);
 
-  let currentTraining = null;
-  if (training.length !== 0) {
-    let latestStart = training[0].start;
-    training.map(({ start }) => {
-      if (latestStart < start) {
-        latestStart = start;
-      }
-      return latestStart;
-    });
-    currentTraining = training.find(({ start }) => start === latestStart);
-  }
   return (
     <>
-      {currentTraining.result.map(({ date, page }) => {
+      {training.result.map(({ date, page }) => {
         const d = new Date(date);
         const year = d.getFullYear();
         const month = d.getMonth();

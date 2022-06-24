@@ -116,7 +116,18 @@ export const addResultToTraining = createAsyncThunk(
 export const getTrainingData = createAsyncThunk('training/get', async () => {
   try {
     const { data } = await axios.get(`api/training/`);
-    return data;
+    //Find current training
+    let latestStart = data.training[0].start;
+    data.training.map(({ start }) => {
+      if (latestStart < start) {
+        latestStart = start;
+      }
+      return latestStart;
+    });
+    const currentTraining = data.training.find(
+      ({ start }) => start === latestStart
+    );
+    return currentTraining;
   } catch (error) {
     return console.log(error);
   }
