@@ -124,6 +124,7 @@ export const getTrainingData = createAsyncThunk('training/get', async () => {
       if (new Date(el.start) > new Date(training.start)) {
         training = el;
       }
+      return training;
     });
     return training;
   } catch (error) {
