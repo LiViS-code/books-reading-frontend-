@@ -82,7 +82,7 @@ export default function ResultSection() {
     }
 
     trainBooks.map(b => {
-      if (b.pages < p) {
+      if (b.pages <= p) {
         if (b.wish !== 'Already read') {
           setOneBookRed(true);
           dispatch(changeBookStatus(b._id));
@@ -90,7 +90,7 @@ export default function ResultSection() {
       }
       return trainBooks;
     });
-  }, [training]);
+  }, [training, books, dispatch]);
 
   // const CustomInput = ({ value, onClick }) => (
   //   <DateButton onClick={onClick}>

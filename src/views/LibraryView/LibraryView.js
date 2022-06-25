@@ -31,7 +31,6 @@ export default function LibraryView() {
   const dispatch = useDispatch();
   const books = useSelector(getAllBooks);
   const [hidden, setIsHidden] = useState(true);
-
   useEffect(() => {
     dispatch(operations.allBooks());
     dispatch(getTrainingData());
@@ -97,7 +96,7 @@ export default function LibraryView() {
         </div>
       )}
 
-      <Link to="../training" style={{ textDecoration: 'none' }}>
+      <Link to="/training" style={{ textDecoration: 'none' }}>
         <ButtonTraining type="button">
           <ButtonName>Моє тренування</ButtonName>
         </ButtonTraining>

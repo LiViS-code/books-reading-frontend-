@@ -24,6 +24,7 @@ export const DesktopView = () => {
           <TimingContainer>
             {training.length === 0 ? <Countdown /> : <CountdownTraining />}
           </TimingContainer>
+
           {training.length === 0 && (
             <>
               <Dropdown />
@@ -31,10 +32,12 @@ export const DesktopView = () => {
               <TrainingButton>Почати тренування</TrainingButton>
             </>
           )}
-          <LineChart />
+
+          {training.length !== 0 && <LineChart />}
         </Box>
+
         <Sidebar>
-          <ResultSection />
+          {training.length !== 0 && <ResultSection />}
           <MyGoal />
         </Sidebar>
       </TrainingBox>

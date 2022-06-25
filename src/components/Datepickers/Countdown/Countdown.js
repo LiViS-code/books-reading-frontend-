@@ -45,9 +45,8 @@ export const Countdown = () => {
               selected={startDate}
               onChange={date => {
                 setStartDate(date);
-                console.log(date);
                 dispatch(startTraining(date));
-                dispatch(setSelectedDateStart(date));
+                setSelectedDateStart(date);
               }}
               includeDates={[new Date()]}
               customInput={<CustomInput />}
@@ -61,7 +60,7 @@ export const Countdown = () => {
               onChange={date => {
                 setEndDate(date);
                 dispatch(endTraining(date));
-                dispatch(setSelectedDateEnd(date));
+                setSelectedDateEnd(date);
               }}
               minDate={new Date()}
               customInput={<CustomInput />}

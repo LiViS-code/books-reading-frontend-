@@ -116,6 +116,9 @@ export const addResultToTraining = createAsyncThunk(
 export const getTrainingData = createAsyncThunk('training/get', async () => {
   try {
     const { data } = await axios.get(`api/training/`);
+    if (data.training.length === 0) {
+      return [];
+    }
     let training = data.training[0];
     data.training.map(el => {
       if (new Date(el.start) > new Date(training.start)) {
@@ -152,8 +155,8 @@ export const changeBookStatus = createAsyncThunk(
   'api/books/changeStatus',
   async id => {
     try {
-      const { data } = await axios.get(`api/books/${id}/wish`, {
-        wish: 'Reading now',
+      const { data } = await axios.patch(`api/books/${id}/wish`, {
+        wish: 'Already read',
       });
       return data;
     } catch (error) {
