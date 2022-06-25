@@ -14,14 +14,9 @@ const MyGoal = () => {
   let days = 0;
   let booksNumber = 0;
   const training = useSelector(getTraining);
-  let currentTraining = null;
 
   if (training.length !== 0) {
-    currentTraining = training.find(({ end }) => new Date(end) > new Date());
-  }
-
-  if (training.length !== 0) {
-    const { start, end, books } = currentTraining;
+    const { start, end, books } = training;
     const dayStart = new Date(start);
     const dayEnd = new Date(end);
     const daysLeft = Math.floor((dayEnd - dayStart) / 86400000);
