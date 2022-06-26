@@ -132,6 +132,7 @@ const LibraryForm = () => {
             <PrimaryButton
               type="submit"
               onClick={() => window.location.reload(false)}
+              // onClick={() => {dispatch(addBook({"title"}))}}
             >
               Додати
             </PrimaryButton>

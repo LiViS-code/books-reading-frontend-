@@ -9,7 +9,7 @@ import {
   Icon,
   Buttons,
 } from './WellDoneModal.styled';
-import images from '../../../image/svg/symbol-defs.svg';
+import images from '../../../image/good.svg';
 import { startNewTraining } from '../../../redux/books/books-operations';
 
 const WellDoneModal = ({ toggleWellDoneModal, text }) => {
@@ -17,17 +17,12 @@ const WellDoneModal = ({ toggleWellDoneModal, text }) => {
   return (
     <WellDoneContent>
       <Svg>
-        <Icon
-          src={`${images}#icon-good`}
-          alt="trumb up"
-          width={49}
-          heigth={45}
-        ></Icon>
+        <Icon src={`${images}`} alt="trumb up" width={50} height={46}></Icon>
       </Svg>
       <Text>{text}</Text>
       <Buttons>
         <NewTraining type="submit" onClick={() => dispatch(startNewTraining())}>
-          Новє тренування
+          Нове тренування
         </NewTraining>
         <Back onClick={() => toggleWellDoneModal(false)} type="button">
           Назад

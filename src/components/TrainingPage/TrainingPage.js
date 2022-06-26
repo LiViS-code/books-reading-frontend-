@@ -32,6 +32,7 @@ import {
   ButtonBack,
 } from '../../components/Modal/Modal.styled';
 import { NewTraining } from '../Modal/WellDoneModal/WellDoneModal.styled';
+import operations from '../../redux/asyncThunks';
 
 export const TrainingPage = () => {
   const [hidden, setIsHidden] = useState(true);
@@ -42,6 +43,7 @@ export const TrainingPage = () => {
   const end = useSelector(getEndTraining);
 
   useEffect(() => {
+    dispatch(operations.allBooks());
     dispatch(getTrainingData());
   }, [dispatch]);
 

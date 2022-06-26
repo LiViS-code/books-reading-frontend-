@@ -31,7 +31,6 @@ ChartJS.register(
 
 export default function LineChart() {
   const training = useSelector(getTraining);
-
   // const currentTraining = training.find(
   //   ({ end }) => new Date(end) > new Date()
   // );
@@ -49,14 +48,13 @@ export default function LineChart() {
   const pagesForDay = totalPages / daysLeft;
 
   const planDays = [];
-  for (let i = 1; i < daysLeft; i++) {
+  for (let i = 1; i <= daysLeft; i++) {
     planDays.push(i);
   }
 
   const planPages = Array(daysLeft).fill(pagesForDay);
 
   const results = training.result;
-
   const options = {
     borderWidth: '2',
     radius: '4',
@@ -73,7 +71,7 @@ export default function LineChart() {
     datasets: [
       {
         label: 'ФАКТ',
-        data: results.map(result => result.page),
+        data: results.map(result => Number(result.page)),
         borderColor: '#FF6B08',
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
       },

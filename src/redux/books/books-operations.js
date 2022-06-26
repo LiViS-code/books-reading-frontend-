@@ -165,3 +165,10 @@ export const changeBookStatus = createAsyncThunk(
     }
   }
 );
+
+export const closeCongratModal = createAsyncThunk(
+  'training/modalClose',
+  async data => {
+    return data;
+  }
+);

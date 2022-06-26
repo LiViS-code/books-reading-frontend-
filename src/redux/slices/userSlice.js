@@ -13,6 +13,8 @@ import {
   getUserInfo,
   startNewTraining,
   addResultToTraining,
+  changeBookStatus,
+  closeCongratModal,
 } from '../books/books-operations';
 
 const initialState = {
@@ -25,6 +27,7 @@ const initialState = {
   training: [],
   trainingId: null,
   userInfo: null,
+  oneBookRed: false,
 };
 
 export const userSlice = createSlice({
@@ -71,6 +74,12 @@ export const userSlice = createSlice({
     },
     [addResultToTraining.fulfilled](state, { payload }) {
       state.training = payload.data;
+    },
+    [changeBookStatus.fulfilled](state, action) {
+      state.oneBookRed = true;
+    },
+    [closeCongratModal.fulfilled](state, action) {
+      state.oneBookRed = false;
     },
   },
 });
