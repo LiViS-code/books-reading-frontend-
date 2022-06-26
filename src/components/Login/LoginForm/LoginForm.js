@@ -7,72 +7,23 @@ import {
   Label,
   InputWrapper,
   Registration,
-  // GoogleButton,
   ButtonWrapper,
   LoginButton,
   StarContainer,
   StarContainer2,
   BackgroundContainer,
-  // SectionContainer
 } from './LoginForm.styled';
 import GoogleAuth from '../../GoogleAuth/GoogleAuth';
-import queryString from 'query-string';
 import React from 'react';
-import { useEffect } from 'react';
-// import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import operations from '../../../redux/asyncThunks';
 import { Link, useLocation } from 'react-router-dom';
-
-// const initialValues = {
-//   email: '',
-//   password: '',
-// };
 
 const LoginForm = () => {
   const dispatch = useDispatch();
   const location = useLocation();
 
   sessionStorage.clear();
-
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
-
-  // const handleInputChange = e => {
-  //   const { name, value } = e.currentTarget;
-  //   switch (name) {
-  //     case 'email':
-  //       setEmail(value);
-  //       break;
-  //     case 'password':
-  //       setPassword(value);
-  //       break;
-  //     default:
-  //       return;
-  //   }
-  // };
-
-  // const handleSubmit = e => {
-  //   e.preventDefault();
-  //   dispatch(operations.logIn({ email, password }));
-  //   reset();
-  // };
-
-  // const reset = () => {
-  //   setEmail('');
-  //   setPassword('');
-  // };
-  let {
-    token = null,
-    email = null,
-    name = null,
-  } = queryString.parse(location.search);
-
-  useEffect(() => {
-    if (token && email && name) {
-      dispatch(operations.googleLogin({ token, email, name }));
-    }
-  });
 
   const formik = useFormik({
     initialValues: {
@@ -101,17 +52,8 @@ const LoginForm = () => {
   return (
     <BackgroundContainer>
       <FormContainer>
-        {/* <GoogleButton
-          // onClick={dispatch(operations.google())}
-          type="submit"
-        >
-          Google<GoogleImage src={google_icon} alt="google icon"></GoogleImage>
-        </GoogleButton> */}
-        <GoogleAuth></GoogleAuth>
-        <Form
-          onSubmit={formik.handleSubmit}
-          // {handleSubmit}
-        >
+        <GoogleAuth />
+        <Form onSubmit={formik.handleSubmit}>
           <InputWrapper>
             <div>
               <Label>
@@ -121,9 +63,7 @@ const LoginForm = () => {
                 ) : null}
                 <Input
                   onChange={formik.handleChange}
-                  // {handleInputChange}
                   value={formik.values.email}
-                  // {email}
                   onBlur={formik.handleBlur}
                   id="email"
                   name="email"
@@ -144,9 +84,7 @@ const LoginForm = () => {
                   ) : null}
                   <Input
                     onChange={formik.handleChange}
-                    // {handleInputChange}
                     value={formik.values.password}
-                    // {password}
                     onBlur={formik.handleBlur}
                     id="password"
                     name="password"

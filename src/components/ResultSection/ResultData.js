@@ -1,16 +1,13 @@
 import { useSelector } from 'react-redux';
 import { getTraining } from '../../redux/books/books-selectors';
 import { Result, Day, Hour, Page, PageWord } from './ResultData.styled';
-
+import { nanoid } from 'nanoid';
 export default function ResultData() {
   const training = useSelector(getTraining);
-  const currentTraining = training.find(
-    ({ end }) => new Date(end) > new Date()
-  );
 
   return (
     <>
-      {currentTraining.result.map(({ date, page }) => {
+      {training.result.map(({ date, page }) => {
         const d = new Date(date);
         const year = d.getFullYear();
         const month = d.getMonth();
@@ -20,7 +17,7 @@ export default function ResultData() {
         const sec = d.getSeconds();
 
         return (
-          <Result>
+          <Result key={nanoid()}>
             <Day>
               {day}.{month}.{year}
             </Day>
