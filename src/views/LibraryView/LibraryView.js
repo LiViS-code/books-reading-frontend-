@@ -107,11 +107,6 @@ export default function LibraryView() {
           <use href={`${sprite}#plus`} />
         </svg>
       </ButtonAdd>
-
-      {/* <LineChart></LineChart> */}
     </Library>
   );
 }
-
-// LibraryView();
-// fetchBooksAPI();

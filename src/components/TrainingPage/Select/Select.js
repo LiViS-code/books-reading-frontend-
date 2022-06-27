@@ -21,7 +21,6 @@ import Polygon from '../../../image/svg/Polygon.svg';
 export const Dropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
-  // const [selectedBooks, setSelectedBooks] = useState([]);
   const books = useSelector(getAllBooks);
   const selectedBooks = useSelector(getTrainingBooks);
 
@@ -41,13 +40,9 @@ export const Dropdown = () => {
     );
 
     if (!isBookInArray) {
-      // setSelectedBooks([...selectedBooks, selectedBook]);
       dispatch(addTrainingBook(selectedBook));
     }
-    // console.log(selectedBook._id);
     dispatch(addBookToTraining(selectedBook._id));
-
-    // bookList(selectedBooks);
   };
 
   return (

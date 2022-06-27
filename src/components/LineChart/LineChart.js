@@ -31,9 +31,6 @@ ChartJS.register(
 
 export default function LineChart() {
   const training = useSelector(getTraining);
-  // const currentTraining = training.find(
-  //   ({ end }) => new Date(end) > new Date()
-  // );
   const dayStart = new Date(training.start);
   const dayEnd = new Date(training.end);
   const daysLeft = Math.floor((dayEnd - dayStart) / 86400000);

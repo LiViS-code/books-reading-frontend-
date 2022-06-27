@@ -29,7 +29,6 @@ export default function ResultSection() {
   const [pages, setPages] = useState(null);
   const [finishTrainingSuccess, setFinishTrainingSuccess] = useState(false);
   const [failTraining, setFailTraining] = useState(false);
-  // const [oneBookRed, setOneBookRed] = useState(false);
   const oneBookRed = useSelector(getOneBookRed);
   const { width, height } = useWindowSize();
   const training = useSelector(getTraining);
@@ -77,11 +76,9 @@ export default function ResultSection() {
     if (trainBooks[0]) {
       if (trainBooks[0].pages <= p) {
         if (trainBooks[0].wish !== 'Already read') {
-          // setOneBookRed(true);
           dispatch(changeBookStatus(trainBooks[0]._id));
           dispatch(operations.allBooks());
         }
-        // trainBooks.splice(0, 1);
       }
     }
 
@@ -89,53 +86,12 @@ export default function ResultSection() {
     if (success) {
       setFinishTrainingSuccess(true);
     }
-
-    // trainBooks.find(b => {
-    //   if (b.pages <= p) {
-    //     // if (b.wish !== 'Already read') {
-    //       console.log(1);
-    //       setOneBookRed(true);
-    //       console.log(2);
-    //       dispatch(changeBookStatus(b._id));
-    //       console.log(3);
-    //       return;
-    //     // }
-    //   }
-    //   return trainBooks;
-    // });
   }, [training, books, dispatch]);
 
-  // const CustomInput = ({ value, onClick }) => (
-  //   <DateButton onClick={onClick}>
-  //     {value}
-  //     <Arrow src={Polygon} alt="polygon" className={'icon'} />
-  //   </DateButton>
-  // );
-  // const handleChange = e => {
-  //   SetAmount(e.target.value);
-  //   console.log(amount);
-  // };
-  // const addResult = e => {
-  //   e.preventDefault();
-
-  //   dispatch();
-  // };
   return (
     <Section>
       <Title>Результати</Title>
       <AddResult>
-        {/* <Label>
-          <Text>Дата</Text>
-          <div style={{ width: '110px' }}>
-            <DatePicker
-              selected={date}
-              onChange={date => console.log(date)}
-              customInput={<CustomInput />}
-              includeDates={[new Date()]}
-              value={date}
-            />
-          </div>
-        </Label> */}
         <Label>
           <Text>Кількість сторінок</Text>
           <Pages onChange={e => setPages(e.target.value)} />

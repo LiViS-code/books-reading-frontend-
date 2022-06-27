@@ -26,54 +26,10 @@ import { useDispatch } from 'react-redux';
 import operations from '../../redux/asyncThunks';
 import { Link, useLocation } from 'react-router-dom';
 
-// const initialValues = {
-//     name: '',
-//     email: '',
-//     password: '',
-//     confrimPassword: '',
-// };
-
 const RegistrationForm = () => {
   const dispatch = useDispatch();
   const location = useLocation();
 
-  // const [name, setName] = useState('');
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
-  // const [confrimPassword, setConfrimPassword] = useState('');
-
-  // const handleInputChange = e => {
-  //   const { name, value } = e.currentTarget;
-  //   switch (name) {
-  //     case 'name':
-  //       setName(value);
-  //       break;
-  //     case 'email':
-  //       setEmail(value);
-  //       break;
-  //     case 'password':
-  //       setPassword(value);
-  //       break;
-  //     case 'confrimPassword':
-  //       setConfrimPassword(value);
-  //       break;
-  //     default:
-  //       return;
-  //   }
-  // };
-
-  // const handleSubmit = e => {
-  //   e.preventDefault();
-  //   dispatch(operations.register({ name, email, password }));
-  //   reset();
-  // };
-
-  // const reset = () => {
-  //   setName('');
-  //   setEmail('');
-  //   setPassword('');
-  //   setConfrimPassword('');
-  // };
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -112,10 +68,7 @@ const RegistrationForm = () => {
     <BackgroundContainer>
       <FormContainer>
         <GoogleAuth></GoogleAuth>
-        <Form
-          onSubmit={formik.handleSubmit}
-          // onSubmit={handleSubmit}
-        >
+        <Form onSubmit={formik.handleSubmit}>
           <InputWrapper>
             <div>
               <Label>
@@ -124,14 +77,8 @@ const RegistrationForm = () => {
                   <div style={{ color: '#FF6B08' }}>{formik.errors.name}</div>
                 ) : null}
                 <Input
-                  onChange={
-                    // {handleInputChange}
-                    formik.handleChange
-                  }
-                  value={
-                    // {name}
-                    formik.values.name
-                  }
+                  onChange={formik.handleChange}
+                  value={formik.values.name}
                   onBlur={formik.handleBlur}
                   id="name"
                   name="name"
@@ -152,9 +99,7 @@ const RegistrationForm = () => {
                   ) : null}
                   <Input
                     onChange={formik.handleChange}
-                    // {handleInputChange}
                     value={formik.values.email}
-                    // {email}
                     onBlur={formik.handleBlur}
                     id="email"
                     name="email"
@@ -176,9 +121,7 @@ const RegistrationForm = () => {
                   ) : null}
                   <Input
                     onChange={formik.handleChange}
-                    // {handleInputChange}
                     value={formik.values.password}
-                    // {password}
                     onBlur={formik.handleBlur}
                     id="password"
                     name="password"
@@ -201,9 +144,7 @@ const RegistrationForm = () => {
                   ) : null}
                   <Input
                     onChange={formik.handleChange}
-                    // {handleInputChange}
                     value={formik.values.confirmPassword}
-                    // {confrimPassword}
                     onBlur={formik.handleBlur}
                     id="confirmPassword"
                     name="confirmPassword"

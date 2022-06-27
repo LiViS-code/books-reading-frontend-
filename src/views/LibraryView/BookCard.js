@@ -14,7 +14,7 @@ export default function BookCard({ book }) {
     setShowModal(state => !state);
   };
 
-  const { wish } = book;
+  const { wish, _id } = book;
 
   return (
     <Container>
@@ -37,7 +37,7 @@ export default function BookCard({ book }) {
           </ButtonResume>
           {showModal && (
             <Modal onClose={toggleModal}>
-              <ResumeModal toggleModal={toggleModal}></ResumeModal>
+              <ResumeModal toggleModal={toggleModal} bookId={_id}></ResumeModal>
             </Modal>
           )}
         </>

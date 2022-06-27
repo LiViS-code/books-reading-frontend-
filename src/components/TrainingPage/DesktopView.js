@@ -1,4 +1,5 @@
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Countdown, CountdownTraining } from '../Datepickers';
 import {
   TimingContainer,
@@ -12,10 +13,31 @@ import LineChart from '../LineChart/LineChart';
 import { TrainLib } from './Library/TrainLib';
 import ResultSection from '../ResultSection';
 import { Dropdown } from './Select/Select';
-import { getTraining } from '../../redux/books/books-selectors';
+import {
+  getTraining,
+  getStartTraining,
+  getEndTraining,
+} from '../../redux/books/books-selectors';
+import {
+  addTraining,
+  getTrainingData,
+} from '../../redux/books/books-operations';
+import operations from '../../redux/asyncThunks';
 
 export const DesktopView = () => {
   const training = useSelector(getTraining);
+  const start = useSelector(getStartTraining);
+  const end = useSelector(getEndTraining);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(operations.allBooks());
+    dispatch(getTrainingData());
+  }, [dispatch]);
+
+  const startTraining = () => {
+    dispatch(addTraining({ start, end }));
+  };
 
   return (
     <>
@@ -29,7 +51,9 @@ export const DesktopView = () => {
             <>
               <Dropdown />
               <TrainLib />
-              <TrainingButton>Почати тренування</TrainingButton>
+              <TrainingButton onClick={() => startTraining()}>
+                Почати тренування
+              </TrainingButton>
             </>
           )}
 

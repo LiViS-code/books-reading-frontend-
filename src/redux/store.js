@@ -4,16 +4,7 @@ import { setupListeners } from '@reduxjs/toolkit/dist/query';
 import storage from 'redux-persist/lib/storage';
 import authSlice from './slices/authSlice';
 import userReducer from './slices/userSlice';
-import {
-  persistStore,
-  persistReducer,
-  // FLUSH,
-  // REHYDRATE,
-  // PAUSE,
-  // PERSIST,
-  // PURGE,
-  // REGISTER,
-} from 'redux-persist';
+import { persistStore, persistReducer } from 'redux-persist';
 
 const authPersistConfig = {
   key: 'auth',
@@ -30,9 +21,6 @@ export const store = configureStore({
   middleware: getDefaultMiddleware => [
     ...getDefaultMiddleware({
       serializableCheck: false,
-      // {
-      //   ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      // },
     }),
   ],
 });

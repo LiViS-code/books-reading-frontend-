@@ -104,7 +104,7 @@ const resume = createAsyncThunk(
   async ({ bookId, text, rating }, thunkAPI) => {
     try {
       const { data } = await axios.patch(`/api/books/${bookId}/rating`, {
-        text,
+        resume: text,
         rating,
       });
       return data;
