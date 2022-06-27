@@ -1,11 +1,20 @@
-import styled from '@emotion/styled';
-//import { theme } from '../../constants/Theme';
+import styled from 'styled-components';
+import { theme } from '../../../constants/Theme';
+const {
+  colors: { primaryColor },
+  fonts: { titleFont },
+  media: { tablet },
+} = theme;
 
 export const LogoStyle = styled.div`
-  font-family: 'Abril Fatface';
+  font-family: ${titleFont};
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
   line-height: 1.35;
-  color: #242a37;
+  color: ${primaryColor};
+  margin-right: auto;
+  @media (min-width: ${tablet}) {
+    margin-right: 0;
+  }
 `;
