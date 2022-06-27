@@ -6,10 +6,9 @@ import {
   Input,
   Label,
   InputWrapper,
-  GoogleButton,
-  GoogleImage,
   ButtonWrapper,
 } from '../Login/LoginForm/LoginForm.styled';
+import GoogleAuth from '../GoogleAuth/GoogleAuth';
 
 import {
   StarContainer,
@@ -23,7 +22,6 @@ import {
   BackgroundContainer,
   FormContainer,
 } from '../Registration/Registration.styled';
-import google_icon from '../../image/google_icon.png';
 import { useDispatch } from 'react-redux';
 import operations from '../../redux/asyncThunks';
 import { Link, useLocation } from 'react-router-dom';
@@ -113,21 +111,7 @@ const RegistrationForm = () => {
   return (
     <BackgroundContainer>
       <FormContainer>
-        <GoogleButton
-        // onClick={dispatch(operations.google())}
-        // type="submit"
-        >
-          {' '}
-          <a
-            href="https://book-reader-team.herokuapp.com/api/auth/google"
-            rel="noreferrer"
-            target="_blank"
-          >
-            {' '}
-            Google
-          </a>
-          <GoogleImage src={google_icon} alt="google icon"></GoogleImage>
-        </GoogleButton>
+        <GoogleAuth></GoogleAuth>
         <Form
           onSubmit={formik.handleSubmit}
           // onSubmit={handleSubmit}
@@ -137,7 +121,7 @@ const RegistrationForm = () => {
               <Label>
                 Ім’я <StarContainer>*</StarContainer>
                 {formik.touched.name && formik.errors.name ? (
-                  <div>{formik.errors.name}</div>
+                  <div style={{ color: '#FF6B08' }}>{formik.errors.name}</div>
                 ) : null}
                 <Input
                   onChange={
@@ -162,7 +146,9 @@ const RegistrationForm = () => {
                 <Label>
                   Електронна адреса <StarContainer2>*</StarContainer2>
                   {formik.touched.email && formik.errors.email ? (
-                    <div>{formik.errors.email}</div>
+                    <div style={{ color: '#FF6B08' }}>
+                      {formik.errors.email}
+                    </div>
                   ) : null}
                   <Input
                     onChange={formik.handleChange}
@@ -184,7 +170,9 @@ const RegistrationForm = () => {
                 <Label>
                   Пароль<StarContainer3>*</StarContainer3>
                   {formik.touched.password && formik.errors.password ? (
-                    <div>{formik.errors.password}</div>
+                    <div style={{ color: '#FF6B08' }}>
+                      {formik.errors.password}
+                    </div>
                   ) : null}
                   <Input
                     onChange={formik.handleChange}
@@ -207,7 +195,9 @@ const RegistrationForm = () => {
                   Підтвердити пароль<StarContainer4>*</StarContainer4>
                   {formik.touched.confirmPassword &&
                   formik.errors.confirmPassword ? (
-                    <div>{formik.errors.confirmPassword}</div>
+                    <div style={{ color: '#FF6B08' }}>
+                      {formik.errors.confirmPassword}
+                    </div>
                   ) : null}
                   <Input
                     onChange={formik.handleChange}

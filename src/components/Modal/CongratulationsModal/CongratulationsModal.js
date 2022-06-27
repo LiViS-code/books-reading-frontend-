@@ -8,22 +8,17 @@ import {
   Svg,
   Icon,
 } from './CongratulationsModal.styled';
-import { changeBookStatus } from '../../../redux/books/books-operations';
+import { closeCongratModal } from '../../../redux/books/books-operations';
 
-const CongratulationsModal = ({ toggleCongratulationsModal, id }) => {
+const CongratulationsModal = ({ toggleCongratulationsModal }) => {
   const dispatch = useDispatch();
-
-  const handleClick = () => {
-    dispatch(changeBookStatus(id));
-    toggleCongratulationsModal(false);
-  };
   return (
     <CongratulationsContent>
       <Svg>
         <Icon src={goodIcon} alt="trumb up" width="44"></Icon>
       </Svg>
       <Text>Вітаю! Ще одна книга прочитана.</Text>
-      <Done onClick={handleClick} type="button">
+      <Done onClick={() => dispatch(closeCongratModal())} type="button">
         Готово
       </Done>
     </CongratulationsContent>

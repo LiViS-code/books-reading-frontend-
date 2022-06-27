@@ -73,7 +73,8 @@ export const Box = styled.div`
 `;
 
 export const NewTrainingPage = styled.div`
-  margin: 0 auto 20px;
-
-  width: 150px;
+  width: 152px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 30px;
 `;

@@ -8,11 +8,13 @@ import {
   startTraining,
   endTraining,
   resultsTraining,
-  // addTraining,
+  addTraining,
   getTrainingData,
   getUserInfo,
   startNewTraining,
+  addResultToTraining,
   changeBookStatus,
+  closeCongratModal,
 } from '../books/books-operations';
 
 const initialState = {
@@ -22,9 +24,10 @@ const initialState = {
   start: null,
   end: null,
   results: [],
-  training: null,
+  training: [],
   trainingId: null,
   userInfo: null,
+  oneBookRed: false,
 };
 
 export const userSlice = createSlice({
@@ -57,11 +60,11 @@ export const userSlice = createSlice({
     [resultsTraining.fulfilled](state, action) {
       state.results = action.payload;
     },
-    // [addTraining.fulfilled](state, action) {
-    //   state.trainingId = action.payload.owner;
-    // },
+    [addTraining.fulfilled](state, action) {
+      state.training = action.payload.data;
+    },
     [getTrainingData.fulfilled](state, action) {
-      state.training = action.payload.training;
+      state.training = action.payload;
     },
     [getUserInfo.fulfilled](state, action) {
       state.userInfo = action.payload;
@@ -69,8 +72,14 @@ export const userSlice = createSlice({
     [startNewTraining.fulfilled](state, action) {
       state.training = [];
     },
-    [changeBookStatus.fulfilled](state, { payload }) {
-      state.training = state.training.filter(el => el._id !== payload._id);
+    [addResultToTraining.fulfilled](state, { payload }) {
+      state.training = payload.data;
+    },
+    [changeBookStatus.fulfilled](state, action) {
+      state.oneBookRed = true;
+    },
+    [closeCongratModal.fulfilled](state, action) {
+      state.oneBookRed = false;
     },
   },
 });

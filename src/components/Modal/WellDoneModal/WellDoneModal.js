@@ -9,31 +9,19 @@ import {
   Icon,
   Buttons,
 } from './WellDoneModal.styled';
-import images from '../../../image/svg/symbol-defs.svg';
+import images from '../../../image/good.svg';
 import { startNewTraining } from '../../../redux/books/books-operations';
+
 const WellDoneModal = ({ toggleWellDoneModal, text }) => {
   const dispatch = useDispatch();
-
-  const newTraining = () => {
-    dispatch(startNewTraining());
-  };
-
   return (
     <WellDoneContent>
       <Svg>
-        <Icon width={50} height={45}>
-          <use href={`${images}#icon-good`} alt="trumb up"></use>
-        </Icon>
+        <Icon src={`${images}`} alt="trumb up" width={50} height={46}></Icon>
       </Svg>
       <Text>{text}</Text>
       <Buttons>
-        <NewTraining
-          type="submit"
-          onClick={() => {
-            newTraining();
-            toggleWellDoneModal(false);
-          }}
-        >
+        <NewTraining type="submit" onClick={() => dispatch(startNewTraining())}>
           Нове тренування
         </NewTraining>
         <Back onClick={() => toggleWellDoneModal(false)} type="button">

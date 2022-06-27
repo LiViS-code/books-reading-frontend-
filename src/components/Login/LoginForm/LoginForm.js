@@ -7,58 +7,23 @@ import {
   Label,
   InputWrapper,
   Registration,
-  // GoogleButton,
   ButtonWrapper,
   LoginButton,
   StarContainer,
   StarContainer2,
   BackgroundContainer,
-  // SectionContainer
 } from './LoginForm.styled';
 import GoogleAuth from '../../GoogleAuth/GoogleAuth';
-
 import React from 'react';
-// import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import operations from '../../../redux/asyncThunks';
 import { Link, useLocation } from 'react-router-dom';
-
-// const initialValues = {
-//   email: '',
-//   password: '',
-// };
 
 const LoginForm = () => {
   const dispatch = useDispatch();
   const location = useLocation();
 
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
-
-  // const handleInputChange = e => {
-  //   const { name, value } = e.currentTarget;
-  //   switch (name) {
-  //     case 'email':
-  //       setEmail(value);
-  //       break;
-  //     case 'password':
-  //       setPassword(value);
-  //       break;
-  //     default:
-  //       return;
-  //   }
-  // };
-
-  // const handleSubmit = e => {
-  //   e.preventDefault();
-  //   dispatch(operations.logIn({ email, password }));
-  //   reset();
-  // };
-
-  // const reset = () => {
-  //   setEmail('');
-  //   setPassword('');
-  // };
+  sessionStorage.clear();
 
   const formik = useFormik({
     initialValues: {
@@ -87,29 +52,18 @@ const LoginForm = () => {
   return (
     <BackgroundContainer>
       <FormContainer>
-        {/* <GoogleButton
-          // onClick={dispatch(operations.google())}
-          type="submit"
-        >
-          Google<GoogleImage src={google_icon} alt="google icon"></GoogleImage>
-        </GoogleButton> */}
-        <GoogleAuth></GoogleAuth>
-        <Form
-          onSubmit={formik.handleSubmit}
-          // {handleSubmit}
-        >
+        <GoogleAuth />
+        <Form onSubmit={formik.handleSubmit}>
           <InputWrapper>
             <div>
               <Label>
                 Електронна адреса <StarContainer>*</StarContainer>
                 {formik.touched.email && formik.errors.email ? (
-                  <div>{formik.errors.email}</div>
+                  <div style={{ color: '#FF6B08' }}>{formik.errors.email}</div>
                 ) : null}
                 <Input
                   onChange={formik.handleChange}
-                  // {handleInputChange}
                   value={formik.values.email}
-                  // {email}
                   onBlur={formik.handleBlur}
                   id="email"
                   name="email"
@@ -124,13 +78,13 @@ const LoginForm = () => {
                 <Label>
                   Пароль <StarContainer2>*</StarContainer2>
                   {formik.touched.password && formik.errors.password ? (
-                    <div>{formik.errors.password}</div>
+                    <div style={{ color: '#FF6B08' }}>
+                      {formik.errors.password}
+                    </div>
                   ) : null}
                   <Input
                     onChange={formik.handleChange}
-                    // {handleInputChange}
                     value={formik.values.password}
-                    // {password}
                     onBlur={formik.handleBlur}
                     id="password"
                     name="password"
