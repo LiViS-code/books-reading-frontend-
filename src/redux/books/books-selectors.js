@@ -6,3 +6,4 @@ export const getEndTraining = state => state.user.end;
 export const getTraining = state => state.user.training;
 export const getTrainingId = state => state.user.trainingId;
 export const getUserInfo = state => state.user.getUserInfo;
+export const getOneBookRed = state => state.user.oneBookRed;

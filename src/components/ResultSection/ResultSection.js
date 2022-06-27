@@ -11,7 +11,7 @@ import {
   Button,
   Statistic,
 } from './ResultSection.styled';
-import { getTraining } from '../../redux/books/books-selectors';
+import { getTraining, getOneBookRed } from '../../redux/books/books-selectors';
 import {
   addResultToTraining,
   changeBookStatus,
@@ -29,11 +29,16 @@ export default function ResultSection() {
   const [pages, setPages] = useState(null);
   const [finishTrainingSuccess, setFinishTrainingSuccess] = useState(false);
   const [failTraining, setFailTraining] = useState(false);
-  const [oneBookRed, setOneBookRed] = useState(false);
+  // const [oneBookRed, setOneBookRed] = useState(false);
+  const oneBookRed = useSelector(getOneBookRed);
   const { width, height } = useWindowSize();
   const training = useSelector(getTraining);
   const books = useSelector(getAllBooks);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(operations.allBooks());
+  }, [dispatch]);
 
   useEffect(() => {
     //Find books of current training by id
@@ -44,36 +49,40 @@ export default function ResultSection() {
       }
       return trainBooksAll;
     });
-
     //Find only books with status "Reading now"
     const trainBooks = trainBooksAll.filter(
       ({ wish }) => wish === 'Reading now'
     );
-
     //Books already red during this training
     const booksRed = trainBooksAll.filter(
       ({ wish }) => wish === 'Already read'
     );
-
     // Find amount of pages in current training
     let trainPages = 0;
     trainBooksAll.map(({ pages }) => (trainPages += Number(pages)));
-
     //Find amount of already red pages from results
     let pagesRed = 0;
     training.result.map(({ page }) => (pagesRed += Number(page)));
-
     //Find amount of pages in already red books
     let pagesRedBooks = 0;
     booksRed.map(({ pages }) => (pagesRedBooks += Number(pages)));
-
     //Pages for checking one more red book
     const p = pagesRed - pagesRedBooks;
-
     //DeadlineResultCheck
     const success = pagesRed >= trainPages;
     if (new Date(training.end) < new Date()) {
       !success && setFailTraining(true);
+    }
+
+    if (trainBooks[0]) {
+      if (trainBooks[0].pages <= p) {
+        if (trainBooks[0].wish !== 'Already read') {
+          // setOneBookRed(true);
+          dispatch(changeBookStatus(trainBooks[0]._id));
+          dispatch(operations.allBooks());
+        }
+        // trainBooks.splice(0, 1);
+      }
     }
 
     //Success result check
@@ -81,15 +90,19 @@ export default function ResultSection() {
       setFinishTrainingSuccess(true);
     }
 
-    trainBooks.map(b => {
-      if (b.pages <= p) {
-        if (b.wish !== 'Already read') {
-          setOneBookRed(true);
-          dispatch(changeBookStatus(b._id));
-        }
-      }
-      return trainBooks;
-    });
+    // trainBooks.find(b => {
+    //   if (b.pages <= p) {
+    //     // if (b.wish !== 'Already read') {
+    //       console.log(1);
+    //       setOneBookRed(true);
+    //       console.log(2);
+    //       dispatch(changeBookStatus(b._id));
+    //       console.log(3);
+    //       return;
+    //     // }
+    //   }
+    //   return trainBooks;
+    // });
   }, [training, books, dispatch]);
 
   // const CustomInput = ({ value, onClick }) => (
@@ -142,7 +155,6 @@ export default function ResultSection() {
                   id: training._id,
                 })
               );
-              dispatch(operations.allBooks());
             }
           }}
         >
@@ -175,7 +187,7 @@ export default function ResultSection() {
 
       {oneBookRed && (
         <Modal>
-          <CongratulationsModal toggleCongratulationsModal={setOneBookRed} />
+          <CongratulationsModal />
         </Modal>
       )}
     </Section>

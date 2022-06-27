@@ -130,8 +130,9 @@ const LibraryForm = () => {
           </InputContainer>
           <ButtonWrapper>
             <PrimaryButton
-              type="button"
-              // onClick={() => window.location.reload(false)}
+              type="submit"
+              onClick={() => window.location.reload(false)}
+              // onClick={() => {dispatch(addBook({"title"}))}}
             >
               Додати
             </PrimaryButton>
