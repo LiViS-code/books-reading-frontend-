@@ -1,1 +1,1 @@
-export { default } from "./LoginText";
+export { default } from './LoginText';
