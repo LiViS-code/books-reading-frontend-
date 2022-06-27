@@ -66,17 +66,19 @@ export const Svg = styled.div`
   justify-content: center;
   width: ${spacing(13.5)};
   height: ${spacing(13.5)};
-  fill: ${outlineColor};
+  // fill: ${outlineColor};
+  background_color: #242a37;
 
   @media screen and (min-width: ${tablet}) {
     padding-top: ${spacing(10)};
   }
 `;
 
-export const Icon = styled.svg`
+export const Icon = styled.img`
   width: ${spacing(13.5)};
   height: ${spacing(13.5)};
 `;
+
 export const Back = styled.button`
   margin-top: 0;
   padding: 0;
