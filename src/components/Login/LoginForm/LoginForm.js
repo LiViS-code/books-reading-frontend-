@@ -59,7 +59,7 @@ const LoginForm = () => {
               <Label>
                 Електронна адреса <StarContainer>*</StarContainer>
                 {formik.touched.email && formik.errors.email ? (
-                  <div style={{ color: '#FF6B08' }}>{formik.errors.email}</div>
+                  <div>{formik.errors.email}</div>
                 ) : null}
                 <Input
                   onChange={formik.handleChange}
@@ -78,9 +78,7 @@ const LoginForm = () => {
                 <Label>
                   Пароль <StarContainer2>*</StarContainer2>
                   {formik.touched.password && formik.errors.password ? (
-                    <div style={{ color: '#FF6B08' }}>
-                      {formik.errors.password}
-                    </div>
+                    <div>{formik.errors.password}</div>
                   ) : null}
                   <Input
                     onChange={formik.handleChange}

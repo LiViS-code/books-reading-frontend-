@@ -121,7 +121,7 @@ const RegistrationForm = () => {
               <Label>
                 Ім’я <StarContainer>*</StarContainer>
                 {formik.touched.name && formik.errors.name ? (
-                  <div style={{ color: '#FF6B08' }}>{formik.errors.name}</div>
+                  <div>{formik.errors.name}</div>
                 ) : null}
                 <Input
                   onChange={
@@ -146,9 +146,7 @@ const RegistrationForm = () => {
                 <Label>
                   Електронна адреса <StarContainer2>*</StarContainer2>
                   {formik.touched.email && formik.errors.email ? (
-                    <div style={{ color: '#FF6B08' }}>
-                      {formik.errors.email}
-                    </div>
+                    <div>{formik.errors.email}</div>
                   ) : null}
                   <Input
                     onChange={formik.handleChange}
@@ -170,9 +168,7 @@ const RegistrationForm = () => {
                 <Label>
                   Пароль<StarContainer3>*</StarContainer3>
                   {formik.touched.password && formik.errors.password ? (
-                    <div style={{ color: '#FF6B08' }}>
-                      {formik.errors.password}
-                    </div>
+                    <div>{formik.errors.password}</div>
                   ) : null}
                   <Input
                     onChange={formik.handleChange}
@@ -195,9 +191,7 @@ const RegistrationForm = () => {
                   Підтвердити пароль<StarContainer4>*</StarContainer4>
                   {formik.touched.confirmPassword &&
                   formik.errors.confirmPassword ? (
-                    <div style={{ color: '#FF6B08' }}>
-                      {formik.errors.confirmPassword}
-                    </div>
+                    <div>{formik.errors.confirmPassword}</div>
                   ) : null}
                   <Input
                     onChange={formik.handleChange}

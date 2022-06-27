@@ -18,11 +18,11 @@ export const Container = styled.div`
     width: ${spacing(70)};
   }
   @media (min-width: ${tablet}) {
-    width: ${spacing(184)};
+    width: ${spacing(192)};
     padding: 0 ${spacing(8)};
   }
   @media (min-width: ${desktop}) {
-    width: ${spacing(312)};
+    width: ${spacing(320)};
     padding: 0 ${spacing(4)};
   }
 `;

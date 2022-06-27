@@ -20,10 +20,9 @@ const {
 } = theme.media;
 
 export const SectionContainer = styled.div`
-  max-width: 100%;
   @media screen and (min-width: ${desktop}) {
     display: flex;
-    /* max-width: 1280px; */
+    max-width: 1280px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -33,7 +32,7 @@ export const BackgroundContainer = styled.div`
   background: linear-gradient(0deg, rgba(9, 30, 63, 0.8), rgba(9, 30, 63, 0.8)),
     url(${img});
   background-size: cover;
-  width: 100%;
+  width: 100vw;
   @media screen and (min-width: ${tablet}) {
     height: ${spacing(140)};
     padding-top: ${spacing(16)};
