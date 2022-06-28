@@ -24,17 +24,12 @@ import {
 } from '../../../redux/books/books-operations';
 
 export const TrainLib = () => {
-  // const [bookList, setBookList] = useState(null);
   const bookList = useSelector(getTrainingBooks);
   const dispatch = useDispatch();
-  // useEffect(() => {
-  //   setBookList(books);
-  // }, []);
 
   const deleteBook = id => {
     if (bookList) {
       const newBooks = bookList.filter(b => b._id !== id);
-      // setBookList(newBooks);
       dispatch(setTrainingBooks(newBooks));
       dispatch(deleteBookFromTraining(id));
     }
