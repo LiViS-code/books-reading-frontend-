@@ -31,7 +31,7 @@ export const SectionContainer = styled.div`
 export const BackgroundContainer = styled.div`
   background: linear-gradient(0deg, rgba(9, 30, 63, 0.8), rgba(9, 30, 63, 0.8)),
     url(${img});
-  width: 320px;
+  width: 100%;
   background-size: 100%;
   @media screen and (min-width: ${tablet}) {
     height: ${spacing(140)};
