@@ -18,7 +18,6 @@ import {
 } from './LineChart.styled';
 import { getTraining } from '../../redux/books/books-selectors';
 import { getAllBooks } from '../../redux/selectors/user-selectors';
-import { resultsTraining } from '../../redux/books/books-operations';
 
 ChartJS.register(
   CategoryScale,
@@ -53,6 +52,7 @@ export default function LineChart() {
     const pagesLeft = totalPages - pagesRed;
     const plan = pagesLeft / daysToEnd;
     planPages.push(plan);
+    return planPages;
   });
 
   const options = {
