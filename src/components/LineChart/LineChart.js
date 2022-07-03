@@ -33,25 +33,28 @@ export default function LineChart() {
   const training = useSelector(getTraining);
   const dayStart = new Date(training.start);
   const dayEnd = new Date(training.end);
-  const daysLeft = Math.floor((dayEnd - dayStart) / 86400000);
-
+  const results = training.result;
   const books = useSelector(getAllBooks);
+
   const trainingBooks = books.filter(book =>
     training.books.find(id => book._id === id)
   );
 
   let totalPages = 0;
   trainingBooks.map(el => (totalPages += el.pages));
-  const pagesForDay = totalPages / daysLeft;
 
-  const planDays = [];
-  for (let i = 1; i <= daysLeft; i++) {
-    planDays.push(i);
-  }
+  let pagesRed = 0;
 
-  const planPages = Array(daysLeft).fill(pagesForDay);
+  const planPages = [];
+  results.map(res => {
+    const daysToEnd = Math.floor((dayEnd - new Date(res.date)) / 86400000);
+    pagesRed += Number(res.page);
+    const pagesLeft = totalPages - pagesRed;
+    const plan = pagesLeft / daysToEnd;
+    planPages.push(plan);
+    return planPages;
+  });
 
-  const results = training.result;
   const options = {
     borderWidth: '2',
     radius: '4',
@@ -62,7 +65,11 @@ export default function LineChart() {
       },
     },
   };
-  const labels = planDays;
+
+  const labels = results.map(
+    result => Math.floor((new Date(result.date) - dayStart) / 86400000) + 1
+  );
+
   const data = {
     labels,
     datasets: [
@@ -80,7 +87,7 @@ export default function LineChart() {
       },
     ],
   };
-  const today = Math.ceil((new Date() - dayStart) / 86400000);
+  const today = Math.ceil((new Date() - dayStart) / 86400000 + 1);
 
   return (
     <ChartContainer>
